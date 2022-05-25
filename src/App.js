@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useLocation } from "react-router-dom";
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import HomeIcon from '@mui/icons-material/Home';
@@ -20,8 +21,8 @@ import Paper from '@mui/material/Paper';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import DirectionsCarRoundedIcon from '@mui/icons-material/DirectionsCarRounded';
 import AddLocationAltRoundedIcon from '@mui/icons-material/AddLocationAltRounded';
@@ -30,16 +31,26 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LocalPostOfficeRoundedIcon from '@mui/icons-material/LocalPostOfficeRounded';
 import BeenhereRoundedIcon from '@mui/icons-material/BeenhereRounded';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
-import { Container } from '@mui/system';
 import Home from './components/Home/Home';
-import {Routes,Route, BrowserRouter, Link} from 'react-router-dom'
+import { Routes, Route, BrowserRouter, Link } from 'react-router-dom'
 import Booking from './components/Booking/Booking';
 import Contact from './components/Contact/Contact';
+import Badge from '@mui/material/Badge';
 import GDetails from './components/GuestDetaiols/GDetails';
 
 function App() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState();
   const [drawer, setDrawer] = React.useState(false);
+
+  const location=useLocation();
+
+  React.useEffect(()=>{
+    let path = location.pathname;
+    if (path === "/") setValue(0);
+    else if (path === "/booking") setValue(1);
+    else if (path === "/guestdetails") setValue(2);
+    else if (path === "/contact") setValue(3);
+  })
 
 
   return (
@@ -57,18 +68,18 @@ function App() {
           onKeyDown={() => setDrawer(false)}
         >
           <List>
-            <Box 
+            <Box
               sx={{
-             
+
                 '& > :not(style)': {
                   m: 1,
-                  width:230,
+                  width: 230,
                   height: 68,
                 },
               }}
             >
               <Paper elevation={3} >
-             
+
               </Paper>
             </Box>
             <Divider />
@@ -177,10 +188,32 @@ function App() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            eZee Beach House
+          Avalanche Luxury Hotel
           </Typography>
 
-          <div>
+          <Box sx={{ flexGrow: 1 }} />
+          <Box >
+          <IconButton size="large"  color="inherit">
+          <Badge badgeContent={17} color="error">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+          <IconButton size="large"  color="inherit">
+              <AccountCircleIcon/>
+            </IconButton>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              // onClick={handleMenu}
+              color="inherit"
+            >
+              <LogoutIcon />
+            </IconButton>
+          </Box>
+
+          {/* <div>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -192,7 +225,7 @@ function App() {
               <LogoutIcon />
             </IconButton>
 
-          </div>
+          </div> */}
         </Toolbar>
       </AppBar>
 
@@ -200,10 +233,10 @@ function App() {
         sx={{}}
       >
         <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/booking' element={<Booking/>}/>
-          <Route path='/guestdetails' element={<GDetails/>}/>
-          <Route path='/contact' element={<Contact/>}/>
+          <Route path='/' element={<Home />} />
+          <Route path='/booking' element={<Booking />} />
+          <Route path='/guestdetails' element={<GDetails />} />
+          <Route path='/contact' element={<Contact />} />
         </Routes>
         {/* <Home/> */}
       </Box>
@@ -217,10 +250,10 @@ function App() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction    component={Link} to='/'  label="Home" icon={<HomeIcon />} />
-          <BottomNavigationAction component={Link} to='/booking'   label="Booking" icon={<DateRangeIcon />} />
-          <BottomNavigationAction component={Link} to='/guestdetails'  label="Guest Details" icon={<PermContactCalendarIcon />} />
-          <BottomNavigationAction component={Link} to='/contact'  label="Contact" icon={<AddIcCallIcon />} />
+          <BottomNavigationAction component={Link} to='/' label="Home" icon={<HomeIcon />} />
+          <BottomNavigationAction component={Link} to='/booking' label="Booking" icon={<DateRangeIcon />} />
+          <BottomNavigationAction component={Link} to='/guestdetails' label="Guest Details" icon={<PermContactCalendarIcon />} />
+          <BottomNavigationAction component={Link} to='/contact' label="Contact" icon={<AddIcCallIcon />} />
         </BottomNavigation>
       </Box>
     </>
