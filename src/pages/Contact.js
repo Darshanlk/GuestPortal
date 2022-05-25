@@ -9,7 +9,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import SendIcon from '@mui/icons-material/Send';
 import EmailIcon from '@mui/icons-material/Email';
-import Map from './Map';
+import Map from '../components/Map';
 import { Button, Card, CardContent, Divider, Typography } from '@mui/material';
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : 'fff',

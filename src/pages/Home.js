@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import RoomCard from "./RoomCard";
+import RoomCard from "../components/RoomCard";
 import {
   Container,
   SnackbarContent,
@@ -9,14 +9,16 @@ import {
   Divider,
   Grid,
 } from "@mui/material";
-import DateCard from "./DateCard";
+import DateCard from "../components/DateCard";
 
 // Icon
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import CheckInCard from "./CheckInCard";
-import ServiceStack from "./ServiceStack";
+import CheckInCard from "../components/CheckInCard";
+import ServiceStack from "../components/ServiceStack";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate=useNavigate();
   
   return (
     <div>
@@ -85,6 +87,8 @@ function Home() {
           }}
           message="Make changes to your booking"
           action={<ArrowForwardIosIcon sx={{ fontSize: 18, color: "black" }} />}
+          onClick={e => navigate("/booking")}
+
         />
         <CheckInCard value={30} />
 

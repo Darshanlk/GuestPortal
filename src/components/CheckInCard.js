@@ -4,10 +4,13 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CircularProgress } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function CheckInCard({value}) {
+  const navigate=useNavigate()
   return (
-    <Card sx={{ display: "flex", flexDirection: "row",marginY:2 }}>
+    
+    <Card sx={{ display: "flex", flexDirection: "row",marginY:2 }} onClick={e => navigate("/guestdetails")} >
       <CardMedia
         component="img"
         sx={{ width: 40, maxHeight: 40, marginLeft: 1, paddingTop: 3 }}

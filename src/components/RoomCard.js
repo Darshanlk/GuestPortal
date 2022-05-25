@@ -9,7 +9,7 @@ import ButtonBase from "@mui/material/ButtonBase";
 import RestaurantRoundedIcon from "@mui/icons-material/RestaurantRounded";
 import PeopleOutlineRoundedIcon from "@mui/icons-material/PeopleOutlineRounded";
 import HotelOutlinedIcon from "@mui/icons-material/HotelOutlined";
-
+import { useNavigate } from "react-router-dom";
 const Img = styled("img")({
   margin: "auto",
   display: "block",
@@ -18,8 +18,9 @@ const Img = styled("img")({
 });
 
 export default function RoomCard() {
+  const navigate=useNavigate()
   return (
-    <>
+    <div onClick={e => navigate('/booking')}>
       
         <Paper
           sx={{
@@ -129,6 +130,6 @@ export default function RoomCard() {
         </Paper>
         {/*  */}
    
-    </>
+    </div>
   );
 }

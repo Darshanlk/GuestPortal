@@ -31,20 +31,20 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LocalPostOfficeRoundedIcon from '@mui/icons-material/LocalPostOfficeRounded';
 import BeenhereRoundedIcon from '@mui/icons-material/BeenhereRounded';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
-import Home from './components/Home/Home';
+import Home from './pages/Home';
 import { Routes, Route, BrowserRouter, Link } from 'react-router-dom'
-import Booking from './components/Booking/Booking';
-import Contact from './components/Contact/Contact';
+import Booking from './pages/Booking';
+import Contact from './pages/Contact';
 import Badge from '@mui/material/Badge';
-import GDetails from './components/GuestDetaiols/GDetails';
+import GDetails from './pages/GDetails';
 
 function App() {
   const [value, setValue] = React.useState();
   const [drawer, setDrawer] = React.useState(false);
 
-  const location=useLocation();
+  const location = useLocation();
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     let path = location.pathname;
     if (path === "/") setValue(0);
     else if (path === "/booking") setValue(1);
@@ -56,7 +56,7 @@ function App() {
   return (
     <>
       <SwipeableDrawer
-        anchor='left'
+        anchor='right'
         open={drawer}
         onClose={() => setDrawer(false)}
         onOpen={() => setDrawer(true)}
@@ -175,42 +175,34 @@ function App() {
 
         </Box>
       </SwipeableDrawer>
-      <AppBar position="static">
+      <AppBar position="static" variant="outlined"   color='default'> 
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            onClick={() => setDrawer(true)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Avalanche Luxury Hotel
+
+          <Typography variant="body1" component="div" sx={{ flexGrow: 1 }}>
+            Avalanche Luxury Hotel
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
           <Box >
-          <IconButton size="large"  color="inherit">
-          <Badge badgeContent={17} color="error">
+            <IconButton size="large" color="inherit">
+              <Badge badgeContent={17} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-          <IconButton size="large"  color="inherit">
-              <AccountCircleIcon/>
+            <IconButton size="large" color="inherit">
+              <AccountCircleIcon />
             </IconButton>
             <IconButton
               size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              // onClick={handleMenu}
+              edge="start"
               color="inherit"
+              aria-label="menu"
+              sx={{ ml: 1 }}
+              onClick={() => setDrawer(true)}
             >
-              <LogoutIcon />
+              <MenuIcon />
             </IconButton>
+
           </Box>
 
           {/* <div>

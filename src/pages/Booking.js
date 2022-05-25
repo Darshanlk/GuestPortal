@@ -9,10 +9,10 @@ import {
 } from "@mui/material";
 
 //components
-import DateCard2 from "./DateCard2";
-import RoomCard2 from "./RoomCard2";
-import CheckInCard from "../Home/CheckInCard";
-import ServiceStack from "../Home/ServiceStack";
+import DateCard2 from "../components/DateCard2";
+import RoomCard2 from "../components/RoomCard2";
+import CheckInCard from "../components/CheckInCard";
+import ServiceStack from "../components/ServiceStack";
 
 function Booking() {
   return (
