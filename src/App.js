@@ -179,7 +179,7 @@ function App() {
         <Toolbar>
 
           <Typography variant="body1" component="div" sx={{ flexGrow: 1 }}>
-            Avalanche Harsh Luxury Hotel
+            Avalanche HarshDarshan Luxury Hotel
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
