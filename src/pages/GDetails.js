@@ -33,127 +33,154 @@ function GDetails() {
             <Grid item xs={11} sm={11} md={6}>
                 <Box sx={{ width: '100%', marginTop: 5 }}>
                     <Stack spacing={2}>
-                        <Paper>
+                        <Paper elevation={0}>
                             <StyledAccordion sx={{ minHeight: 30 }}>
                                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                                     <Card elevation={0} sx={{ display: 'flex', flexDirection: 'row' }}>
                                         <AccountCircleIcon sx={{ color: blue[500], marginRight: 5, margin: 2, fontSize: 40 }} />
                                         <Stack spacing={1} sx={{ marginRight: 5, margin: 2 }}>
                                             <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                                                <Typography sx={{ marginRight: 5 }}>John Spencer</Typography>
+                                                <Typography  sx={{ marginRight: 5 ,fontWeight: 600}}>John Spencer</Typography>
                                                 <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                                                     <CheckCircleIcon color='primary' sx={{ fontSize: 17 }} />
-                                                    <Typography>Approved</Typography>
+                                                    <Typography variant="caption">Approved</Typography>
                                                 </Box>
                                             </Box>
                                             <Divider />
-                                            <Typography>+91 98980 98980</Typography>
+                                            <Typography variant="body2" >+91 98980 98980</Typography>
                                             <Divider />
-                                            <Typography>john.spencer123@gmail.com</Typography>
+                                            <Typography variant="body2"  >john.spencer123@gmail.com</Typography>
                                         </Stack>
                                     </Card>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <Stack
-                                        direction="column"
-                                        justifyContent="flex-start"
-                                        alignItems="center"
-                                        spacing={0.1}
+                                <Divider />
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            alignItems: "",
+                                            marginLeft: 4,
+                                        }}
                                     >
-
-                                        <Divider />
-                                        <Button variant="text">Add Guest</Button>
-                                        <Divider />
-                                        <Button variant="text">Send Invite to Member</Button>
-
-
-
-                                    </Stack>
+                                        <Typography variant="overline" sx={{ fontWeight:'bold',color: "dodgerBlue", paddingY: 2 }}>
+                                            Edit Profile
+                                        </Typography>
+                                    </Box>
+                                    <Divider />
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            marginLeft: 4
+                                        }}
+                                    >
+                                        <Typography variant="overline" sx={{ fontWeight:'bold',color: "red", paddingY: 2 }}>
+                                            RemoveProfile
+                                        </Typography>
+                                    </Box>
 
 
                                 </AccordionDetails>
                             </StyledAccordion>
                         </Paper>
-                        <Paper>
+                        <Paper elevation={0}>
                             <StyledAccordion sx={{ minHeight: 30 }}>
                                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                                     <Card elevation={0} sx={{ display: 'flex', flexDirection: 'row' }}>
                                         <AccountCircleIcon sx={{ color: blue[500], marginRight: 5, margin: 2, fontSize: 40 }} />
                                         <Stack spacing={1} sx={{ marginRight: 5, margin: 2 }}>
                                             <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                                                <Typography sx={{ marginRight: 5 }}>John Spencer</Typography>
+                                                <Typography sx={{ marginRight: 5,fontWeight: 600 }}>John Spencer</Typography>
                                                 <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                                                     <CheckCircleIcon color='primary' sx={{ fontSize: 17 }} />
-                                                    <Typography>Approved</Typography>
+                                                    <Typography variant="caption">Approved</Typography>
                                                 </Box>
                                             </Box>
                                             <Divider />
-                                            <Typography>+91 98980 98980</Typography>
+                                            <Typography variant="body2" >+91 98980 98980</Typography>
                                             <Divider />
-                                            <Typography>john.spencer123@gmail.com</Typography>
+                                            <Typography variant="body2" >john.spencer123@gmail.com</Typography>
                                         </Stack>
                                     </Card>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <Stack
-                                        direction="column"
-                                        justifyContent="flex-start"
-                                        alignItems="center"
-                                        spacing={0.1}
+                                    <Divider />
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            alignItems: "",
+                                            marginLeft: 4,
+                                        }}
                                     >
-
-                                        <Divider />
-                                        <Button variant="text">Edit Profile</Button>
-                                        <Divider />
-                                        <Button color="error" variant="text">Remove Profile</Button>
-
-
-
-                                    </Stack>
-
-
+                                        <Typography variant="overline" sx={{ fontWeight:'bold',color: "dodgerBlue", paddingY: 2 }}>
+                                            Edit Profile
+                                        </Typography>
+                                    </Box>
+                                    <Divider />
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            marginLeft: 4
+                                        }}
+                                    >
+                                        <Typography variant="overline" sx={{ fontWeight:'bold',color: "red", paddingY: 2 }}>
+                                            RemoveProfile
+                                        </Typography>
+                                    </Box>
                                 </AccordionDetails>
                             </StyledAccordion>
                         </Paper>
 
 
-                        <Paper>
+                        <Paper elevation={0}>
                             <StyledAccordion sx={{ minHeight: 30 }}>
                                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                                     <Card elevation={0} sx={{ display: 'flex', flexDirection: 'row' }}>
                                         <AccountCircleIcon sx={{ color: blue[500], marginRight: 5, margin: 2, fontSize: 40 }} />
                                         <Stack spacing={1} sx={{ marginRight: 5, margin: 2 }}>
                                             <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                                                <Typography sx={{ marginRight: 5 }}>John Spencer</Typography>
+                                                <Typography sx={{ marginRight: 5 ,fontWeight: 600}}>John Spencer</Typography>
                                                 <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                                                     <CheckCircleIcon color='primary' sx={{ fontSize: 17 }} />
-                                                    <Typography>Approved</Typography>
+                                                    <Typography variant="caption">Approved</Typography>
                                                 </Box>
                                             </Box>
                                             <Divider />
-                                            <Typography>+91 98980 98980</Typography>
+                                            <Typography variant="body2" >+91 98980 98980</Typography>
                                             <Divider />
-                                            <Typography>john.spencer123@gmail.com</Typography>
+                                            <Typography variant="body2" >john.spencer123@gmail.com</Typography>
                                         </Stack>
                                     </Card>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <Stack
-                                        direction="column"
-                                        justifyContent="flex-start"
-                                        alignItems="center"
-                                        spacing={0.1}
+                                <Divider />
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            alignItems: "",
+                                            marginLeft: 4,
+                                        }}
                                     >
-                              
-
-                                        <Divider />
-                                        <Button variant="text">Add Guest</Button>
-                                        <Divider />
-                                        <Button variant="text">Send Invite to Member</Button>
-
-
-
-                                    </Stack>
+                                        <Typography variant="overline" sx={{ fontWeight:'bold',color: "dodgerBlue", paddingY: 2 }}>
+                                            Edit Profile
+                                        </Typography>
+                                    </Box>
+                                    <Divider />
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            marginLeft: 4
+                                        }}
+                                    >
+                                        <Typography variant="overline" sx={{ fontWeight:'bold',color: "red", paddingY: 2 }}>
+                                            RemoveProfile
+                                        </Typography>
+                                    </Box>
 
 
                                 </AccordionDetails>
@@ -165,7 +192,7 @@ function GDetails() {
             <Grid item xs={11} md={4} sm={11} sx={{ marginTop: 10 }}>
                 <Stack direction="column" spacing={2}>
 
-                    <Button variant="outlined" >
+                    <Button variant="outlined">
                         Add Guest
                     </Button>
                     <Button variant="outlined" >

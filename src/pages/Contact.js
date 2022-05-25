@@ -30,7 +30,7 @@ function Contact() {
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <Card elevation={5} sx={{ minWidth: 275 }}>
+                    <Card elevation={1} sx={{ minWidth: 275 }}>
                         <CardContent>
 
                             <Typography align='center' sx={{ marginBottom: 3, fontWeight: 'bold' }} variant="h5" component="div">
