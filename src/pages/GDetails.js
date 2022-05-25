@@ -29,11 +29,12 @@ function GDetails() {
             direction="row"
             justifyContent="space-around"
             alignItems="flex-start"
+           
         >
             <Grid item xs={11} sm={11} md={6}>
-                <Box sx={{ width: '100%', marginTop: 5 }}>
+                <Box sx={{ width: '98%', marginTop: 5 }}>
                     <Stack spacing={2}>
-                        <Paper elevation={0}>
+                        {/* <Paper elevation={0}> */}
                             <StyledAccordion sx={{ minHeight: 30 }}>
                                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                                     <Card elevation={0} sx={{ display: 'flex', flexDirection: 'row' }}>
@@ -83,8 +84,8 @@ function GDetails() {
 
                                 </AccordionDetails>
                             </StyledAccordion>
-                        </Paper>
-                        <Paper elevation={0}>
+                        {/* </Paper> */}
+                        {/* <Paper elevation={0}> */}
                             <StyledAccordion sx={{ minHeight: 30 }}>
                                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                                     <Card elevation={0} sx={{ display: 'flex', flexDirection: 'row' }}>
@@ -132,10 +133,10 @@ function GDetails() {
                                     </Box>
                                 </AccordionDetails>
                             </StyledAccordion>
-                        </Paper>
+                        {/* </Paper> */}
 
 
-                        <Paper elevation={0}>
+                        {/* <Paper elevation={0}> */}
                             <StyledAccordion sx={{ minHeight: 30 }}>
                                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                                     <Card elevation={0} sx={{ display: 'flex', flexDirection: 'row' }}>
@@ -185,11 +186,11 @@ function GDetails() {
 
                                 </AccordionDetails>
                             </StyledAccordion>
-                        </Paper>
+                        {/* </Paper> */}
                     </Stack>
                 </Box>
             </Grid>
-            <Grid item xs={11} md={4} sm={11} sx={{ marginTop: 10 }}>
+            <Grid item xs={11} md={4} sm={11} sx={{ marginTop: 10,marginBottom:5 }}>
                 <Stack direction="column" spacing={2}>
 
                     <Button variant="outlined">

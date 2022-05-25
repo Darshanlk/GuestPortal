@@ -235,7 +235,7 @@ function App() {
       <Box paddingBottom='50px'>
         <BottomNavigation
           sx={{ position: 'fixed', bottom: 0, width: 1.0 }}
-          showLabels
+          showLabelsdeta
           value={value}
           onChange={(event, newValue) => {
             console.log(newValue)
@@ -244,7 +244,7 @@ function App() {
         >
           <BottomNavigationAction component={Link} to='/' label="Home" icon={<HomeIcon />} />
           <BottomNavigationAction component={Link} to='/booking' label="Booking" icon={<DateRangeIcon />} />
-          <BottomNavigationAction component={Link} to='/guestdetails' label="Guest Details" icon={<PermContactCalendarIcon />} />
+          <BottomNavigationAction component={Link} to='/guestdetails' label="Details" icon={<PermContactCalendarIcon />} />
           <BottomNavigationAction component={Link} to='/contact' label="Contact" icon={<AddIcCallIcon />} />
         </BottomNavigation>
       </Box>
