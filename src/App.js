@@ -37,13 +37,11 @@ import { Routes, Route,  Link } from 'react-router-dom'
 import Booking from './pages/Booking';
 import Contact from './pages/Contact';
 import Badge from '@mui/material/Badge';
-import { useNavigate } from "react-router-dom";
 import GDetails from './pages/GDetails';
-<<<<<<< HEAD
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import NotFound from './pages/NotFound';
-=======
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
->>>>>>> bdc13c0e86a88eaf6ae1747eab8936ce08f0c5bd
+
 
 function App() {
   const [value, setValue] = React.useState();
@@ -53,10 +51,7 @@ function App() {
   
   const location = useLocation();
   const navigate = useNavigate();
-<<<<<<< HEAD
-=======
 
->>>>>>> bdc13c0e86a88eaf6ae1747eab8936ce08f0c5bd
 
   React.useEffect(() => {
     let path = location.pathname;
@@ -202,30 +197,25 @@ function App() {
       </SwipeableDrawer>
       <AppBar position="static" variant="outlined" color='default'>
         <Toolbar>
-<<<<<<< HEAD
-        { value >0 ? <ArrowBackIosIcon sx={{fontSize:20}} onClick={e => navigate('/')} />: " "} 
-          <Typography variant="body1" component="div" sx={{ flexGrow: 1 }}>
-        {navTitle}
-=======
+
           {
             value ? <IconButton sx={{paddingLeft:0}} onClick={e => navigate("/")} size="large" color="inherit">
               <ArrowBackIosNewIcon />
             </IconButton> : null
 
           }
-          <Typography  variant="h6" sx={{ fontWeight: 600,flexGrow: 1 }} component="div">
+          <Typography  variant="body1" sx={{ fontWeight: 600,flexGrow: 1 }} component="div">
             {title}
->>>>>>> bdc13c0e86a88eaf6ae1747eab8936ce08f0c5bd
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
           <Box >
-            <IconButton size="large" color="inherit">
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
+            <IconButton size="large"  sx={{color:'GrayText'}}>
+              <Badge badgeContent={7} color="error">
+                <NotificationsNoneIcon />
               </Badge>
             </IconButton>
-            <IconButton size="large" color="inherit">
+            <IconButton size="large" sx={{color:'GrayText'}}>
               <AccountCircleIcon />
             </IconButton>
             <IconButton
