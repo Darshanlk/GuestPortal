@@ -37,16 +37,26 @@ import { Routes, Route,  Link } from 'react-router-dom'
 import Booking from './pages/Booking';
 import Contact from './pages/Contact';
 import Badge from '@mui/material/Badge';
+import { useNavigate } from "react-router-dom";
 import GDetails from './pages/GDetails';
+<<<<<<< HEAD
 import NotFound from './pages/NotFound';
+=======
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+>>>>>>> bdc13c0e86a88eaf6ae1747eab8936ce08f0c5bd
 
 function App() {
   const [value, setValue] = React.useState();
+  const [title, setTitle] = React.useState();
   const [drawer, setDrawer] = React.useState(false);
   const [navTitle,setNavTitle] = React.useState('0')
   
   const location = useLocation();
   const navigate = useNavigate();
+<<<<<<< HEAD
+=======
+
+>>>>>>> bdc13c0e86a88eaf6ae1747eab8936ce08f0c5bd
 
   React.useEffect(() => {
     let path = location.pathname;
@@ -55,6 +65,17 @@ function App() {
     else if (path === "/guestdetails") {setValue(2); setNavTitle("Guest Details");}
     else if (path === "/contact") {setValue(3); setNavTitle("Contact");}
   })
+
+  React.useEffect(() => {
+    let path = location.pathname;
+    if (path === "/") setTitle('Avalanche Luxury Hotel');
+    else if (path === "/booking") setTitle('Booking Details')
+    else if (path === "/guestdetails") setTitle('Guest Details')
+    else if (path === "/contact") setTitle('Contact')
+  })
+
+
+
 
 
   return (
@@ -179,11 +200,22 @@ function App() {
 
         </Box>
       </SwipeableDrawer>
-      <AppBar position="static" variant="outlined"   color='default'> 
+      <AppBar position="static" variant="outlined" color='default'>
         <Toolbar>
+<<<<<<< HEAD
         { value >0 ? <ArrowBackIosIcon sx={{fontSize:20}} onClick={e => navigate('/')} />: " "} 
           <Typography variant="body1" component="div" sx={{ flexGrow: 1 }}>
         {navTitle}
+=======
+          {
+            value ? <IconButton sx={{paddingLeft:0}} onClick={e => navigate("/")} size="large" color="inherit">
+              <ArrowBackIosNewIcon />
+            </IconButton> : null
+
+          }
+          <Typography  variant="h6" sx={{ fontWeight: 600,flexGrow: 1 }} component="div">
+            {title}
+>>>>>>> bdc13c0e86a88eaf6ae1747eab8936ce08f0c5bd
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
