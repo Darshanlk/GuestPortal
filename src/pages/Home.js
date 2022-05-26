@@ -28,7 +28,7 @@ function Home() {
             Welcome!
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: 600 }}>
-            Mr. Jack Spencerrrrrrrrrrrr
+            Mr. Jack Spencerrrrrrrrrrrryyyyyy
           </Typography>
         </Box>
 
