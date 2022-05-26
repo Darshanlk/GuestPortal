@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import HomeIcon from '@mui/icons-material/Home';
@@ -31,30 +31,39 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LocalPostOfficeRoundedIcon from '@mui/icons-material/LocalPostOfficeRounded';
 import BeenhereRoundedIcon from '@mui/icons-material/BeenhereRounded';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Home from './pages/Home';
-import { Routes, Route, BrowserRouter, Link } from 'react-router-dom'
+import { Routes, Route,  Link } from 'react-router-dom'
 import Booking from './pages/Booking';
 import Contact from './pages/Contact';
 import Badge from '@mui/material/Badge';
 import { useNavigate } from "react-router-dom";
 import GDetails from './pages/GDetails';
+<<<<<<< HEAD
+import NotFound from './pages/NotFound';
+=======
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+>>>>>>> bdc13c0e86a88eaf6ae1747eab8936ce08f0c5bd
 
 function App() {
   const [value, setValue] = React.useState();
   const [title, setTitle] = React.useState();
   const [drawer, setDrawer] = React.useState(false);
-
+  const [navTitle,setNavTitle] = React.useState('0')
+  
   const location = useLocation();
   const navigate = useNavigate();
+<<<<<<< HEAD
+=======
 
+>>>>>>> bdc13c0e86a88eaf6ae1747eab8936ce08f0c5bd
 
   React.useEffect(() => {
     let path = location.pathname;
-    if (path === "/") setValue(0);
-    else if (path === "/booking") setValue(1);
-    else if (path === "/guestdetails") setValue(2);
-    else if (path === "/contact") setValue(3);
+    if (path === "/") {setValue(0) ; setNavTitle("Avalanche Luxury Hotel")}
+    else if (path === "/booking") {setValue(1) ;setNavTitle("Booking Details");}
+    else if (path === "/guestdetails") {setValue(2); setNavTitle("Guest Details");}
+    else if (path === "/contact") {setValue(3); setNavTitle("Contact");}
   })
 
   React.useEffect(() => {
@@ -193,6 +202,11 @@ function App() {
       </SwipeableDrawer>
       <AppBar position="static" variant="outlined" color='default'>
         <Toolbar>
+<<<<<<< HEAD
+        { value >0 ? <ArrowBackIosIcon sx={{fontSize:20}} onClick={e => navigate('/')} />: " "} 
+          <Typography variant="body1" component="div" sx={{ flexGrow: 1 }}>
+        {navTitle}
+=======
           {
             value ? <IconButton sx={{paddingLeft:0}} onClick={e => navigate("/")} size="large" color="inherit">
               <ArrowBackIosNewIcon />
@@ -201,6 +215,7 @@ function App() {
           }
           <Typography  variant="h6" sx={{ fontWeight: 600,flexGrow: 1 }} component="div">
             {title}
+>>>>>>> bdc13c0e86a88eaf6ae1747eab8936ce08f0c5bd
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
@@ -250,6 +265,7 @@ function App() {
           <Route path='/booking' element={<Booking />} />
           <Route path='/guestdetails' element={<GDetails />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
         {/* <Home/> */}
       </Box>
@@ -263,8 +279,8 @@ function App() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction component={Link} to='/' label="Home" icon={<HomeIcon />} />
-          <BottomNavigationAction component={Link} to='/booking' label="Booking" icon={<DateRangeIcon />} />
+          <BottomNavigationAction component={Link} to='/' label="Home" icon={<HomeIcon />}  />
+          <BottomNavigationAction component={Link} to='/booking' label="Booking" icon={<DateRangeIcon />}  />
           <BottomNavigationAction component={Link} to='/guestdetails' label="Details" icon={<PermContactCalendarIcon />} />
           <BottomNavigationAction component={Link} to='/contact' label="Contact" icon={<AddIcCallIcon />} />
         </BottomNavigation>
