@@ -36,13 +36,18 @@ import { Routes, Route, BrowserRouter, Link } from 'react-router-dom'
 import Booking from './pages/Booking';
 import Contact from './pages/Contact';
 import Badge from '@mui/material/Badge';
+import { useNavigate } from "react-router-dom";
 import GDetails from './pages/GDetails';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 function App() {
   const [value, setValue] = React.useState();
+  const [title, setTitle] = React.useState();
   const [drawer, setDrawer] = React.useState(false);
 
   const location = useLocation();
+  const navigate = useNavigate();
+
 
   React.useEffect(() => {
     let path = location.pathname;
@@ -51,6 +56,17 @@ function App() {
     else if (path === "/guestdetails") setValue(2);
     else if (path === "/contact") setValue(3);
   })
+
+  React.useEffect(() => {
+    let path = location.pathname;
+    if (path === "/") setTitle('Avalanche Luxury Hotel');
+    else if (path === "/booking") setTitle('Booking Details')
+    else if (path === "/guestdetails") setTitle('Guest Details')
+    else if (path === "/contact") setTitle('Contact')
+  })
+
+
+
 
 
   return (
@@ -175,11 +191,16 @@ function App() {
 
         </Box>
       </SwipeableDrawer>
-      <AppBar position="static" variant="outlined"   color='default'> 
+      <AppBar position="static" variant="outlined" color='default'>
         <Toolbar>
+          {
+            value ? <IconButton sx={{paddingLeft:0}} onClick={e => navigate("/")} size="large" color="inherit">
+              <ArrowBackIosNewIcon />
+            </IconButton> : null
 
-          <Typography variant="body1" component="div" sx={{ flexGrow: 1 }}>
-            Avalanche HarshDarshan Luxury Hotel
+          }
+          <Typography  variant="h6" sx={{ fontWeight: 600,flexGrow: 1 }} component="div">
+            {title}
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
