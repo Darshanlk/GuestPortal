@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import HomeIcon from '@mui/icons-material/Home';
@@ -31,25 +31,29 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LocalPostOfficeRoundedIcon from '@mui/icons-material/LocalPostOfficeRounded';
 import BeenhereRoundedIcon from '@mui/icons-material/BeenhereRounded';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Home from './pages/Home';
-import { Routes, Route, BrowserRouter, Link } from 'react-router-dom'
+import { Routes, Route,  Link } from 'react-router-dom'
 import Booking from './pages/Booking';
 import Contact from './pages/Contact';
 import Badge from '@mui/material/Badge';
 import GDetails from './pages/GDetails';
+import NotFound from './pages/NotFound';
 
 function App() {
   const [value, setValue] = React.useState();
   const [drawer, setDrawer] = React.useState(false);
-
+  const [navTitle,setNavTitle] = React.useState('0')
+  
   const location = useLocation();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     let path = location.pathname;
-    if (path === "/") setValue(0);
-    else if (path === "/booking") setValue(1);
-    else if (path === "/guestdetails") setValue(2);
-    else if (path === "/contact") setValue(3);
+    if (path === "/") {setValue(0) ; setNavTitle("Avalanche Luxury Hotel")}
+    else if (path === "/booking") {setValue(1) ;setNavTitle("Booking Details");}
+    else if (path === "/guestdetails") {setValue(2); setNavTitle("Guest Details");}
+    else if (path === "/contact") {setValue(3); setNavTitle("Contact");}
   })
 
 
@@ -177,9 +181,9 @@ function App() {
       </SwipeableDrawer>
       <AppBar position="static" variant="outlined"   color='default'> 
         <Toolbar>
-
+        { value >0 ? <ArrowBackIosIcon sx={{fontSize:20}} onClick={e => navigate('/')} />: " "} 
           <Typography variant="body1" component="div" sx={{ flexGrow: 1 }}>
-            Avalanche HarshDarshan Luxury Hotel
+        {navTitle}
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
@@ -229,6 +233,7 @@ function App() {
           <Route path='/booking' element={<Booking />} />
           <Route path='/guestdetails' element={<GDetails />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
         {/* <Home/> */}
       </Box>
@@ -242,8 +247,8 @@ function App() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction component={Link} to='/' label="Home" icon={<HomeIcon />} />
-          <BottomNavigationAction component={Link} to='/booking' label="Booking" icon={<DateRangeIcon />} />
+          <BottomNavigationAction component={Link} to='/' label="Home" icon={<HomeIcon />}  />
+          <BottomNavigationAction component={Link} to='/booking' label="Booking" icon={<DateRangeIcon />}  />
           <BottomNavigationAction component={Link} to='/guestdetails' label="Details" icon={<PermContactCalendarIcon />} />
           <BottomNavigationAction component={Link} to='/contact' label="Contact" icon={<AddIcCallIcon />} />
         </BottomNavigation>
