@@ -107,7 +107,7 @@ export default function SignIn({name}) {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Copyright sx={{ mt: 7, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );
