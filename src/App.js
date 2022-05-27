@@ -262,7 +262,7 @@ function App() {
           <Route path="/guestdetails" element={<GDetails />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/login" element={<Login name="Darshan" />} />
+          <Route path="/login" element={<Login name="Avalanche Luxury" />} />
         </Routes>
         {/* <Home/> */}
       </Box>
