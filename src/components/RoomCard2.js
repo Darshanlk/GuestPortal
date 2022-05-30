@@ -12,6 +12,7 @@ import HotelOutlinedIcon from "@mui/icons-material/HotelOutlined";
 import { Box } from "@mui/system";
 import { Divider } from "@mui/material";
 
+
 const Img = styled("img")({
   margin: "auto",
   display: "block",
@@ -19,6 +20,7 @@ const Img = styled("img")({
   maxHeight: "100%",
 });
 
+// By Darshan
 export default function RoomCard2() {
   return (
     <>
