@@ -1,7 +1,10 @@
 import { Grid, Card, Box, Divider, Typography } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 // By Darshan
+
 function DateCard2() {
+  const navigate =  useNavigate()
   return (
     <Card>
       <Box
@@ -46,8 +49,9 @@ function DateCard2() {
             flexDirection: "column",
             alignItems: "center",
           }}
+          onClick={() => navigate('/transport',{state:{reqType:"pickup"}})}
         >
-          <Typography sx={{ color: "dodgerBlue", paddingY: 2 }}>
+          <Typography sx={{ color: "dodgerBlue", paddingY: 2 }} >
             Request Pick-up
           </Typography>
         </Box>
@@ -59,6 +63,7 @@ function DateCard2() {
             flexDirection: "column",
             alignItems: "center",
           }}
+          onClick={() => navigate('/transport',{state:{reqType:"dropoff"}})}
         >
           <Typography sx={{ color: "dodgerBlue", paddingY: 2 }}>
             Request Drop-up
