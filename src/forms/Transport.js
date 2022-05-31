@@ -32,13 +32,13 @@ function Transport() {
   const formik1 = useFormik({
     initialValues: {
       pickupBy1: "",
-      desciption1: "",
+      description1: "",
       transportNameNumber1: "",
       date1: new Date(),
       time1: new Date(),
     },
     validationSchema: Yup.object({
-      desciption1: Yup.string().required("Please enter Your Description. "),
+      description1: Yup.string().required("Please enter Your Description. "),
       transportNameNumber1: Yup.string().required(
         "Please enter required transport info."
       ),
@@ -51,13 +51,13 @@ function Transport() {
   const formik2 = useFormik({
     initialValues: {
       pickupBy2: "",
-      desciption2: "",
+      description2: "",
       transportNameNumber2: "",
       date2: new Date(),
       time2: new Date(),
     },
     validationSchema: Yup.object({
-      desciption2: Yup.string().required("Please enter Your Description. "),
+      description2: Yup.string().required("Please enter Your Description. "),
       transportNameNumber2: Yup.string().required(
         "Please enter required transport info."
       ),
@@ -98,17 +98,25 @@ function Transport() {
               <TextField
                 label="Description"
                 type="text"
-                name="desciption1"
+                name="description1"
                 onChange={formik1.handleChange}
-                error={formik1.touched.desciption1 && Boolean(formik1.errors.desciption1)}
+                error={
+                  formik1.touched.description1 &&
+                  Boolean(formik1.errors.description1)
+                }
                 onBlur={formik1.handleBlur}
-                helperText={formik1.touched.desciption1 && formik1.errors.desciption1}
+                helperText={
+                  formik1.touched.description1 && formik1.errors.description1
+                }
               />
               <TextField
                 label="Transport Name and number"
                 type="text"
                 name="transportNameNumber1"
                 onChange={formik1.handleChange}
+                error={formik1.touched.transportNameNumber1 && Boolean(formik1.touched.transportNameNumber1)}
+                onBlur={formik1.handleBlur}
+                helperText={formik1.touched.transportNameNumber1 && formik1.errors.transportNameNumber1}
               />
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
@@ -117,21 +125,26 @@ function Transport() {
                   label="Date"
                   openTo="year"
                   views={["year", "month", "day"]}
-                  onChange={formik1.handleChange}
+                  value={formik1.values.date1}
+                  onChange={(value) => {
+                    formik1.setFieldValue("date1", value);
+                  }}
                   renderInput={(params) => <TextField {...params} />}
                 />
                 <TimePicker
                   name="time1"
                   label="Time"
-                  onChange={formik1.handleChange}
+                  value={formik1.values.time1}
+                  onChange={(value) => {
+                    formik1.setFieldValue("time1", value);
+                  }}
                   renderInput={(params) => <TextField {...params} />}
                 />
               </LocalizationProvider>
-              <Button variant="contained" type="submit" >
-              Submit
-            </Button>
+              <Button variant="contained" type="submit">
+                Submit
+              </Button>
             </Box>
-           
           </Card>
         </Grid>
 
@@ -156,33 +169,57 @@ function Transport() {
                 <AccordionDetails>Other</AccordionDetails>
               </StyledAccordion>
 
-              <TextField label="Description" type="text" name="" error="" />
+              <TextField
+                label="Description"
+                type="text"
+                name="description2"
+                onChange={formik2.handleChange}
+                error={
+                  formik2.touched.desciption2 &&
+                  Boolean(formik2.errors.desciption2)
+                }
+                onBlur={formik2.handleBlur}
+                helperText={
+                  formik2.touched.desciption2 && formik2.errors.desciption2
+                }
+              />
               <TextField
                 label="Transport Name and number"
                 type="text"
-                name="description2"
+                name="transportNameNumber2"
+                onChange={formik2.handleChange}
+                error={formik2.touched.transportNameNumber2 && Boolean(formik2.touched.transportNameNumber2)}
+                onBlur={formik2.handleBlur}
+                helperText={formik2.touched.transportNameNumber1 && formik2.touched.transportNameNumber2}
+
               />
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   disableFuture
                   label="Date"
                   openTo="year"
+                  name="date2"
                   views={["year", "month", "day"]}
-                  onChange={formik1.onChange}
+                  value={formik1.values.date2}
+                  onChange={(value) => {
+                    formik2.setFieldValue("date2", value);
+                  }}
                   renderInput={(params) => <TextField {...params} />}
                 />
                 <TimePicker
                   label="Time"
-                  value={valueTime}
-                  onChange={setValueTime}
+                  name="time2"
+                  value={formik2.values.time2}
+                  onChange={(value) => {
+                    formik2.setFieldValue("time2", value);
+                  }}
                   renderInput={(params) => <TextField {...params} />}
                 />
                 <Button variant="contained" type="sumbit">
-              Submit
-            </Button>
+                  Submit
+                </Button>
               </LocalizationProvider>
             </Box>
-            
           </Card>
         </Grid>
       </Grid>
