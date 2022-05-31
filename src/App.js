@@ -42,6 +42,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import NotFound from "./pages/NotFound";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Login from "./pages/Login";
+import Transport from "./forms/Transport";
 
 function App() {
   const [value, setValue] = React.useState();
@@ -263,6 +264,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/login" element={<Login name="Avalanche Luxury" />} />
+          <Route path="/transport" element={<Transport/> }/> 
         </Routes>
         {/* <Home/> */}
       </Box>
