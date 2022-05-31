@@ -264,7 +264,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/login" element={<Login name="Avalanche Luxury" />} />
-          <Route path="/transport" element={<Transport/> }/> 
+          <Route path="/transport" element={<Transport reqtype="pickup"/> }/> 
         </Routes>
         {/* <Home/> */}
       </Box>
