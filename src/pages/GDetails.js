@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import { useNavigate } from 'react-router-dom';
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -23,6 +24,9 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function GDetails() {
+
+    const navigate = useNavigate()
+
     return (
         <Grid
             container
@@ -64,7 +68,7 @@ function GDetails() {
                                             marginLeft: 4,
                                         }}
                                     >
-                                        <Typography variant="overline" sx={{ fontWeight:'bold',color: "dodgerBlue", paddingY: 2 }}>
+                                        <Typography variant="overline" sx={{ fontWeight:'bold',color: "dodgerBlue", paddingY: 2 }} onClick={()=> navigate('/manageprofile')}>
                                             Edit Profile
                                         </Typography>
                                     </Box>
