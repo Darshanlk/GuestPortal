@@ -44,6 +44,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Login from "./pages/Login";
 import Transport from "./forms/Transport";
 import ConfirmCheckin from "./forms/ConfirmCheckin";
+import AlertPage from "./pages/AlertPage";
 
 function App() {
   const [value, setValue] = React.useState();
@@ -68,7 +69,24 @@ function App() {
     } else if (path === "/contact") {
       setValue(3);
       setNavTitle("Contact");
-    } else {
+    } else if(path === "/transport")
+    {
+      setValue(4)
+      setNavTitle("Transport")
+    }
+    else if(path === "/alertPage")
+    {
+      setValue(5)
+      setNavTitle("Your Message")
+    }
+    else if(path === '/confirmCheckin')
+    {
+      setValue(6)
+      setNavTitle("ConfirmCheckIn")
+    }
+    
+
+    else {
       setValue(-1);
     }
   });
@@ -79,6 +97,11 @@ function App() {
     else if (path === "/booking") setTitle("Booking Details");
     else if (path === "/guestdetails") setTitle("Guest Details");
     else if (path === "/contact") setTitle("Contact");
+    else if (path === "/transport") setTitle("Transportaion");
+    else if (path === "/alertPage") setTitle("Your Message");
+    else if (path === "/confirmCheckin") setTitle("ConfirmCheckIn")
+    
+
   });
 
   return (
@@ -118,7 +141,7 @@ function App() {
             </ListItem>
 
             <ListItem key="Confirm Your Check In" disablePadding>
-              <ListItemButton onClick={() => navigate('/confirmCheckin')}>
+              <ListItemButton onClick={() => navigate("/confirmCheckin")}>
                 <ListItemIcon>
                   <ThumbUpAltOutlinedIcon />
                 </ListItemIcon>
@@ -126,7 +149,11 @@ function App() {
               </ListItemButton>
             </ListItem>
             <ListItem key="Need Transport?" disablePadding>
-              <ListItemButton onClick= {() => navigate('/transport',{state:{reqType:' '}})}>
+              <ListItemButton
+                onClick={() =>
+                  navigate("/transport", { state: { reqType: " " } })
+                }
+              >
                 <ListItemIcon>
                   <DirectionsCarRoundedIcon />
                 </ListItemIcon>
@@ -221,7 +248,11 @@ function App() {
 
             <Box sx={{ flexGrow: 1 }} />
             <Box>
-              <IconButton size="large" sx={{ color: "GrayText" }}>
+              <IconButton
+                size="large"
+                sx={{ color: "GrayText" }}
+                onClick={() => navigate("/alertPage")}
+              >
                 <Badge badgeContent={7} color="error">
                   <NotificationsNoneIcon />
                 </Badge>
@@ -264,8 +295,9 @@ function App() {
           <Route path="/guestdetails" element={<GDetails />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login name="Avalanche Luxury" />} />
-          <Route path="/transport" element={<Transport /> }/> 
-          <Route path='/confirmCheckin' element={<ConfirmCheckin/>}/>
+          <Route path="/transport" element={<Transport />} />
+          <Route path="/confirmCheckin" element={<ConfirmCheckin />} />
+          <Route path="/alertPage" element={<AlertPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         {/* <Home/> */}
