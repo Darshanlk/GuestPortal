@@ -170,7 +170,10 @@ function App() {
               </ListItemButton>
             </ListItem>
             <ListItem key="Manage Profile" disablePadding>
+
               <ListItemButton onClick={() => navigate('/manageprofile')}>
+
+
                 <ListItemIcon>
                   <ManageAccountsIcon />
                 </ListItemIcon>

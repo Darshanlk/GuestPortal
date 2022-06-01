@@ -10,9 +10,11 @@ import RestaurantRoundedIcon from "@mui/icons-material/RestaurantRounded";
 import PeopleOutlineRoundedIcon from "@mui/icons-material/PeopleOutlineRounded";
 import HotelOutlinedIcon from "@mui/icons-material/HotelOutlined";
 import { Box } from "@mui/system";
-import { Divider } from "@mui/material";
+import { Divider ,Dialog, DialogTitle, DialogContent } from "@mui/material";
+import { blue } from '@mui/material/colors';
 
 import { useNavigate } from "react-router-dom";
+import StayPeriod from "../forms/StayPeriod";
 
 const Img = styled("img")({
   margin: "auto",
@@ -24,6 +26,15 @@ const Img = styled("img")({
 // By Darshan
 export default function RoomCard2() {
   const navigate=useNavigate();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>
@@ -101,9 +112,17 @@ export default function RoomCard2() {
             flexDirection: "column",
             alignItems: "center",
           }}>
-            <Typography sx={{ fontWeight: 400, color: "dodgerBlue",padding:2 }}>
+            <Typography onClick={handleClickOpen} sx={{ fontWeight: 400, color: "dodgerBlue",padding:2 }}>
               Modify Dates
             </Typography>
+            <Dialog maxWidth='xs'  fullWidth={true} open={open} onClose={handleClose}>
+            <DialogTitle bgcolor={blue[500]}   sx={{ display: 'flex', flexDirection: 'row',justifyContent:'center',alignItems:'center'}} style={{ marginBottom: 5, }}><Typography variant="h6">Change Stay Period</Typography>
+            </DialogTitle>
+            {/* <Divider/> */}
+            <DialogContent>
+              <StayPeriod></StayPeriod>
+              </DialogContent>
+              </Dialog>
           </Box>
           <Divider />
           <Box sx={{
@@ -184,9 +203,17 @@ export default function RoomCard2() {
             flexDirection: "column",
             alignItems: "center",
           }}>
-            <Typography sx={{ fontWeight: 400, color: "dodgerBlue",padding:2 }}>
+            <Typography onClick={handleClickOpen} sx={{ fontWeight: 400, color: "dodgerBlue",padding:2 }}>
               Modify Dates
             </Typography>
+            <Dialog maxWidth='xs'  fullWidth={true} open={open} onClose={handleClose}>
+            <DialogTitle bgcolor={blue[500]}   sx={{ display: 'flex', flexDirection: 'row',justifyContent:'center',alignItems:'center'}} style={{ marginBottom: 5, }}><Typography variant="h6">Change Stay Period</Typography>
+            </DialogTitle>
+            {/* <Divider/> */}
+            <DialogContent>
+              <StayPeriod></StayPeriod>
+              </DialogContent>
+              </Dialog>
           </Box>
           <Divider />
           <Box sx={{
