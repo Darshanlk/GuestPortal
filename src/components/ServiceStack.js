@@ -13,9 +13,13 @@ import {
 import DirectionsCarOutlinedIcon from "@mui/icons-material/DirectionsCarOutlined";
 import FileOpenOutlinedIcon from "@mui/icons-material/FileOpenOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import { useNavigate } from "react-router-dom";
+
 
 // By Darshan
 function ServiceStack() {
+
+  const navigate = useNavigate();
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
 
@@ -23,8 +27,8 @@ function ServiceStack() {
         <DirectionsCarOutlinedIcon
           sx={{ paddingX: 2, fontSize: 30, color: "GrayText" }}
         />
-        <Box>
-          <Typography variant="h6" sx={{ fontWeight: 600 }}>
+        <Box onClick={()=> navigate('/transport',{state:{reqType:"all"}}) }>
+          <Typography variant="h6" sx={{ fontWeight: 600 }} >
             Request Transpotation
           </Typography>
           <Typography>pick-up and drop-off service available</Typography>

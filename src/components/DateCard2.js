@@ -1,9 +1,17 @@
 import { Grid, Card, Box, Divider, Typography, Dialog, DialogTitle, DialogContent } from "@mui/material";
 import React from "react";
+
+import { useNavigate } from "react-router-dom";
+
 import { blue } from '@mui/material/colors';
 import StayPeriod from "../forms/StayPeriod";
+
 // By Darshan
+
 function DateCard2() {
+
+  const navigate =  useNavigate()
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -13,6 +21,7 @@ function DateCard2() {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <Card>
       <Box
@@ -65,8 +74,9 @@ function DateCard2() {
             flexDirection: "column",
             alignItems: "center",
           }}
+          onClick={() => navigate('/transport',{state:{reqType:"pickup"}})}
         >
-          <Typography sx={{ color: "dodgerBlue", paddingY: 2 }}>
+          <Typography sx={{ color: "dodgerBlue", paddingY: 2 }} >
             Request Pick-up
           </Typography>
         </Box>
@@ -78,6 +88,7 @@ function DateCard2() {
             flexDirection: "column",
             alignItems: "center",
           }}
+          onClick={() => navigate('/transport',{state:{reqType:"dropoff"}})}
         >
           <Typography sx={{ color: "dodgerBlue", paddingY: 2 }}>
             Request Drop-up
