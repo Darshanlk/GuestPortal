@@ -53,7 +53,7 @@ function ManageProfile(props) {
     };
     return (
         <Fragment>
-            <Box  sx={{ marginLeft: 10,marginRight:10, marginTop: 3 }}>
+            <Box  sx={{ marginLeft: 1,marginRight:1, marginTop: 3 }}>
 
             <Typography variant="h5" sx={{marginBottom:3}} >Manage Profile</Typography>
             <Grid container spacing={2}>
@@ -63,9 +63,9 @@ function ManageProfile(props) {
                         <Typography sx={{ color: blue[500], marginRight: 5, margin: 2 }} >Adult(s)</Typography>
                         <Divider />
                         <Box sx={{ display: 'flex', flexDirection: 'row', marginTop: 2 }}>
-                            <Box sx={{width:190}}>
+                            <Box sx={{width:190,display:'flex',justifyContent:'center',alignItems:'start'}}>
 
-                            <Typography  variant="button"  sx={{ marginTop: 1.2, marginLeft: 2, }}>Main Guest</Typography>
+                            <Typography  variant="button"  sx={{  marginTop: 1.2,}}  >Main Guest</Typography>
                             </Box>
                             <TextField
                                 id="filled-read-only-input"
@@ -422,7 +422,7 @@ function ManageProfile(props) {
                         <Typography sx={{ color: blue[500], marginRight: 5, margin: 2 }} >Child(ren)</Typography>
                         <Divider />
                         <Box sx={{ display: 'flex', flexDirection: 'row', marginTop: 2 }}>
-                        <Box sx={{width:190}}>
+                        <Box sx={{width:190,display:'flex',alignItems:'start',justifyContent:'center'}}>
 
                             <Typography variant="button"  sx={{ width: '70px', marginTop: 1.2, marginLeft: 2, marginRight: 5 }}>Child1</Typography>
                            </Box>
