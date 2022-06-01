@@ -43,7 +43,11 @@ import NotFound from "./pages/NotFound";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Login from "./pages/Login";
 import Transport from "./forms/Transport";
+
 import ConfirmCheckin from "./forms/ConfirmCheckin";
+
+import ManageProfile from "./forms/ManageProfile";
+
 
 function App() {
   const [value, setValue] = React.useState();
@@ -263,6 +267,10 @@ function App() {
           <Route path="/booking" element={<Booking />} />
           <Route path="/guestdetails" element={<GDetails />} />
           <Route path="/contact" element={<Contact />} />
+
+          <Route path="/manageprofile" element={<ManageProfile />} />
+          <Route path="*" element={<NotFound />} />
+
           <Route path="/login" element={<Login name="Avalanche Luxury" />} />
           <Route path="/transport" element={<Transport /> }/> 
           <Route path='/confirmCheckin' element={<ConfirmCheckin/>}/>
