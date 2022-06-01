@@ -1,7 +1,18 @@
-import { Grid, Card, Box, Divider, Typography } from "@mui/material";
+import { Grid, Card, Box, Divider, Typography, Dialog, DialogTitle, DialogContent } from "@mui/material";
 import React from "react";
+import { blue } from '@mui/material/colors';
+import StayPeriod from "../forms/StayPeriod";
 // By Darshan
 function DateCard2() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Card>
       <Box
@@ -35,9 +46,17 @@ function DateCard2() {
             alignItems: "center",
           }}
         >
-          <Typography sx={{ color: "dodgerBlue", paddingY: 2 }}>
+          <Typography onClick={handleClickOpen} sx={{ color: "dodgerBlue", paddingY: 2 }}>
             Modify Dates
           </Typography>
+          <Dialog maxWidth='xs'  fullWidth={true} open={open} onClose={handleClose}>
+            <DialogTitle bgcolor={blue[500]}   sx={{ display: 'flex', flexDirection: 'row',justifyContent:'center',alignItems:'center'}} style={{ marginBottom: 5, }}><Typography variant="h6">Change Stay Period</Typography>
+            </DialogTitle>
+            {/* <Divider/> */}
+            <DialogContent>
+              <StayPeriod></StayPeriod>
+              </DialogContent>
+              </Dialog>
         </Box>
         <Divider />
         <Box
