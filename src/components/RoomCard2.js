@@ -12,6 +12,7 @@ import HotelOutlinedIcon from "@mui/icons-material/HotelOutlined";
 import { Box } from "@mui/system";
 import { Divider } from "@mui/material";
 
+import { useNavigate } from "react-router-dom";
 
 const Img = styled("img")({
   margin: "auto",
@@ -22,6 +23,8 @@ const Img = styled("img")({
 
 // By Darshan
 export default function RoomCard2() {
+  const navigate=useNavigate();
+
   return (
     <>
       <Paper
@@ -82,7 +85,7 @@ export default function RoomCard2() {
         </Grid>
         <Box sx={{paddingTop:2}}>
         <Divider />
-          <Box sx={{
+          <Box onClick={e => navigate("/manageprofile")}  sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -171,7 +174,7 @@ export default function RoomCard2() {
             alignItems: "center",
           }}>
            
-            <Typography sx={{ fontWeight: 400, color: "dodgerBlue",padding:2 }}>
+            <Typography  onClick={e => navigate("/manageprofile")}  sx={{ fontWeight: 400, color: "dodgerBlue",padding:2 }}>
               Update Guest Details
             </Typography>
           </Box>
