@@ -174,7 +174,7 @@ export default function RoomCard2() {
             alignItems: "center",
           }}>
            
-            <Typography sx={{ fontWeight: 400, color: "dodgerBlue",padding:2 }}>
+            <Typography  onClick={e => navigate("/manageprofile")}  sx={{ fontWeight: 400, color: "dodgerBlue",padding:2 }}>
               Update Guest Details
             </Typography>
           </Box>

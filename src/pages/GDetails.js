@@ -31,7 +31,7 @@ function GDetails() {
             alignItems="flex-start"
            
         >
-            <Grid item xs={11} sm={11} md={6}>
+            <Grid item xs={11} sm={11} md={6} >
                 <Box sx={{ width: '98%', marginTop: 5 }}>
                     <Stack spacing={2}>
                         {/* <Paper elevation={0}> */}
