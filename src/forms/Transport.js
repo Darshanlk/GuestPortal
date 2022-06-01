@@ -38,7 +38,6 @@ function Transport() {
 
   const navigate = useNavigate();
 
-  
   const reqType = location.state.reqType;
 
   //dummy
@@ -62,6 +61,11 @@ function Transport() {
     }),
     onSubmit: (values) => {
       console.log("formSubmitted", values);
+      if (!values) {
+        alert("fill all the field");
+      } else {
+        setAlert(true);
+      }
     },
   });
 
@@ -82,6 +86,11 @@ function Transport() {
     }),
     onSubmit: (values) => {
       console.log("formSubmitted", values);
+      if (!values) {
+        alert("fill all the field");
+      } else {
+        setAlert(true);
+      }
     },
   });
 
@@ -219,14 +228,7 @@ function Transport() {
                   />
                 </LocalizationProvider>
                 <Box>
-                  <Button
-                    variant="contained"
-                    type="sumbit"
-                    onClick={() => {
-                   
-                      setAlert(true);
-                    }}
-                  >
+                  <Button variant="contained" type="sumbit">
                     Submit
                   </Button>
                 </Box>
@@ -361,14 +363,7 @@ function Transport() {
                   />
 
                   <Box>
-                    <Button
-                      variant="contained"
-                      type="sumbit"
-                      onClick={() => {
-                        setAlert(true);
-                        //    navigate("/")
-                      }}
-                    >
+                    <Button variant="contained" type="sumbit">
                       Submit
                     </Button>
                   </Box>
@@ -390,10 +385,10 @@ function Transport() {
                         onClick={() => {
                           setOpen(false);
                           setAlert(false);
-                          navigate("/");
+                          // navigate("/");
                         }}
                       >
-                        <CloseIcon fontSize="inherit" /> 
+                        <CloseIcon fontSize="inherit" />
                         {/* left */}
                       </IconButton>
                     }
@@ -508,13 +503,7 @@ function Transport() {
                     />
                   </LocalizationProvider>
                   <Box>
-                    <Button
-                      variant="contained"
-                      type="sumbit"
-                      onClick={() => {
-                        setAlert(true);
-                      }}
-                    >
+                    <Button variant="contained" type="sumbit">
                       Submit
                     </Button>
                   </Box>
@@ -522,6 +511,30 @@ function Transport() {
               </Card>
             </Grid>
             <Grid item xs={12} sm={7}>
+              {alert ? (
+                <Collapse in={open}>
+                  <Alert
+                    action={
+                      <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"
+                        onClick={() => {
+                          setOpen(false);
+                          setAlert(false);
+                          navigate("/");
+                        }}
+                      >
+                        <CloseIcon fontSize="inherit" />
+                      </IconButton>
+                    }
+                    sx={{ mb: 2 }}
+                  >
+                    Your Request is Submited
+                  </Alert>
+                </Collapse>
+              ) : null}
+
               <Card sx={{ padding: 2, margin: 2 }}>
                 <Typography variant="h6">Require Dropoff?</Typography>
                 <Box
@@ -623,14 +636,7 @@ function Transport() {
                     />
 
                     <Box>
-                      <Button
-                        variant="contained"
-                        type="sumbit"
-                        onClick={() => {
-                          setAlert(true);
-                        
-                        }}
-                      >
+                      <Button variant="contained" type="sumbit">
                         Submit
                       </Button>
                     </Box>
