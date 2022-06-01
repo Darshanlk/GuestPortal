@@ -88,6 +88,11 @@ function App() {
       setValue(6)
       setNavTitle("ConfirmCheckIn")
     }
+    else if(path === '/manageprofile')
+    {
+      setValue(7)
+      setNavTitle("MangeProfile")
+    }
     
 
     else {
@@ -103,8 +108,8 @@ function App() {
     else if (path === "/contact") setTitle("Contact");
     else if (path === "/transport") setTitle("Transportaion");
     else if (path === "/alertPage") setTitle("Your Message");
-    else if (path === "/confirmCheckin") setTitle("ConfirmCheckIn")
-    
+    else if (path === "/confirmCheckin") setTitle("ConfirmCheckIn");
+    else if (path === "/manageprofile") setTitle("Manage Profile");   
 
   });
 
