@@ -43,6 +43,7 @@ import NotFound from "./pages/NotFound";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Login from "./pages/Login";
 import Transport from "./forms/Transport";
+import ConfirmCheckin from "./forms/ConfirmCheckin";
 
 function App() {
   const [value, setValue] = React.useState();
@@ -117,7 +118,7 @@ function App() {
             </ListItem>
 
             <ListItem key="Confirm Your Check In" disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={() => navigate('/confirmCheckin')}>
                 <ListItemIcon>
                   <ThumbUpAltOutlinedIcon />
                 </ListItemIcon>
@@ -125,7 +126,7 @@ function App() {
               </ListItemButton>
             </ListItem>
             <ListItem key="Need Transport?" disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick= {() => navigate('/transport',{state:{reqType:' '}})}>
                 <ListItemIcon>
                   <DirectionsCarRoundedIcon />
                 </ListItemIcon>
@@ -140,14 +141,14 @@ function App() {
                 <ListItemText primary="Manage Profile" />
               </ListItemButton>
             </ListItem>
-            <ListItem key="Email/SMS Preferences" disablePadding>
+            {/* <ListItem key="Email/SMS Preferences" disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <LocalPostOfficeRoundedIcon />
                 </ListItemIcon>
                 <ListItemText primary="Email/SMS Preferences" />
               </ListItemButton>
-            </ListItem>
+            </ListItem> */}
 
             <ListItem key="Modify Booking" disablePadding>
               <ListItemButton>
@@ -158,14 +159,14 @@ function App() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem key="Itinerary" disablePadding>
+            {/* <ListItem key="Itinerary" disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <LocalPostOfficeRoundedIcon />
                 </ListItemIcon>
                 <ListItemText primary="Itinerary" />
               </ListItemButton>
-            </ListItem>
+            </ListItem> */}
 
             <ListItem key="Check Your Bill" disablePadding>
               <ListItemButton>
@@ -176,14 +177,14 @@ function App() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem key="Rate Us" disablePadding>
+            {/* <ListItem key="Rate Us" disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <StarsRoundedIcon />
                 </ListItemIcon>
                 <ListItemText primary="Rate Us" />
               </ListItemButton>
-            </ListItem>
+            </ListItem> */}
 
             <ListItem key="Find Hotel On Map" disablePadding>
               <ListItemButton>
@@ -262,9 +263,10 @@ function App() {
           <Route path="/booking" element={<Booking />} />
           <Route path="/guestdetails" element={<GDetails />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
           <Route path="/login" element={<Login name="Avalanche Luxury" />} />
           <Route path="/transport" element={<Transport /> }/> 
+          <Route path='/confirmCheckin' element={<ConfirmCheckin/>}/>
+          <Route path="*" element={<NotFound />} />
         </Routes>
         {/* <Home/> */}
       </Box>

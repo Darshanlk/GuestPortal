@@ -38,6 +38,7 @@ function Transport() {
 
   const navigate = useNavigate();
 
+  
   const reqType = location.state.reqType;
 
   //dummy
