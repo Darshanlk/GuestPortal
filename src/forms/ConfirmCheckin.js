@@ -130,7 +130,7 @@ export default function ConfirmCheckin() {
 
   return (
     <>
-      <Grid container sx={{ justifyContent: "center", paddingY: 2 }}>
+      <Grid container sx={{ justifyContent: "center", paddingY: 2,padding:2 }}>
         <Grid
           item
           xs={12}
@@ -142,7 +142,7 @@ export default function ConfirmCheckin() {
             justifyContent: "space-evenly",
           }}
         >
-          <Typography variant="h5" sx={{ paddingY: 2 }}>
+          <Typography variant="h5" >
             Confirm Your Check In
           </Typography>
           {alert ? (
