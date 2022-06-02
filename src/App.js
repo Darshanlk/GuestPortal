@@ -107,7 +107,7 @@ function App() {
     else if (path === "/guestdetails") setTitle("Guest Details");
     else if (path === "/contact") setTitle("Contact");
     else if (path === "/transport") setTitle("Transportaion");
-    else if (path === "/alertPage") setTitle("Your Message");
+    else if (path === "/alertPage") setTitle("Your Messages");
     else if (path === "/confirmCheckin") setTitle("ConfirmCheckIn");
     else if (path === "/manageprofile") setTitle("Manage Profile");   
 

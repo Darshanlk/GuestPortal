@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import axios from "axios";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -33,13 +33,17 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn({name}) {
+export default function SignIn({ name }) {
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
+
+    const loginId = data.get("loginId");
+    const pin = data.get("pin");
     console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+      loginId: data.get("loginId"),
+      pin: data.get("pin"),
     });
   };
 
@@ -55,13 +59,11 @@ export default function SignIn({name}) {
             alignItems: "center",
           }}
         >
-        
-          <Typography component="h1" variant="h4" sx={{color:"dodgerBlue"}}>
+          <Typography component="h1" variant="h4" sx={{ color: "dodgerBlue" }}>
             Hotel {name}
           </Typography>
-          <Typography  variant="h5" sx={{color:"GrayText"}}>
-          Guest Portal
-
+          <Typography variant="h5" sx={{ color: "GrayText" }}>
+            Guest Portal
           </Typography>
           <Box
             component="form"
@@ -71,7 +73,6 @@ export default function SignIn({name}) {
           >
             <TextField
               margin="normal"
-          
               fullWidth
               id="loginId"
               label="Reservation Number/Login Id"
@@ -82,7 +83,6 @@ export default function SignIn({name}) {
             />
             <TextField
               margin="normal"
-             
               fullWidth
               name="pin"
               label="pin"
@@ -90,7 +90,7 @@ export default function SignIn({name}) {
               id="pin"
               autoComplete="current-password"
             />
-        
+
             <Button
               type="submit"
               fullWidth
