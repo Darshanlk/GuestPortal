@@ -2,6 +2,7 @@
   "name": "guestportal",
   "version": "0.1.0",
   "private": true,
+  
   "dependencies": {
     "@date-io/date-fns": "^2.14.0",
     "@emotion/react": "^11.9.0",
@@ -29,6 +30,7 @@
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
+  "proxy":"http://localhost:5000", 
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

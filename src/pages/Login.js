@@ -34,17 +34,45 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn({ name }) {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
 
     const loginId = data.get("loginId");
     const pin = data.get("pin");
+
     console.log({
       loginId: data.get("loginId"),
       pin: data.get("pin"),
     });
+
+    var newData = {
+      loginId,
+      pin,
+    };
+
+    const sendData = await axios.post(`/guestportal/login/`, {
+      loginId: data.get("loginId"),
+      pin: data.get("pin"),
+    });
+
+
+    
+    console.log(sendData.data)
+
+    // const x =  await fetch('/login',{
+    //   method:"post",
+    //   headers :{
+    //     "Accept":"application/json, text/plain, */*",
+    //     "Content-Type":"application/json",
+    //   },
+    //   body:JSON.stringify(newData)
+
+    // })
+    // const y = await x.json()
+
+    // console.log(x,y)
   };
 
   return (
