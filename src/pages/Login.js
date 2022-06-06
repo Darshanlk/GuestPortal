@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -37,53 +38,44 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn({ name }) {
+  const [loginId, setLoginId] = useState("");
+  const [pin, setpin] = useState("");
+
   //redux
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const data = new FormData(event.currentTarget);
-
-    const loginId = data.get("loginId");
-    const pin = data.get("pin");
-
-    console.log({
-      loginId: data.get("loginId"),
-      pin: data.get("pin"),
-    });
-
-    var newData = {
+    let newData = {
       loginId,
       pin,
     };
 
     dispatch(signinUser(newData));
-
-    // const sendData = await axios.post(`/guestportal/login/`, {
-    //   loginId: data.get("loginId"),
-    //   pin: data.get("pin"),
-    // });
-
-    // console.log(sendData.data);
-    // console.log(sendData.data.token);
-    // localStorage.setItem("token", sendData.data.token);
-
-    //     const x =  await fetch('guestportal/login',{
-    //       method:"post",
-    //       headers :{
-    //         "Accept":"application/json, text/plain, */*",
-    //         "Content-Type":"application/json",
-    //       },
-    //       body:JSON.stringify(newData)
-
-    //     })
-
-    // const y = await x.json()
-
-    //     console.log(x,y)
   };
+
+  // const sendData = await axios.post(`/guestportal/login/`, {
+  //   loginId: data.get("loginId"),
+  //   pin: data.get("pin"),
+  // });
+
+  // console.log(sendData.data);
+  // console.log(sendData.data.token);
+  // localStorage.setItem("token", sendData.data.token);
+
+  //     const x =  await fetch('guestportal/login',{
+  //       method:"post",
+  //       headers :{
+  //         "Accept":"application/json, text/plain, */*",
+  //         "Content-Type":"application/json",
+  //       },
+  //       body:JSON.stringify(newData)
+
+  //     })
+
+  // const y = await x.json()
+
+  //     console.log(x,y)
 
   return (
     <ThemeProvider theme={theme}>
@@ -104,8 +96,8 @@ export default function SignIn({ name }) {
             Guest Portal
           </Typography>
           <Box
-            component="form"
-            onSubmit={handleSubmit}
+
+     
             noValidate
             sx={{ mt: 1 }}
           >
@@ -117,6 +109,8 @@ export default function SignIn({ name }) {
               name="loginId"
               autoComplete="loginId"
               type="text"
+              value={loginId}
+              onChange={(e) => setLoginId(e.target.value)}
               autoFocus
             />
             <TextField
@@ -126,6 +120,8 @@ export default function SignIn({ name }) {
               label="pin"
               type="password"
               id="pin"
+              value={pin}
+              onChange={(e) => setpin(e.target.value)}
               autoComplete="current-password"
             />
 
@@ -134,9 +130,7 @@ export default function SignIn({ name }) {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              // onClick={() => {
-              //   navigate("/");
-              // }}
+              onClick={handleSubmit}
             >
               Go
             </Button>
