@@ -12,10 +12,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signinUser } from "../reducers/authReducers";
 
 //By Darshan
 function Copyright(props) {
- 
   return (
     <Typography
       variant="body2"
@@ -36,8 +37,10 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn({ name }) {
+  //redux
 
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -56,33 +59,30 @@ export default function SignIn({ name }) {
       pin,
     };
 
-    const sendData = await axios.post(`/guestportal/login/`, {
-      loginId: data.get("loginId"),
-      pin: data.get("pin"),
-    });
+    dispatch(signinUser(newData));
 
+    // const sendData = await axios.post(`/guestportal/login/`, {
+    //   loginId: data.get("loginId"),
+    //   pin: data.get("pin"),
+    // });
 
-    
-    console.log(sendData.data)
-    console.log(sendData.data.token)
-    localStorage.setItem("token",sendData.data.token)
-    
-    
+    // console.log(sendData.data);
+    // console.log(sendData.data.token);
+    // localStorage.setItem("token", sendData.data.token);
 
+    //     const x =  await fetch('guestportal/login',{
+    //       method:"post",
+    //       headers :{
+    //         "Accept":"application/json, text/plain, */*",
+    //         "Content-Type":"application/json",
+    //       },
+    //       body:JSON.stringify(newData)
 
+    //     })
 
-    // const x =  await fetch('/login',{
-    //   method:"post",
-    //   headers :{
-    //     "Accept":"application/json, text/plain, */*",
-    //     "Content-Type":"application/json",
-    //   },
-    //   body:JSON.stringify(newData)
-
-    // })
     // const y = await x.json()
 
-    // console.log(x,y)
+    //     console.log(x,y)
   };
 
   return (
@@ -134,7 +134,9 @@ export default function SignIn({ name }) {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={()=> {navigate("/")}}
+              // onClick={() => {
+              //   navigate("/");
+              // }}
             >
               Go
             </Button>
