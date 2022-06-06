@@ -16,7 +16,7 @@ export const signinUser = createAsyncThunk("signinUser", async (body) => {
     body: JSON.stringify(body),
   });
 
-  const res = await result.json()
+  const res = await result.json();
 
   return res;
 });
@@ -26,7 +26,7 @@ const authReducer = createSlice({
   initialState,
   reducers: {
     addToken: (state, action) => {
-      state.action = localStorage.getItem("token");
+      state.token= localStorage.getItem("token");
     },
   },
   extraReducers: {

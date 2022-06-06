@@ -59,7 +59,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToken } from "./reducers/authReducers";
 
 function App() {
-
   const [value, setValue] = React.useState();
   const [title, setTitle] = React.useState();
   const [drawer, setDrawer] = React.useState(false);
@@ -135,6 +134,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(addToken());
+   
   }, []);
 
   return (
@@ -325,10 +325,10 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={token  ? <Home /> : <Navigate to="/login " />}
+            element={token  ? <Home/> : <Login/>}
           />
 
-          {/* <Route path="/" element={token ? <Home /> : <Login />} /> */}
+          {/* <Route path="/" exact element={token ? <Home /> : <Login />} /> */}
           <Route
             path="/booking"
             element={token ? <Booking /> : <Navigate to="/login " />}
