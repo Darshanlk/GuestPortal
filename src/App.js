@@ -43,7 +43,7 @@ import NotFound from "./pages/NotFound";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Login from "./pages/Login";
 import Transport from "./forms/Transport";
-
+import { useEffect } from "react";
 import ConfirmCheckin from "./forms/ConfirmCheckin";
 import AlertPage from "./pages/AlertPage";
 
@@ -51,7 +51,15 @@ import ManageProfile from "./forms/ManageProfile";
 import axios from "axios";
 
 import { Navigate } from "react-router-dom";
+
+//redux
+
+import { useDispatch, useSelector } from "react-redux";
+
+import { addToken } from "./reducers/authReducers";
+
 function App() {
+
   const [value, setValue] = React.useState();
   const [title, setTitle] = React.useState();
   const [drawer, setDrawer] = React.useState(false);
@@ -103,7 +111,6 @@ function App() {
     else if (path === "/manageprofile") setTitle("Manage Profile");
   });
 
-var token;
   //userAceess  function
 
   //userdashboard api
@@ -122,20 +129,13 @@ var token;
 
   //   return res;
   // };
-  const  tokenFetch = () =>{
-   
-    const token =localStorage.getItem('token')
-    console.log('token from localstorage',token)
-    return token
-  
-  }
 
-  React.useEffect(() => {
-    token = tokenFetch();
-    
-  });
- 
-  
+  const token = useSelector((state) => state.user.token);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(addToken());
+  }, []);
 
   return (
     <>
@@ -327,6 +327,8 @@ var token;
             path="/"
             element={token  ? <Home /> : <Navigate to="/login " />}
           />
+
+          {/* <Route path="/" element={token ? <Home /> : <Login />} /> */}
           <Route
             path="/booking"
             element={token ? <Booking /> : <Navigate to="/login " />}
