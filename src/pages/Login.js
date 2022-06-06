@@ -11,9 +11,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 //By Darshan
 function Copyright(props) {
+ 
   return (
     <Typography
       variant="body2"
@@ -34,6 +36,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn({ name }) {
+
+  const navigate = useNavigate()
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -60,6 +64,12 @@ export default function SignIn({ name }) {
 
     
     console.log(sendData.data)
+    console.log(sendData.data.token)
+    localStorage.setItem("token",sendData.data.token)
+    
+    
+
+
 
     // const x =  await fetch('/login',{
     //   method:"post",
@@ -124,6 +134,7 @@ export default function SignIn({ name }) {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={()=> {navigate("/")}}
             >
               Go
             </Button>

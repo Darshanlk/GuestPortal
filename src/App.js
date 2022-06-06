@@ -48,8 +48,9 @@ import ConfirmCheckin from "./forms/ConfirmCheckin";
 import AlertPage from "./pages/AlertPage";
 
 import ManageProfile from "./forms/ManageProfile";
+import axios from "axios";
 
-
+import { Navigate } from "react-router-dom";
 function App() {
   const [value, setValue] = React.useState();
   const [title, setTitle] = React.useState();
@@ -73,29 +74,19 @@ function App() {
     } else if (path === "/contact") {
       setValue(3);
       setNavTitle("Contact");
-    } else if(path === "/transport")
-    {
-      setValue(4)
-      setNavTitle("Transport")
-    }
-    else if(path === "/alertPage")
-    {
-      setValue(5)
-      setNavTitle("Your Message")
-    }
-    else if(path === '/confirmCheckin')
-    {
-      setValue(6)
-      setNavTitle("ConfirmCheckIn")
-    }
-    else if(path === '/manageprofile')
-    {
-      setValue(7)
-      setNavTitle("MangeProfile")
-    }
-    
-
-    else {
+    } else if (path === "/transport") {
+      setValue(4);
+      setNavTitle("Transport");
+    } else if (path === "/alertPage") {
+      setValue(5);
+      setNavTitle("Your Message");
+    } else if (path === "/confirmCheckin") {
+      setValue(6);
+      setNavTitle("ConfirmCheckIn");
+    } else if (path === "/manageprofile") {
+      setValue(7);
+      setNavTitle("MangeProfile");
+    } else {
       setValue(-1);
     }
   });
@@ -109,9 +100,42 @@ function App() {
     else if (path === "/transport") setTitle("Transportaion");
     else if (path === "/alertPage") setTitle("Your Messages");
     else if (path === "/confirmCheckin") setTitle("ConfirmCheckIn");
-    else if (path === "/manageprofile") setTitle("Manage Profile");   
-
+    else if (path === "/manageprofile") setTitle("Manage Profile");
   });
+
+var token;
+  //userAceess  function
+
+  //userdashboard api
+
+  // const authFetch = async () => {
+  //   const data = await fetch("/userDashboard/", {
+  //     method: "get",
+  //     headers: {
+  //       authorization:''
+  //     },
+  //   });
+
+  //   const res = await data.json();
+
+  //   console.log(res);
+
+  //   return res;
+  // };
+  const  tokenFetch = () =>{
+   
+    const token =localStorage.getItem('token')
+    console.log('token from localstorage',token)
+    return token
+  
+  }
+
+  React.useEffect(() => {
+    token = tokenFetch();
+    
+  });
+ 
+  
 
   return (
     <>
@@ -170,10 +194,7 @@ function App() {
               </ListItemButton>
             </ListItem>
             <ListItem key="Manage Profile" disablePadding>
-
-              <ListItemButton onClick={() => navigate('/manageprofile')}>
-
-
+              <ListItemButton onClick={() => navigate("/manageprofile")}>
                 <ListItemIcon>
                   <ManageAccountsIcon />
                 </ListItemIcon>
@@ -302,19 +323,43 @@ function App() {
       )}
       <Box sx={{}}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/booking" element={<Booking />} />
-          <Route path="/guestdetails" element={<GDetails />} />
+          <Route
+            path="/"
+            element={token  ? <Home /> : <Navigate to="/login " />}
+          />
+          <Route
+            path="/booking"
+            element={token ? <Booking /> : <Navigate to="/login " />}
+          />
+          <Route
+            path="/guestdetails"
+            element={token ? <GDetails /> : <Navigate to="/login " />}
+          />
           <Route path="/contact" element={<Contact />} />
 
-          <Route path="/manageprofile" element={<ManageProfile />} />
+          <Route
+            path="/manageprofile"
+            element={token ? <ManageProfile /> : <Navigate to="/login " />}
+          />
           <Route path="*" element={<NotFound />} />
 
-          <Route path="/login" element={<Login name="Avalanche Luxury" />} />
-          <Route path="/transport" element={<Transport />} />
-          <Route path="/confirmCheckin" element={<ConfirmCheckin />} />
-          <Route path="/alertPage" element={<AlertPage />} />
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="/transport"
+            element={token ? <Transport /> : <Navigate to="/login " />}
+          />
+          <Route
+            path="/confirmCheckin"
+            element={token ? <ConfirmCheckin /> : <Navigate to="/login " />}
+          />
+          <Route
+            path="/alertPage"
+            element={token ? <AlertPage /> : <Navigate to="/login " />}
+          />
+          <Route
+            path="*"
+            element={token ? <NotFound /> : <Navigate to="/login " />}
+          />
+          <Route path="/login" element={<Login />} />
         </Routes>
         {/* <Home/> */}
       </Box>
