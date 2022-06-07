@@ -4,14 +4,18 @@ const initialState = {
   token: "",
   loading: false,
   error: "",
+  
 };
 
 export const signinUser = createAsyncThunk("signinUser", async (body) => {
   const result = await fetch("guestportal/login", {
     method: "post",
     headers: {
+
       Accept: "application/json, text/plain, */*",
       "Content-Type": "application/json",
+      
+      
     },
     body: JSON.stringify(body),
   });
@@ -40,6 +44,15 @@ const authReducer = createSlice({
         localStorage.setItem("token", action.payload.token);
       }
     },
+
+    [signinUser.pending] :(state,action) =>{
+      state.loading = true;
+
+    },
+
+    [signinUser.rejected] :(state,action) => {
+      state.loading = true
+    }
   },
 });
 

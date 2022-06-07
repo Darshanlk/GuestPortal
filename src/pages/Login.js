@@ -52,6 +52,10 @@ export default function SignIn({ name }) {
     };
 
     dispatch(signinUser(newData));
+ 
+
+    setTimeout( () => {navigate('/')},1000)
+
   };
 
   // const sendData = await axios.post(`/guestportal/login/`, {
