@@ -16,15 +16,19 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import CheckInCard from "../components/CheckInCard";
 import ServiceStack from "../components/ServiceStack";
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getUserData, userInfo } from "../reducers/userDataReducers";
 
 // By Darshan
 function Home() {
   const navigate=useNavigate();
-
+  const dispatch = useDispatch();
   
+const {userData} = useSelector((state) => state.userDetails)
+console.log("fetchdata",userData[0][0])
+
   useEffect(() => {
-    
+    dispatch(getUserData());
   },[])
   return (
     <div>
@@ -34,14 +38,14 @@ function Home() {
             Welcome!
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: 600 }}>
-            Mr. Jack Spencer
+          {userData[0][0].salutation} {userData[0][0].name}
           </Typography>
         </Box>
 
         <Divider />
         <Box  sx={{ paddingY: 2 }}>
           <Typography variant="subtitle2" sx={{ ml: "22px", fontWeight: 200 }}>
-            Booking ID
+            Booking ID 
           </Typography>
 
           <Box
@@ -55,7 +59,7 @@ function Home() {
               variant="body1"
               sx={{ color: "dodgerblue", fontWeight: 600, marginLeft: 3 }}
             >
-              HTLR3574FM
+            {userData[0][0].reservationno}
             </Typography>
             <Button
               variant="outlined"

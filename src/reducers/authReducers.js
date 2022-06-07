@@ -11,8 +11,11 @@ export const signinUser = createAsyncThunk("signinUser", async (body) => {
   const result = await fetch("guestportal/login", {
     method: "post",
     headers: {
+
       Accept: "application/json, text/plain, */*",
       "Content-Type": "application/json",
+      
+      
     },
     body: JSON.stringify(body),
   });
