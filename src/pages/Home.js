@@ -25,7 +25,16 @@ function Home() {
   const dispatch = useDispatch();
   
 const {userData} = useSelector((state) => state.userDetails)
+
 console.log("fetchdata",userData[0][0])
+
+let no_adult = userData[0][0].adult;
+let no_child = userData[0][0].child;
+let total_guest = no_adult + no_child
+ 
+let rooms = [userData[0][0].Roomno];
+console.log(userData)
+
 
   useEffect(() => {
     dispatch(getUserData());
@@ -77,7 +86,7 @@ console.log("fetchdata",userData[0][0])
           </Box>
         </Box>
 
-        <DateCard />
+        <DateCard  checkIn={userData[0][0].arrivaldate} checkOut={userData[0][0].departuredate} nights={userData[0][0].noofdays} guest= {total_guest} />
 
         <Typography
           sx={{ color: "GrayText", fontWeight: 600, paddingY: 1 }}
@@ -85,7 +94,7 @@ console.log("fetchdata",userData[0][0])
         >
           Your Accommodation
         </Typography>
-        <RoomCard />
+        <RoomCard  rooms= {rooms} child={no_child} adult={no_adult}  />
         <br />
         <SnackbarContent
           variant="outlined"
