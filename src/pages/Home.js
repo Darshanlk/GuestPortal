@@ -21,7 +21,11 @@ import { useNavigate } from "react-router-dom";
 // By Darshan
 function Home() {
   const navigate=useNavigate();
+
   
+  useEffect(() => {
+    
+  },[])
   return (
     <div>
       <Container>

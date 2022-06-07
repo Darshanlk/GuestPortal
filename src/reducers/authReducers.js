@@ -4,6 +4,7 @@ const initialState = {
   token: "",
   loading: false,
   error: "",
+  
 };
 
 export const signinUser = createAsyncThunk("signinUser", async (body) => {
@@ -40,6 +41,15 @@ const authReducer = createSlice({
         localStorage.setItem("token", action.payload.token);
       }
     },
+
+    [signinUser.pending] :(state,action) =>{
+      state.loading = true;
+
+    },
+
+    [signinUser.rejected] :(state,action) => {
+      state.loading = true
+    }
   },
 });
 

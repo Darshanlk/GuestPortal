@@ -112,29 +112,12 @@ function App() {
 
   //userAceess  function
 
-  //userdashboard api
 
-  // const authFetch = async () => {
-  //   const data = await fetch("/userDashboard/", {
-  //     method: "get",
-  //     headers: {
-  //       authorization:''
-  //     },
-  //   });
-
-  //   const res = await data.json();
-
-  //   console.log(res);
-
-  //   return res;
-  // };
 
   const token = useSelector((state) => state.user.token);
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(addToken());
-   
   }, []);
 
   return (
@@ -323,12 +306,15 @@ function App() {
       )}
       <Box sx={{}}>
         <Routes>
+          {/* <Route
+            path= '/'
+            element={token  ? <Home/> : <Login />}
+          /> */}
+
           <Route
             path="/"
-            element={token  ? <Home/> : <Login/>}
+            element={token ? <Home /> : <Navigate to="/login" />}
           />
-
-          {/* <Route path="/" exact element={token ? <Home /> : <Login />} /> */}
           <Route
             path="/booking"
             element={token ? <Booking /> : <Navigate to="/login " />}
