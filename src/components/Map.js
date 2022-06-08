@@ -2,11 +2,11 @@
 import { Fragment } from 'react';
 import GoogleMapReact from 'google-map-react';
 import './marker.scss'
-function Map() {
+function Map(props) {
     const defaultProps = {
         center: {
-          lat: 59.95,
-          lng: 30.33
+          lat:props.lat,
+          lng: props.lng
         },
         zoom: 3
       };

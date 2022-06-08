@@ -55,6 +55,7 @@ function Home() {
     console.log(e);
   }
   useEffect(() => {
+
     dispatch(getUserData());
   }, []);
 
@@ -81,7 +82,9 @@ function Home() {
               variant="subtitle2"
               sx={{ ml: "22px", fontWeight: 200 }}
             >
+            {/* {userData[0][0].reservationno} */}
               Booking ID
+
             </Typography>
 
             <Box
