@@ -9,8 +9,11 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import SendIcon from '@mui/icons-material/Send';
 import EmailIcon from '@mui/icons-material/Email';
+import { useDispatch, useSelector } from "react-redux";
 import Map from '../components/Map';
 import { Button, Card, CardContent, Divider, Typography } from '@mui/material';
+import { getMapData } from '../reducers/mapDataReducers';
+import { useEffect } from 'react';
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : 'fff',
     ...theme.typography.body2,
@@ -20,12 +23,21 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function Contact() {
+    const dispatch = useDispatch();
+  
+    const {mapData} = useSelector((state) => state.mapData)
+    console.log("fetchdata",mapData)
+    // console.log("fetchdata",mapData[0][0])
+    
+      useEffect(() => {
+        dispatch(getMapData());
+      },[])
     return (
         <Box sx={{ flexGrow: 1, margin: 2 }}>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={8}>
                     <Paper elevation={1} >
-                        <Item ><Map/></Item>
+                        <Item ><Map lat={59.95} lng={30.33} /></Item>
                         {/* <Map/> */}
                     </Paper>
                 </Grid>

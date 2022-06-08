@@ -28,7 +28,7 @@ const {userData} = useSelector((state) => state.userDetails)
 console.log("fetchdata",userData[0][0])
 
   useEffect(() => {
-    dispatch(getUserData());
+    // dispatch(getUserData());
   },[])
   return (
     <div>
@@ -38,7 +38,7 @@ console.log("fetchdata",userData[0][0])
             Welcome!
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: 600 }}>
-          {userData[0][0].salutation} {userData[0][0].name}
+          {/* {userData[0][0].salutation} {userData[0][0].name} */}
           </Typography>
         </Box>
 
@@ -59,7 +59,7 @@ console.log("fetchdata",userData[0][0])
               variant="body1"
               sx={{ color: "dodgerblue", fontWeight: 600, marginLeft: 3 }}
             >
-            {userData[0][0].reservationno}
+            {/* {userData[0][0].reservationno} */}
             </Typography>
             <Button
               variant="outlined"
