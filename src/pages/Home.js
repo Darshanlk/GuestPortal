@@ -26,7 +26,7 @@ function Home() {
 
   const { userData, loading } = useSelector((state) => state.userDetails);
 
-  console.log(typeof userData, loading);
+  console.log(typeof userData, loading,userData);
   let no_adult = "";
   let no_child = "";
   let total_guest = "";
@@ -45,7 +45,7 @@ function Home() {
       no_child = userData[0].child;
       total_guest = no_adult + no_child;
       salutation = userData[0].salutation;
-      // reservationno = userData[0].reservationno;
+      reservationno = userData[0].reservationno;
       rooms = [userData[0].Roomno];
       checkin = userData[0].arrivaldate;
       checkout = userData[0].departuredate;
@@ -55,7 +55,6 @@ function Home() {
     console.log(e);
   }
   useEffect(() => {
-
     dispatch(getUserData());
   }, []);
 
@@ -72,7 +71,7 @@ function Home() {
               Welcome!
             </Typography>
             <Typography variant="h6" sx={{ fontWeight: 600 }}>
-               {name}
+              {name}
             </Typography>
           </Box>
 
@@ -82,9 +81,8 @@ function Home() {
               variant="subtitle2"
               sx={{ ml: "22px", fontWeight: 200 }}
             >
-            {/* {userData[0][0].reservationno} */}
+              {/* {userData[0][0].reservationno} */}
               Booking ID
-
             </Typography>
 
             <Box

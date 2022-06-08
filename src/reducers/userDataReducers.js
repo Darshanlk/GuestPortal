@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  loading:true,
-  error:"",
+  loading: true,
+  error: "",
   userData: [],
 };
 
@@ -27,8 +27,8 @@ const userInfo = createSlice({
   reducers: {},
   extraReducers: {
     [getUserData.fulfilled]: (state, action) => {
-      state.loading = false
-      state.userData =  action.payload.message
+      state.loading = false;
+      state.userData = action.payload.message;
     },
     [getUserData.pending]: (state, action) => {
       state.loading = true;
