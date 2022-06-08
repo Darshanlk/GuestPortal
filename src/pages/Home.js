@@ -45,7 +45,7 @@ function Home() {
       no_child = userData[0].child;
       total_guest = no_adult + no_child;
       salutation = userData[0].salutation;
-      reservationno = userData[0].reservationno;
+      // reservationno = userData[0].reservationno;
       rooms = [userData[0].Roomno];
       checkin = userData[0].arrivaldate;
       checkout = userData[0].departuredate;
@@ -71,7 +71,7 @@ function Home() {
               Welcome!
             </Typography>
             <Typography variant="h6" sx={{ fontWeight: 600 }}>
-              {salutation} {name}
+               {name}
             </Typography>
           </Box>
 
