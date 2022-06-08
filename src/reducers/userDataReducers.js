@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  loading:true,
+  error:"",
   userData: [],
 };
 
@@ -10,7 +12,7 @@ export const getUserData = createAsyncThunk("userInfo", async (body) => {
     headers: {
       Accept: "application/json, text/plain, */*",
       "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token")
+      Authorization: localStorage.getItem("token"),
     },
   });
 
@@ -25,9 +27,16 @@ const userInfo = createSlice({
   reducers: {},
   extraReducers: {
     [getUserData.fulfilled]: (state, action) => {
-      state.userData.push(action.payload.message);
+      state.loading = false
+      state.userData =  action.payload.message
+    },
+    [getUserData.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getUserData.rejected]: (state, action) => {
+      state.error = "check Your Internet Connection";
     },
   },
 });
 
-export default  userInfo.reducer;
+export default userInfo.reducer;

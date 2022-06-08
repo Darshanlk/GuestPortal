@@ -18,119 +18,79 @@ const Img = styled("img")({
 });
 
 // By Darshan
-export default function RoomCard() {
-  const navigate=useNavigate()
+export default function RoomCard({ rooms,child,adult }) {
+  const navigate = useNavigate();
   return (
-    <div onClick={e => navigate('/booking')}>
-      
-        <Paper
-          sx={{
-            p: 1,
-            margin: "auto",
-            maxWidth: 2000,
-            flexGrow: 1,
-          }}
-        >
-          <Grid container spacing={2} md={12}>
-            <Grid item>
-              <Typography variant="subtitle1" mr={4} sx={{fontWeight:600}}>
-                ROOM 1
-              </Typography>
+    <div onClick={(e) => navigate("/booking")}>
+      <Paper
+        sx={{
+          p: 1,
+          margin: "auto",
+          maxWidth: 2000,
+          flexGrow: 1,
+        }}
+      >
+        {rooms.map((item) => {
+          return (
+            <>
+              <Grid container spacing={2} md={12}>
+                <Grid item>
+                  <Typography
+                    variant="subtitle1"
+                    mr={4}
+                    sx={{ fontWeight: 600 }}
+                  >
+                    ROOM 1
+                  </Typography>
 
-              <ButtonBase sx={{ width: 100, height: 100 }}>
-                <Img
-                  alt="complex"
-                  src="https://images.unsplash.com/photo-1634072319894-107e61606191?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTkzfHxob3RlbCUyMHJvb218ZW58MHx8MHx8&auto=format&fit=crop&w=500"
-                />
-              </ButtonBase>
-            </Grid>
-            <Grid item xs={8} sm container sx={{ mt: 3 }}>
-              <Grid item xs container direction="column">
-                <Grid
-                  item
-                  xs
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-evenly",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <Typography variant="subtitle1">
-                    <HotelOutlinedIcon
-                      sx={{ fontSize: "17px", color: "GrayText", pr: 1 }}
-                    />{" "}
-                    Standard AC Room
-                  </Typography>
-                  <Typography variant="subtitle1">
-                    {" "}
-                    <PeopleOutlineRoundedIcon
-                      sx={{ fontSize: "17px", color: "GrayText", pr: 1 }}
+                  <ButtonBase sx={{ width: 100, height: 100 }}>
+                    <Img
+                      alt="complex"
+                      src="https://images.unsplash.com/photo-1634072319894-107e61606191?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTkzfHxob3RlbCUyMHJvb218ZW58MHx8MHx8&auto=format&fit=crop&w=500"
                     />
-                    2 Adults, 0 Child
-                  </Typography>
-                  <Typography>
-                    <RestaurantRoundedIcon
-                      sx={{ fontSize: "17px", color: "GrayText", pr: 1 }}
-                    />
-                    CP(Breackfast included)
-                  </Typography>
+                  </ButtonBase>
+                </Grid>
+                <Grid item xs={8} sm container sx={{ mt: 3 }}>
+                  <Grid item xs container direction="column">
+                    <Grid
+                      item
+                      xs
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-evenly",
+                        alignItems: "flex-start",
+                      }}
+                    >
+                      <Typography variant="subtitle1">
+                        <HotelOutlinedIcon
+                          sx={{ fontSize: "17px", color: "GrayText", pr: 1 }}
+                        />{" "}
+                        {rooms}
+                      </Typography>
+                      <Typography variant="subtitle1">
+                        {" "}
+                        <PeopleOutlineRoundedIcon
+                          sx={{ fontSize: "17px", color: "GrayText", pr: 1 }}
+                        />
+                        {adult} Adults, {child} Child
+                      </Typography>
+                      <Typography>
+                        <RestaurantRoundedIcon
+                          sx={{ fontSize: "17px", color: "GrayText", pr: 1 }}
+                        />
+                        CP(Breackfast included)
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-          </Grid>
-          <br />
-          <Grid container spacing={2}>
-            <Grid item>
-              <Typography variant="subtitle1" mr={4} sx={{fontWeight:600}}>
-                ROOM 2
-              </Typography>
-
-              <ButtonBase sx={{ width: 100, height: 100 }}>
-                <Img
-                  alt="complex"
-                  src="https://images.unsplash.com/photo-1634072319894-107e61606191?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTkzfHxob3RlbCUyMHJvb218ZW58MHx8MHx8&auto=format&fit=crop&w=500"
-                />
-              </ButtonBase>
-            </Grid>
-            <Grid item xs={8} sm container sx={{ mt: 3 }}>
-              <Grid item xs container direction="column">
-                <Grid
-                  item
-                  xs
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-evenly",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <Typography variant="subtitle1">
-                    <HotelOutlinedIcon
-                      sx={{ fontSize: "17px", color: "GrayText", pr: 1 }}
-                    />{" "}
-                    Standard AC Room
-                  </Typography>
-                  <Typography variant="subtitle1">
-                    {" "}
-                    <PeopleOutlineRoundedIcon
-                      sx={{ fontSize: "17px", color: "GrayText", pr: 1 }}
-                    />
-                    2 Adults, 1 Child
-                  </Typography>
-                  <Typography>
-                    <RestaurantRoundedIcon
-                      sx={{ fontSize: "17px", color: "GrayText", pr: 1 }}
-                    />
-                    CP(Breackfast included)
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Paper>
-        {/*  */}
-   
+              <br />
+            </>
+          );
+        })}
+      </Paper>
+      {/*  */}
     </div>
   );
 }
