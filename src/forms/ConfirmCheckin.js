@@ -291,7 +291,7 @@ export default function ConfirmCheckin() {
                       }
                       onBlur={formik.handleBlur}
                       helperText={
-                        formik.touched.pickupBy && formik.errors.address
+                        formik.touched.address && formik.errors.address
                       }
                     />
                   </Grid>
@@ -362,7 +362,7 @@ export default function ConfirmCheckin() {
                   >
                     <TextField
                       sx={{ marginBottom: 2, width: "100%" }}
-                      type="text"
+                      type="email"
                       variant="standard"
                       defaultValue={email}
                       name="email"
@@ -716,13 +716,13 @@ export default function ConfirmCheckin() {
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                           <DatePicker
                             disableFuture
-                            name="date1"
+                            name="date2"
                             label="Date"
                             openTo="year"
                             views={["year", "month", "day"]}
                             value={formik.values.date1}
                             onChange={(value) => {
-                              formik.setFieldValue("date1", value);
+                              formik.setFieldValue("date2", value);
                             }}
                             renderInput={(params) => (
                               <TextField

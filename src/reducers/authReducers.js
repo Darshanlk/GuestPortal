@@ -1,28 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { fetchFunction } from "../helpers/fetchFunction";
 
 const initialState = {
   token: "",
   loading: false,
   error: "",
-  
 };
 
 export const signinUser = createAsyncThunk("signinUser", async (body) => {
-  const result = await fetch("guestportal/login", {
-    method: "post",
-    headers: {
-
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-      
-      
-    },
-    body: JSON.stringify(body),
-  });
-
-  const res = await result.json();
-
-  return res;
+  const result = await fetchFunction(`guestportal/login`, body, "post", "");
+  return result;
 });
 
 const authReducer = createSlice({
@@ -30,7 +17,7 @@ const authReducer = createSlice({
   initialState,
   reducers: {
     addToken: (state, action) => {
-      state.token= localStorage.getItem("token");
+      state.token = localStorage.getItem("token");
     },
   },
   extraReducers: {
@@ -45,14 +32,13 @@ const authReducer = createSlice({
       }
     },
 
-    [signinUser.pending] :(state,action) =>{
+    [signinUser.pending]: (state, action) => {
       state.loading = true;
-
     },
 
-    [signinUser.rejected] :(state,action) => {
-      state.loading = true
-    }
+    [signinUser.rejected]: (state, action) => {
+      state.loading = true;
+    },
   },
 });
 
