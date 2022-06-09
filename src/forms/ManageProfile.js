@@ -232,7 +232,7 @@ function ManageProfile() {
                     maxWidth="lg"
                     fullWidth={true}
                     open={open}
-                    onClose={handleClose}
+                    onClick={handleClose}
                   >
                     <DialogTitle
                       bgcolor={blue[500]}
