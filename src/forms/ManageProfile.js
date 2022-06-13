@@ -44,18 +44,25 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserData } from "../reducers/userDataReducers";
+
+import { getManageProfile } from "../reducers/userDataReducers";
 import { FormikConsumer, useFormik } from "formik";
 import * as Yup from "yup";
 import PreviewImage from "../components/PreviewImage";
 import { YearPicker } from "@mui/x-date-pickers";
+// import { useDispatch, useSelector } from "react-redux";
 
 function ManageProfile() {
-  const { userData, loading, manageProfile } = useSelector(
+  const { userData, loading, manageProfileData } = useSelector(
     (state) => state.userDetails
   );
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+
+  },[])
+
   const honorificsArray = ["Dr.", "Jn.", "Mam.", "Mrs.", "Ms.", "Sir", "Sr."];
   const identity = ["Adhar Card", "Driving License", "Passport"];
 
@@ -71,73 +78,40 @@ function ManageProfile() {
 
   const guestImageRef = React.useRef(null);
   const [showGuestImage, setShowGuestImage] = React.useState("");
-  console.log(showGuestImage);
 
   const identityImageRef = React.useRef(null);
   const [showIdentityImage, setIdentityGuestImage] = React.useState("");
-  const [country, setCountry] = React.useState("");
+
   const [open, setOpen] = React.useState(false);
 
-  //formil and Yup
-
-  const formik = useFormik({
-    initialValues: {
-      guestImage: "",
-      identityImage: "",
-      honorifics: [],
-      name: "",
-      gender: "",
-      address: "",
-      city: "",
-      state: "",
-      zip: "",
-      country:country,
-      phone: "",
-      email: "",
-      guestIdentity: [],
-      guestIdentityNumber: "",
-      expiryDate: null,
-      issuingCountry: "",
-      issuingCity: "",
-    },
-    validationSchema: Yup.object({
-      honorifics: Yup.string().required("Please select Your transportation"),
-      name: Yup.string().required("Please enter Your Description. "),
-      gender:Yup.string().required("Please select Your gender"),
-      address: Yup.string().required("Please enter Your Address."),
-      city:Yup.string().required("Please enter Your city"),
-      state:Yup.string().required("Please enter Your state"),
-      zip:Yup.string().required("please enter  your city  zipcode"),
-      phone: Yup.number().required("Please enter Your Phone number"),
-      email: Yup.string().required("Please enter your Email."),
-      guestIdentity: Yup.string().required("Please SelectYour Identity"),
-      guestIdentityNumber: Yup.number().required(
-        "Please Enter Your Identity Number"
-      ),
-
-    }),
-    onSubmit: (values) => {
-      console.log("formSubmitted", values);
-      
-      if (!values) {
-        alert("fill all the field");
-      } else {
-        setOpen(false)
-      }
-    },
-  });
-
   let name = "";
+  let identityImage = "";
+  let honorifics = [];
+  let gender = "";
+  let address = "";
+  let city = "";
+  let state = "";
+  let zip = "";
+  let guest_country ="";
+  let phone = "";
+  let email = "";
+  let guestIdentity = "";
+  let guestIdentityNumber = "";
+  let expiryDate = "";
+  let issuingCountry = "";
+  let identity_city = "";
   let no_adult = "";
   let no_child = "";
-
-  let rooms = "";
   let reservationno = "";
   let checkin = "";
   let checkout = "";
   let nights = "";
+  let rooms = "";
+  let exp_date = null;
+
 
   try {
+    console.log(manageProfileData[0])
     if (userData.length > 0) {
       name = userData[0].name;
       no_adult = [userData[0].adult];
@@ -147,14 +121,77 @@ function ManageProfile() {
       checkin = userData[0].arrival;
       checkout = userData[0].departure;
       nights = userData[0].noofdays;
+      gender = manageProfileData[0].gender;
+      address = manageProfileData[0].address;
+      city = manageProfileData[0].city;
+      state = manageProfileData[0].state;
+      zip = manageProfileData[0].zipcode;
+      phone = manageProfileData[0].mobile;
+      email = manageProfileData[0].email;
+      guest_country = manageProfileData[0].country;
+      guestIdentityNumber = manageProfileData[0].identity_no
+      exp_date = manageProfileData[0].exp_date;
+      identity_city = manageProfileData[0].identity_city;
     }
+  
   } catch (e) {
     console.log(e);
   }
- 
+  const [country, setCountry] = React.useState(guest_country);
+  //formil and Yup
+
+  const formik = useFormik({
+    initialValues: {
+      guestImage: "",
+      identityImage: "",
+      honorifics: honorifics,
+      name: name,
+      gender: gender,
+      address: address,
+      city: city,
+      state: state,
+      zip: zip,
+      country: guest_country,
+      phone: phone,
+      email: email,
+      guestIdentity: guestIdentity,
+      guestIdentityNumber: guestIdentityNumber,
+      expiryDate: exp_date,
+      issuingCountry: issuingCountry,
+      identity_city:identity_city,
+    },
+    validationSchema: Yup.object({
+      honorifics: Yup.string().required("Please select Your transportation"),
+      name: Yup.string().required("Please enter Your Description. "),
+      gender: Yup.string().required("Please select Your gender"),
+      address: Yup.string().required("Please enter Your Address."),
+      city: Yup.string().required("Please enter Your city"),
+      state: Yup.string().required("Please enter Your state"),
+      zip: Yup.string().required("please enter  your city  zipcode"),
+      phone: Yup.number().required("Please enter Your Phone number"),
+      email: Yup.string().required("Please enter your Email."),
+      guestIdentity: Yup.string().required("Please SelectYour Identity"),
+      guestIdentityNumber: Yup.number().required(
+        "Please Enter Your Identity Number"
+      ),
+    }),
+    onSubmit: (values) => {
+      console.log("formSubmitted", typeof values);
+
+      if (!values) {
+        alert("fill all the field");
+      } else {
+
+      
+        setOpen(false);
+      }
+    },
+  });
 
   const handleClickOpen = () => {
-    setOpen(true);
+
+   setOpen(true)
+    
   };
 
   const handleClose = () => {
@@ -232,7 +269,7 @@ function ManageProfile() {
                     maxWidth="lg"
                     fullWidth={true}
                     open={open}
-                    onClick={handleClose}
+                    onClose={handleClose}
                   >
                     <DialogTitle
                       bgcolor={blue[500]}
@@ -407,6 +444,7 @@ function ManageProfile() {
                                 </FormControl>
                                 <TextField
                                   name="name"
+                                  value={formik.values.name}
                                   onChange={formik.handleChange}
                                   error={
                                     formik.touched.name &&
@@ -414,15 +452,13 @@ function ManageProfile() {
                                   }
                                   onBlur={formik.handleBlur}
                                   helperText={
-                                    formik.touched.name &&
-                                    formik.errors.name
+                                    formik.touched.name && formik.errors.name
                                   }
                                   size="small"
                                   fullWidth
                                   variant="standard"
                                   placeholder="Your Name"
                                   sx={{ marginTop: 0.5 }}
-                              
                                 />
                               </Box>
                             </Box>
@@ -526,6 +562,7 @@ function ManageProfile() {
                               >
                                 <TextField
                                   name="address"
+                                  value={formik.values.address}
                                   onChange={formik.handleChange}
                                   error={
                                     formik.touched.address &&
@@ -543,7 +580,7 @@ function ManageProfile() {
 
                                     paddingTop: 0,
                                   }}
-                                  label="Address"
+                                  placeholder="Address"
                                   variant="standard"
                                 />
                                 <Box
@@ -558,6 +595,7 @@ function ManageProfile() {
                                 >
                                   <TextField
                                     name="city"
+                                    value={formik.values.city}
                                     onChange={formik.handleChange}
                                     error={
                                       formik.touched.city &&
@@ -570,11 +608,12 @@ function ManageProfile() {
                                     size="small"
                                     sx={{ width: "33%", marginRight: 1 }}
                                     id="outlined-basic"
-                                    label="City"
+                                    placeholder="City"
                                     variant="standard"
                                   />
                                   <TextField
                                     name="state"
+                                    value={formik.values.state}
                                     onChange={formik.handleChange}
                                     error={
                                       formik.touched.state &&
@@ -588,11 +627,12 @@ function ManageProfile() {
                                     size="small"
                                     sx={{ width: "33%", marginRight: 1 }}
                                     id="outlined-basic"
-                                    label="State"
+                                    placeholder="State"
                                     variant="standard"
                                   />
                                   <TextField
                                     name="zip"
+                                    value={formik.values.zip}
                                     onChange={formik.handleChange}
                                     error={
                                       formik.touched.zip &&
@@ -605,7 +645,7 @@ function ManageProfile() {
                                     size="small"
                                     sx={{ width: "33%" }}
                                     id="outlined-basic"
-                                    label="Zip"
+                                    placeholder="Zip"
                                     variant="standard"
                                   />
                                 </Box>
@@ -646,8 +686,8 @@ function ManageProfile() {
                                     }}
                                   >
                                     <CountryDropdown
-                                      value={country}
-                                      onChange={(val) => {setCountry(val)}}
+                                       value={country}
+                                      onChange={(val) => setCountry(val)}
                                     />
                                   </Box>
                                 </Grid>
@@ -689,6 +729,7 @@ function ManageProfile() {
                                 <TextField
                                   fullWidth
                                   name="phone"
+                                  value = {formik.values.phone}
                                   onChange={formik.handleChange}
                                   error={
                                     formik.touched.phone &&
@@ -701,7 +742,7 @@ function ManageProfile() {
                                   size="small"
                                   sx={{ marginRight: 1 }}
                                   id="outlined-basic"
-                                  label="Mobile"
+                                  placeholder="Mobile"
                                   variant="standard"
                                 />
                               </Box>
@@ -742,10 +783,11 @@ function ManageProfile() {
                                 <TextField
                                   fullWidth
                                   type="emai"
+                                  value={formik.values.email}
                                   size="small"
                                   sx={{ marginRight: 1 }}
                                   id="outlined-basic"
-                                  label="Email Id"
+                                  placeholder="Email Id"
                                   variant="standard"
                                   name="email"
                                   onChange={formik.handleChange}
@@ -877,15 +919,14 @@ function ManageProfile() {
                               >
                                 {/* <Box sx={{ borderStyle: 'solid', borderWidth: '0.14rem', borderColor: 'black' }}> */}
 
-                                <CanvasDraw
+{/*get signature  */}
+                                {/* <CanvasDraw
                                   brushColor="black"
                                   brushRadius={0}
                                   lazyRadius={0}
                                   canvasWidth={150}
                                   canvasHeight={120}
-
-                                
-                                ></CanvasDraw>
+                                ></CanvasDraw> */}
 
                                 {/* </Box> */}
 
@@ -968,9 +1009,10 @@ function ManageProfile() {
                                     // value={status}
 
                                     sx={{
-                                      minWidth: 70,
+                                      minWidth: 30,
                                       width: 70,
                                       marginRight: 2,
+                                      marginBottom:5
                                     }}
                                     label="--select--"
                                     name="guestIdentity"
@@ -979,7 +1021,10 @@ function ManageProfile() {
                                       const {
                                         target: { value },
                                       } = event;
-                                      formik.setFieldValue("guestIdentity", value);
+                                      formik.setFieldValue(
+                                        "guestIdentity",
+                                        value
+                                      );
                                     }}
                                     error={
                                       formik.touched.guestIdentity &&
@@ -1000,6 +1045,7 @@ function ManageProfile() {
                                 </FormControl>
                                 <TextField
                                   name="guestIdentityNumber"
+                                  value= {formik.values.guestIdentityNumber}
                                   onChange={formik.handleChange}
                                   error={
                                     formik.touched.guestIdentityNumber &&
@@ -1133,7 +1179,8 @@ function ManageProfile() {
                                 </Typography>
                               </Box>
                               <TextField
-                                name="issuingCity"
+                                name="identity_city"
+                                value = {formik.values.identity_city}
                                 onChange={formik.handleChange}
                                 error={
                                   formik.touched.issuingCity &&
@@ -1147,7 +1194,7 @@ function ManageProfile() {
                                 size="small"
                                 sx={{ marginRight: 1 }}
                                 id="outlined-basic"
-                                label="Issuing City"
+                                placeholder="Issuing City"
                                 variant="standard"
                               />
                             </Box>
@@ -1179,7 +1226,7 @@ function ManageProfile() {
                             >
                               Reset
                             </Button>
-                            <Button
+                            {/* <Button
                               size="small"
                               variant="contained"
                               sx={{
@@ -1188,7 +1235,7 @@ function ManageProfile() {
                               }}
                             >
                               Close
-                            </Button>
+                            </Button> */}
                           </Stack>
                         </Box>
                       </Box>

@@ -48,7 +48,7 @@ function Booking() {
   return (
     <div>
       {loading ? (
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{display: "flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginY:10 }}>
           <CircularProgress />
         </Box>
       ) : (

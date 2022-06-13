@@ -4,7 +4,7 @@ const initialState = {
   loading: true,
   error: "",
   userData: [],
-  manageProfileData:[],
+  manageProfileData: [],
 };
 
 export const getUserData = createAsyncThunk("userInfo", async (body) => {
@@ -17,16 +17,33 @@ export const getUserData = createAsyncThunk("userInfo", async (body) => {
   return result;
 });
 
-export const manageProfile = createAsyncThunk("manageProfile", async (body) => {
-  const result = await fetchFunction(
-    `/guestportal/manageProfile`,
-    body,
-    "post",
-    localStorage.getItem("token")
-  );
+export const getManageProfile = createAsyncThunk(
+  "manageProfile",
+  async (body) => {
+    const result = await fetchFunction(
+      `guestportal/manageProfile`,
+      body,
+      "get",
+      localStorage.getItem("token")
+    );
 
-  return result;
-});
+    return result;
+  }
+);
+
+export const postManageProfile = createAsyncThunk(
+  "postManageProfile",
+  async (body) => {
+    const result = await fetchFunction(
+      `guestportal/manageProfilePost`,
+      body,
+      "post",
+      localStorage.getItem("token")
+    );
+
+    return result;
+  }
+);
 
 const userInfo = createSlice({
   name: "userDetails",
@@ -44,16 +61,27 @@ const userInfo = createSlice({
       state.error = "Check Your Internet Connection";
     },
 
-    [manageProfile.fulfilled]: (state,action) => {
+    [getManageProfile.fulfilled]: (state, action) => {
       state.loading = false;
-      state.manageProfileData.push(action.payload.message)
+      state.manageProfileData = action.payload.message;
     },
-    [manageProfile.pending]:(state,action) => {
+    [getManageProfile.pending]: (state, action) => {
       state.loading = true;
     },
-    [manageProfile.rejected] : (state,action) => {
-      state.error = "Check Your Internet Connection"
-    }
+    [getManageProfile.rejected]: (state, action) => {
+      state.error = "Check Your Internet Connection";
+    },
+
+    [postManageProfile.fulfilled]: (state, action) => {
+      laoding = false;
+      state.manageProfileData = action.payload.message;
+    },
+    [postManageProfile.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [postManageProfile.rejected]: (state, action) => {
+      state.error = "Check Your Internet Connection";
+    },
   },
 });
 

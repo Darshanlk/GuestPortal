@@ -61,8 +61,8 @@ function Home() {
   return (
     <div>
       {loading ? (
-        <Box sx={{ display: "flex" }}>
-          <CircularProgress />
+        <Box sx={{ display: "flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginY:10 }}>
+         <CircularProgress />
         </Box>
       ) : (
         <Container>

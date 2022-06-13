@@ -11,7 +11,8 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserData } from "../reducers/userDataReducers";
+import { getManageProfile } from "../reducers/userDataReducers";
+import { useEffect } from "react";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -49,6 +50,13 @@ function GDetails() {
     console.log(e);
   }
 
+
+
+  const dispatch = useDispatch()
+
+  useEffect(() =>{
+    dispatch(getManageProfile())
+  },[])
   return (
     <Grid
       container
