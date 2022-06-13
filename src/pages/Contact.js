@@ -14,6 +14,7 @@ import Map from '../components/Map';
 import { Button, Card, CardContent, Divider, Typography } from '@mui/material';
 import { getMapData } from '../reducers/mapDataReducers';
 import { useEffect } from 'react';
+import CircularProgress from "@mui/material/CircularProgress";
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : 'fff',
     ...theme.typography.body2,
@@ -25,7 +26,7 @@ const Item = styled(Paper)(({ theme }) => ({
 function Contact() {
     const dispatch = useDispatch();
   
-    const {mapData} = useSelector((state) => state.mapData)
+    const {mapData,loading,error} = useSelector((state) => state.mapData)
     console.log("fetchdata",mapData)
     // console.log("fetchdata",mapData[0][0])
     
@@ -33,6 +34,12 @@ function Contact() {
         dispatch(getMapData());
       },[])
     return (
+        <div>
+        {loading ? (
+        <Box sx={{display: "flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginY:10 }}>
+          <CircularProgress />
+        </Box>
+      ) : (
         <Box sx={{ flexGrow: 1, margin: 2 }}>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={8}>
@@ -91,7 +98,8 @@ function Contact() {
                     </Card>
                 </Grid>
             </Grid>
-        </Box>
+        </Box>)}
+        </div>
     );
 }
 

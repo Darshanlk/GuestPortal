@@ -26,7 +26,7 @@ function Home() {
 
   const { userData, loading } = useSelector((state) => state.userDetails);
 
-  console.log(typeof userData, loading);
+  console.log(typeof userData, loading,userData);
   let no_adult = "";
   let no_child = "";
   let total_guest = "";
@@ -55,15 +55,14 @@ function Home() {
     console.log(e);
   }
   useEffect(() => {
-
     dispatch(getUserData());
   }, []);
 
   return (
     <div>
       {loading ? (
-        <Box sx={{ display: "flex" }}>
-          <CircularProgress />
+        <Box sx={{ display: "flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginY:10 }}>
+         <CircularProgress />
         </Box>
       ) : (
         <Container>
@@ -72,7 +71,7 @@ function Home() {
               Welcome!
             </Typography>
             <Typography variant="h6" sx={{ fontWeight: 600 }}>
-              {salutation} {name}
+              {name}
             </Typography>
           </Box>
 
@@ -82,9 +81,8 @@ function Home() {
               variant="subtitle2"
               sx={{ ml: "22px", fontWeight: 200 }}
             >
-            {/* {userData[0][0].reservationno} */}
+              {/* {userData[0][0].reservationno} */}
               Booking ID
-
             </Typography>
 
             <Box
