@@ -24,16 +24,36 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { PhoneBluetoothSpeakerTwoTone } from "@mui/icons-material";
+import { fetchFunction } from "../helpers/fetchFunction";
 
 //By Darshan
 export default function ConfirmCheckin() {
   //for navigation
+  const { userData, loading } = useSelector((state) => state.userDetails);
   const navigate = useNavigate();
+  // console.log(userData,'at form')
   //dummy
-  const guestName = "Rio";
+  let guestName = "";
+  let email = "";
+  let phone = "";
+  let address = "";
+  // let guestIdentity = "";
+  // let guestIdentityNumber = "";
+
+  try {
+    guestName = userData[0].name.split(".")[1];
+    // console.log(guestName)
+    email = userData[0].notiemail;
+    phone = userData[0].mobile;
+  } catch (e) {
+    console.log(e);
+  }
+
   const honorificsArray = ["Dr.", "Jn.", "Mam.", "Mrs.", "Ms.", "Sir", "Sr."];
   const identity = ["Adhar Card", "Driving License", "Passport"];
-  const email = "darshan.mistry@ezeetechnosy.com";
+
   const service = ["Other", "OLA", "UBER", "Hotel-service"];
   // for alert
   const [open, setOpen] = React.useState(true);
@@ -56,7 +76,7 @@ export default function ConfirmCheckin() {
           honorifics: [],
           name: guestName,
           address: "",
-          phone: "",
+          phone: phone,
           email: email,
           guestIdentity: [],
           identityNumber: "",
@@ -67,7 +87,7 @@ export default function ConfirmCheckin() {
           honorifics: [],
           name: guestName,
           address: "",
-          phone: "",
+          phone: phone,
           email: email,
           guestIdentity: [],
           identityNumber: "",
@@ -119,7 +139,14 @@ export default function ConfirmCheckin() {
     ),
     onSubmit: (values) => {
       console.log("formSubmitted", values);
+      console.log("click");
+      console.log(typeof values, values, "defewfwfe");
+      //send request function
 
+     const result = fetchFunction('/guestportal/confrimCheckIn',values,"post",localStorage.getItem("token"))
+ 
+    
+     console.log(result)
       if (!values) {
         alert("fill all the field");
       } else {
@@ -130,7 +157,10 @@ export default function ConfirmCheckin() {
 
   return (
     <>
-      <Grid container sx={{ justifyContent: "center", paddingY: 2,padding:2 }}>
+      <Grid
+        container
+        sx={{ justifyContent: "center", paddingY: 2, padding: 2 }}
+      >
         <Grid
           item
           xs={12}
@@ -142,9 +172,7 @@ export default function ConfirmCheckin() {
             justifyContent: "space-evenly",
           }}
         >
-          <Typography variant="h5" >
-            Confirm Your Check In
-          </Typography>
+          <Typography variant="h5">Confirm Your Check In</Typography>
           {alert ? (
             <Collapse in={open}>
               <Alert
@@ -247,11 +275,14 @@ export default function ConfirmCheckin() {
                       type="text"
                       variant="standard"
                       name="name"
-                      defaultValue={guestName}
+                      // InputLabelProps={{ shrink: true }}
+                      // label="name"
+                      value={formik.values.name}
                       onChange={formik.handleChange}
                       error={formik.touched.name && Boolean(formik.errors.name)}
                       onBlur={formik.handleBlur}
                       helperText={formik.touched.name && formik.errors.name}
+                      placeholder="Name"
                     />
                   </Grid>
                 </Grid>
@@ -283,8 +314,10 @@ export default function ConfirmCheckin() {
                       sx={{ marginBottom: 2, width: "100%" }}
                       type="text"
                       variant="standard"
-                      label="Address"
+                      // label="Address"
+                      placeholder="Address"
                       name="address"
+                      value={formik.values.address}
                       onChange={formik.handleChange}
                       error={
                         formik.touched.address && Boolean(formik.errors.address)
@@ -324,7 +357,9 @@ export default function ConfirmCheckin() {
                       sx={{ marginBottom: 2, width: "100%" }}
                       type="text"
                       variant="standard"
-                      label="Phone"
+                      // label="Phone"
+                      placeholder="Phone"
+                      value={formik.values.phone}
                       name="phone"
                       onChange={formik.handleChange}
                       error={
@@ -364,8 +399,9 @@ export default function ConfirmCheckin() {
                       sx={{ marginBottom: 2, width: "100%" }}
                       type="email"
                       variant="standard"
-                      defaultValue={email}
+                      value={formik.values.email}
                       name="email"
+                      placeholder="Email"
                       onChange={formik.handleChange}
                       error={
                         formik.touched.email && Boolean(formik.errors.email)
@@ -409,7 +445,14 @@ export default function ConfirmCheckin() {
                         labelId="demo-simple-select-standard-label"
                         id="demo-simple-select-standard"
                         name="guestIdentity"
-                        onChange={formik.handleChange}
+                        single
+                        value={formik.values.guestIdentity}
+                        onChange={(event) => {
+                          const {
+                            target: { value },
+                          } = event;
+                          formik.setFieldValue("guestIdentity", value);
+                        }}
                         error={
                           formik.touched.guestIdentity &&
                           Boolean(formik.errors.guestIdentity)
@@ -432,6 +475,7 @@ export default function ConfirmCheckin() {
                       type="text"
                       variant="standard"
                       label="Enter your Identity"
+                      value={formik.values.identityNumber}
                       name="identityNumber"
                       onChange={formik.handleChange}
                       error={
@@ -516,6 +560,8 @@ export default function ConfirmCheckin() {
                       type="text"
                       variant="standard"
                       label="Enter Your request"
+                      name="spReq"
+                      onChange={formik.handleChange}
                     />
                   </Grid>
                 </Grid>
@@ -797,7 +843,7 @@ export default function ConfirmCheckin() {
                     <Button
                       variant="contained"
                       sx={{ width: "100%" }}
-                      type="sumbit"
+                      type="submit"
                     >
                       Send Request
                     </Button>
