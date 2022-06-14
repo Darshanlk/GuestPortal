@@ -45,6 +45,22 @@ export const postManageProfile = createAsyncThunk(
   }
 );
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const userInfo = createSlice({
   name: "userDetails",
   initialState,

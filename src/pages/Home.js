@@ -37,6 +37,7 @@ function Home() {
   let checkin = "";
   let checkout = "";
   let nights = "";
+console.log(userData)
 
   try {
     if (userData.length > 0) {
