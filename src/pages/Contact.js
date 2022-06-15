@@ -44,7 +44,7 @@ function Contact() {
             <Grid container spacing={2}>
                 <Grid item xs={12} md={8}>
                     <Paper elevation={1} >
-                        <Item ><Map lat={59.95} lng={30.33} /></Item>
+                        <Item ><Map lat={ 19.0745} lng={72.8853} /></Item>
                         {/* <Map/> */}
                     </Paper>
                 </Grid>

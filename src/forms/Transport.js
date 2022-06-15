@@ -1,4 +1,6 @@
 import React from "react";
+import Moment from 'react-moment';
+import moment from "moment";
 import {
   Button,
   Grid,
@@ -30,6 +32,8 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { fetchFunction } from "../helpers/fetchFunction";
+
 function Transport() {
   const [open, setOpen] = React.useState(true);
   const [alert, setAlert] = React.useState(false);
@@ -38,7 +42,7 @@ function Transport() {
 
   const navigate = useNavigate();
 
-  const reqType = location.state.reqType;
+  var reqType = location.state.reqType;
 
   //dummy
   const service = ["Other", "OLA", "UBER", "Hotel-service"];
@@ -60,11 +64,31 @@ function Transport() {
       ),
     }),
     onSubmit: (values) => {
+
+  
+      // values.date1 = moment().format("MMM Do YYYY"); 
+      // values.time1 = moment().format("h:mm:ss a")
+      // console.log("This is new date",values.date1)
+      // console.log("This is new time",values.time1)
+
+
+
+
+
+
+
       console.log("formSubmitted", values);
       if (!values) {
         alert("fill all the field");
       } else {
+        const result = fetchFunction(
+          "/guestportal/transport",
+          values,
+          "post",
+          localStorage.getItem("token")
+        );
         setAlert(true);
+        console.log(result);
       }
     },
   });
@@ -86,10 +110,21 @@ function Transport() {
     }),
     onSubmit: (values) => {
       console.log("formSubmitted", values);
+      
+     
+
+
       if (!values) {
         alert("fill all the field");
       } else {
+        const result = fetchFunction(
+          "/guestportal/transport",
+          values,
+          "post",
+          localStorage.getItem("token")
+        );
         setAlert(true);
+        console.log(result);
       }
     },
   });
@@ -205,7 +240,7 @@ function Transport() {
                 />
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
-                    disableFuture
+               
                     name="date1"
                     label="Date"
                     openTo="year"
@@ -228,7 +263,7 @@ function Transport() {
                   />
                 </LocalizationProvider>
                 <Box>
-                  <Button variant="contained" type="sumbit">
+                  <Button variant="contained" type="submit">
                     Submit
                   </Button>
                 </Box>
@@ -341,7 +376,6 @@ function Transport() {
                 />
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
-                    disableFuture
                     label="Date"
                     openTo="year"
                     name="date2"
@@ -363,7 +397,7 @@ function Transport() {
                   />
 
                   <Box>
-                    <Button variant="contained" type="sumbit">
+                    <Button variant="contained" type="submit">
                       Submit
                     </Button>
                   </Box>
@@ -480,7 +514,7 @@ function Transport() {
                   />
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
-                      disableFuture
+                      
                       name="date1"
                       label="Date"
                       openTo="year"
@@ -503,7 +537,7 @@ function Transport() {
                     />
                   </LocalizationProvider>
                   <Box>
-                    <Button variant="contained" type="sumbit">
+                    <Button variant="contained" type="submit">
                       Submit
                     </Button>
                   </Box>
@@ -636,7 +670,7 @@ function Transport() {
                     />
 
                     <Box>
-                      <Button variant="contained" type="sumbit">
+                      <Button variant="contained" type="submit">
                         Submit
                       </Button>
                     </Box>

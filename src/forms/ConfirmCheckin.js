@@ -94,10 +94,10 @@ export default function ConfirmCheckin() {
           time1: new Date(),
           spReq: "",
           pickupBy: [],
-          description: "",
-          transportNameNumber: "",
           date2: new Date(),
           time2: new Date(),
+          description: "",
+          transportNameNumber: "",
         },
     validationSchema: Yup.object(
       !checked.checked
@@ -138,15 +138,18 @@ export default function ConfirmCheckin() {
           }
     ),
     onSubmit: (values) => {
-      console.log("formSubmitted", values);
-      console.log("click");
-      console.log(typeof values, values, "defewfwfe");
       //send request function
 
-     const result = fetchFunction('/guestportal/confrimCheckIn',values,"post",localStorage.getItem("token"))
- 
-    
-     console.log(result)
+      console.log(values);
+
+      const result = fetchFunction(
+        "/guestportal/confrimCheckIn",
+        values,
+        "post",
+        localStorage.getItem("token")
+      );
+
+      console.log(result);
       if (!values) {
         alert("fill all the field");
       } else {
@@ -761,12 +764,12 @@ export default function ConfirmCheckin() {
                       >
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                           <DatePicker
-                            disableFuture
+                          
                             name="date2"
                             label="Date"
                             openTo="year"
                             views={["year", "month", "day"]}
-                            value={formik.values.date1}
+                            value={formik.values.date2}
                             onChange={(value) => {
                               formik.setFieldValue("date2", value);
                             }}

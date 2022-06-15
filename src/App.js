@@ -112,13 +112,25 @@ function App() {
 
   //userAceess  function
 
+  
 
-
-  const token = useSelector((state) => state.user.token);
+  let token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
+  console.log(token,'sdcwekjnduicheriuhcferiuh')
   useEffect(() => {
     dispatch(addToken());
   }, []);
+
+  // try{
+
+  //   token = localStorage.getItem("token")
+
+
+  // }
+  // catch(e)
+  // {
+  //   console.log(e)
+  // }
 
   return (
     <>
@@ -313,41 +325,41 @@ function App() {
 
           <Route
             path="/"
-            element={token ? <Home /> : <Navigate to="/login" />}
+            element={token ? <Home /> : <Navigate to="/login/:unkid" />}
           />
           <Route
             path="/booking"
-            element={token ? <Booking /> : <Navigate to="/login " />}
+            element={token ? <Booking /> : <Navigate to="/login/:unkid " />}
           />
           <Route
             path="/guestdetails"
-            element={token ? <GDetails /> : <Navigate to="/login " />}
+            element={token ? <GDetails /> : <Navigate to="/login/:unkid " />}
           />
           <Route path="/contact" element={<Contact />} />
 
           <Route
             path="/manageprofile"
-            element={token ? <ManageProfile /> : <Navigate to="/login " />}
+            element={token ? <ManageProfile /> : <Navigate to="/login/:unkid " />}
           />
           <Route path="*" element={<NotFound />} />
 
           <Route
             path="/transport"
-            element={token ? <Transport /> : <Navigate to="/login " />}
+            element={token ? <Transport /> : <Navigate to="/login/:unkid " />}
           />
           <Route
             path="/confirmCheckin"
-            element={token ? <ConfirmCheckin /> : <Navigate to="/login " />}
+            element={token ? <ConfirmCheckin /> : <Navigate to="/login/:unkid " />}
           />
           <Route
             path="/alertPage"
-            element={token ? <AlertPage /> : <Navigate to="/login " />}
+            element={token ? <AlertPage /> : <Navigate to="/login/:unkid " />}
           />
           <Route
             path="*"
-            element={token ? <NotFound /> : <Navigate to="/login " />}
+            element={token ? <NotFound /> : <Navigate to="/login/:unkid " />}
           />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login/:unkid" element={token ? <Navigate to='/'/> : <Login/> } />
         </Routes>
         {/* <Home/> */}
       </Box>

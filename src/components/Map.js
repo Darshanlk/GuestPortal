@@ -8,7 +8,7 @@ function Map(props) {
           lat:props.lat,
           lng: props.lng
         },
-        zoom: 3
+        zoom: 10
       };
     return (
         <div style={{ height: '70vh', width: '100%' }}>
