@@ -29,7 +29,10 @@ const authReducer = createSlice({
       } else {
         state.error = action.payload.message;
         state.token = action.payload.token;
+        
+        if(state.token != undefined){
         localStorage.setItem("token", action.payload.token);
+        }
       }
     },
 
