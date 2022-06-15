@@ -112,11 +112,15 @@ function App() {
 
   //userAceess  function
 
-  
-
   let token = useSelector((state) => state.user.token);
+
+  //  if(token == undefined)
+  //  {
+  //    navigate('/login/:unkid')
+  //  }
+
   const dispatch = useDispatch();
-  console.log(token,'sdcwekjnduicheriuhcferiuh')
+  console.log(token, "sdcwekjnduicheriuhcferiuh");
   useEffect(() => {
     dispatch(addToken());
   }, []);
@@ -124,7 +128,6 @@ function App() {
   // try{
 
   //   token = localStorage.getItem("token")
-
 
   // }
   // catch(e)
@@ -206,7 +209,7 @@ function App() {
             </ListItem> */}
 
             <ListItem key="Modify Booking" disablePadding>
-              <ListItemButton>
+              <ListItemButton >
                 <ListItemIcon>
                   <BeenhereRoundedIcon />
                 </ListItemIcon>
@@ -242,7 +245,7 @@ function App() {
             </ListItem> */}
 
             <ListItem key="Find Hotel On Map" disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={() => { navigate('/contact')}}>
                 <ListItemIcon>
                   <AddLocationAltRoundedIcon />
                 </ListItemIcon>
@@ -335,13 +338,15 @@ function App() {
             path="/guestdetails"
             element={token ? <GDetails /> : <Navigate to="/login/:unkid " />}
           />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={token ? <Contact /> : <Navigate to="/login/:unkid " />} />
 
           <Route
             path="/manageprofile"
-            element={token ? <ManageProfile /> : <Navigate to="/login/:unkid " />}
+            element={
+              token ? <ManageProfile /> : <Navigate to="/login/:unkid " />
+            }
           />
-          <Route path="*" element={<NotFound />} />
+     
 
           <Route
             path="/transport"
@@ -349,7 +354,9 @@ function App() {
           />
           <Route
             path="/confirmCheckin"
-            element={token ? <ConfirmCheckin /> : <Navigate to="/login/:unkid " />}
+            element={
+              token ? <ConfirmCheckin /> : <Navigate to="/login/:unkid " />
+            }
           />
           <Route
             path="/alertPage"
@@ -359,7 +366,10 @@ function App() {
             path="*"
             element={token ? <NotFound /> : <Navigate to="/login/:unkid " />}
           />
-          <Route path="/login/:unkid" element={token ? <Navigate to='/'/> : <Login/> } />
+          <Route
+            path="/login/:unkid"
+            element={token ? <Navigate to="/" /> : <Login />}
+          />
         </Routes>
         {/* <Home/> */}
       </Box>
