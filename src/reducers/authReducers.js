@@ -8,7 +8,8 @@ const initialState = {
 };
 
 export const signinUser = createAsyncThunk("signinUser", async (body) => {
-  const result = await fetchFunction(`guestportal/login`, body, "post", "");
+  console.log(body.unkid,"**********************")
+  const result = await fetchFunction(`/guestportal/login/${body.unkid}`, body, "post", "");
   return result;
 });
 

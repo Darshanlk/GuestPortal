@@ -4,6 +4,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
+import { Routes, Route, useParams } from 'react-router-dom';
 
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
@@ -38,6 +39,12 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn({ name }) {
+
+  let { unkid } = useParams();
+  console.log(unkid)
+
+
+
   const [loginId, setLoginId] = useState("");
   const [pin, setpin] = useState("");
 
@@ -47,6 +54,7 @@ export default function SignIn({ name }) {
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     let newData = {
+      unkid,
       loginId,
       pin,
     };
