@@ -29,7 +29,7 @@ import {
   RegionDropdown,
   CountryRegionData,
 } from "react-country-region-selector";
-
+import SignatureCanvas from 'react-signature-canvas'
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Container } from "@mui/system";
@@ -59,7 +59,7 @@ function ManageProfile() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const honorificsArray = ["Dr.", "Jn.", "Mam.", "Mrs.", "Ms.", "Sir", "Sr."];
   const identity = ["Adhar Card", "Driving License", "Passport"];
@@ -200,6 +200,18 @@ function ManageProfile() {
     console.log(event.target.value);
     setStatus(event.target.value);
   };
+
+  // SignatureCanvas
+  var sigPad = {}
+  const ClearSign=()=>{
+    sigPad.clear()
+  }
+  const [sign,setSign]=React.useState(null)
+  const GetSign=()=>{
+    const data = sigPad.toData();
+    setSign(data)
+    console.log(sign)
+  }
   return (
     <Fragment>
       <Box sx={{ marginLeft: 1, marginRight: 1, marginTop: 3 }}>
@@ -208,6 +220,9 @@ function ManageProfile() {
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6} order={{ xs: 2, md: 1 }}>
+
+
+            
             {no_adult.map(() => {
               return (
                 <Card
@@ -909,7 +924,7 @@ function ManageProfile() {
                                   flexDirection: "column",
                                 }}
                               >
-                                {/* <Box sx={{ borderStyle: 'solid', borderWidth: '0.14rem', borderColor: 'black' }}> */}
+                                <Box sx={{ borderStyle: 'solid', borderWidth: '0.14rem', borderColor: 'black' }}>
 
                                 {/*get signature  */}
                                 {/* <CanvasDraw
@@ -919,8 +934,11 @@ function ManageProfile() {
                                   canvasWidth={150}
                                   canvasHeight={120}
                                 ></CanvasDraw> */}
+                                <SignatureCanvas
+                                ref={(ref) => { sigPad = ref }} 
+                                  canvasProps={{ width: 230, height: 120, className: 'sigCanvas' }} />
 
-                                {/* </Box> */}
+                                </Box>
 
                                 <Box
                                   sx={{
@@ -934,6 +952,7 @@ function ManageProfile() {
                                       size="small"
                                       variant="contained"
                                       color="success"
+                                      onClick={GetSign}
                                     >
                                       Save
                                     </Button>
@@ -941,6 +960,7 @@ function ManageProfile() {
                                       size="small"
                                       variant="outlined"
                                       color="error"
+                                      onClick={ClearSign}
                                     >
                                       Clear
                                     </Button>
