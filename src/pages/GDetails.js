@@ -24,7 +24,8 @@ const Item = styled(Paper)(({ theme }) => ({
 function GDetails() {
   const navigate = useNavigate();
   const { userData, loading } = useSelector((state) => state.userDetails);
-  let name= ""
+
+  let name = "";
   let no_adult = "";
   let no_child = "";
   let total_guest = "";
@@ -42,7 +43,7 @@ function GDetails() {
       total_guest = [no_adult + no_child];
       reservationno = userData[0].reservationno;
       rooms = [userData[0].Roomno];
-    
+
       mobile = userData[0].mobile;
       email = userData[0].notiemail;
     }
@@ -50,13 +51,11 @@ function GDetails() {
     console.log(e);
   }
 
+  const dispatch = useDispatch();
 
-
-  const dispatch = useDispatch()
-
-  useEffect(() =>{
-    dispatch(getManageProfile())
-  },[])
+  useEffect(() => {
+    dispatch(getManageProfile());
+  }, []);
   return (
     <Grid
       container
@@ -89,7 +88,7 @@ function GDetails() {
                             <Typography
                               sx={{ marginRight: 5, fontWeight: 600 }}
                             >
-                        {name}
+                              {name}
                             </Typography>
                             <Box sx={{ display: "flex", flexDirection: "row" }}>
                               <CheckCircleIcon
@@ -97,18 +96,14 @@ function GDetails() {
                                 sx={{ fontSize: 17 }}
                               />
                               <Typography variant="caption">
-                              Approved
+                                Approved
                               </Typography>
                             </Box>
                           </Box>
                           <Divider />
-                          <Typography variant="body2">
-                            +91 {mobile}
-                          </Typography>
+                          <Typography variant="body2">+91 {mobile}</Typography>
                           <Divider />
-                          <Typography variant="body2">
-                            {email}
-                          </Typography>
+                          <Typography variant="body2">{email}</Typography>
                         </Stack>
                       </Card>
                     </AccordionSummary>

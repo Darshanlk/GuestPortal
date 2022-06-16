@@ -14,15 +14,14 @@ function Map(props) {
     <div style={{ height: "70vh", width: "100%" }}>
       <GoogleMapReact
         options={ (maps,map) => ({
-          streetViewControl: true,
-          scaleControl: true,
+          
+       
           draggable: true, // make map draggable
           zoomControlOptions: { position: 9 },
           keyboardShortcuts: false, // disable keyboard shortcuts
           scaleControl: true, // allow scale controle
           scrollwheel: true, // allow scroll wheel
-        //   styles: mapsStyle, // change default map styles,
-        streetViewControl:true,
+         streetViewControl: true,
         scaleControl: true,
         fullscreenControl: true,
         styles: [{
@@ -44,13 +43,14 @@ function Map(props) {
             position: maps.ControlPosition.BOTTOM_CENTER,
             mapTypeIds: [
                 maps.MapTypeId.ROADMAP,
-               
+                maps.MapTypeId.SATELLITE,
                 maps.MapTypeId.HYBRID
             ]
         },
 
         zoomControl: true,
-        clickableIcons: false
+        clickableIcons: true
+    
         
         })}
         bootstrapURLKeys={{ key: "AIzaSyA9f_ARjt6AgrQZATjg3VyUmtvlaxcfEBs" }}
