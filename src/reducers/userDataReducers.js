@@ -35,7 +35,7 @@ export const postManageProfile = createAsyncThunk(
   "postManageProfile",
   async (body) => {
     const result = await fetchFunction(
-      `guestportal/manageProfilePost`,
+      `guestportal/manaageProfile/update`,
       body,
       "post",
       localStorage.getItem("token")
@@ -44,22 +44,6 @@ export const postManageProfile = createAsyncThunk(
     return result;
   }
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const userInfo = createSlice({
   name: "userDetails",

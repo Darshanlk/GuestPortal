@@ -45,7 +45,10 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getManageProfile } from "../reducers/userDataReducers";
+import {
+  getManageProfile,
+  postManageProfile,
+} from "../reducers/userDataReducers";
 import { FormikConsumer, useFormik } from "formik";
 import * as Yup from "yup";
 import PreviewImage from "../components/PreviewImage";
@@ -53,10 +56,11 @@ import { YearPicker } from "@mui/x-date-pickers";
 // import { useDispatch, useSelector } from "react-redux";
 
 function ManageProfile() {
-  const { userData, loading, manageProfileData } = useSelector(
+  const { userData, loading, manageProfileData} = useSelector(
     (state) => state.userDetails
   );
 
+  console.log(manageProfileData)
   const dispatch = useDispatch();
 
   useEffect(() => {}, []);
@@ -108,9 +112,10 @@ function ManageProfile() {
   let exp_date = null;
 
   try {
-    console.log(manageProfileData[0]);
+    // console.log(manageProfileData[0]);
     if (userData.length > 0) {
-      name = userData[0].name;
+      honorifics = [userData[0].name.split(" ")[0]]
+      name = userData[0].name.split(" ")[2];
       no_adult = [userData[0].adult];
       no_child = [userData[0].child];
       reservationno = userData[0].reservationno;
@@ -126,6 +131,7 @@ function ManageProfile() {
       phone = manageProfileData[0].mobile;
       email = manageProfileData[0].email;
       guest_country = manageProfileData[0].country;
+      guestIdentity = [manageProfile[0].guestidentity];
       guestIdentityNumber = manageProfileData[0].identity_no;
       exp_date = manageProfileData[0].exp_date;
       identity_city = manageProfileData[0].identity_city;
@@ -177,6 +183,11 @@ function ManageProfile() {
       if (!values) {
         alert("fill all the field");
       } else {
+       
+        console.log("submiit")
+
+        dispatch(postManageProfile(values));
+
         setOpen(false);
       }
     },
