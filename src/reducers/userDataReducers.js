@@ -26,7 +26,7 @@ export const getManageProfile = createAsyncThunk(
       "get",
       localStorage.getItem("token")
     );
-
+console.log(result)
     return result;
   }
 );
