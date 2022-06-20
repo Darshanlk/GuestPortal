@@ -123,6 +123,7 @@ function App() {
   console.log(token, "sdcwekjnduicheriuhcferiuh");
   useEffect(() => {
     dispatch(addToken());
+    
   }, []);
 
   // try{
@@ -255,13 +256,13 @@ function App() {
 
 
             <ListItem key="Find Hotel On Map" disablePadding>
-              <ListItemButton onClick={() => {dispatch(logout())}} >
+              <ListItemButton onClick={() => {dispatch(logout()); navigate("/login/:unkid")}} >
                 <ListItemIcon>
                   <LogoutIcon sx={{color:"red"}} />
                 </ListItemIcon>
                 <ListItemText primary="Logout" sx={{color:"red"}} />
               </ListItemButton>
-            </ListItem>
+              </ListItem>
           </List>
           <Divider />
         </Box>
