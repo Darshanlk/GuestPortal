@@ -45,10 +45,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  getManageProfile,
-  postManageProfile,
-} from "../reducers/userDataReducers";
+import { getManageProfile } from "../reducers/userDataReducers";
 import { FormikConsumer, useFormik } from "formik";
 import * as Yup from "yup";
 import PreviewImage from "../components/PreviewImage";
@@ -56,11 +53,10 @@ import { YearPicker } from "@mui/x-date-pickers";
 // import { useDispatch, useSelector } from "react-redux";
 
 function ManageProfile() {
-  const { userData, loading, manageProfileData} = useSelector(
+  const { userData, loading, manageProfileData } = useSelector(
     (state) => state.userDetails
   );
 
-  console.log(manageProfileData)
   const dispatch = useDispatch();
 
   useEffect(() => { }, []);
@@ -112,10 +108,9 @@ function ManageProfile() {
   let exp_date = null;
 
   try {
-    // console.log(manageProfileData[0]);
+    console.log(manageProfileData[0]);
     if (userData.length > 0) {
-      honorifics = [userData[0].name.split(" ")[0]]
-      name = userData[0].name.split(" ")[2];
+      name = userData[0].name;
       no_adult = [userData[0].adult];
       no_child = [userData[0].child];
       reservationno = userData[0].reservationno;
@@ -131,7 +126,6 @@ function ManageProfile() {
       phone = manageProfileData[0].mobile;
       email = manageProfileData[0].email;
       guest_country = manageProfileData[0].country;
-      guestIdentity = [manageProfile[0].guestidentity];
       guestIdentityNumber = manageProfileData[0].identity_no;
       exp_date = manageProfileData[0].exp_date;
       identity_city = manageProfileData[0].identity_city;
@@ -183,11 +177,6 @@ function ManageProfile() {
       if (!values) {
         alert("fill all the field");
       } else {
-       
-        console.log("submiit")
-
-        dispatch(postManageProfile(values));
-
         setOpen(false);
       }
     },
@@ -214,15 +203,16 @@ function ManageProfile() {
 
   // SignatureCanvas
   var sigPad = {}
-  const ClearSign=()=>{
+  const ClearSign = () => {
     sigPad.clear()
   }
-  const [sign,setSign]=React.useState(null)
-  const GetSign=()=>{
+  const [sign, setSign] = React.useState(null)
+  const GetSign = () => {
     const data = sigPad.toData();
     setSign(data)
     console.log(sign)
   }
+  // ===================
   return (
     <Fragment>
       <Box sx={{ marginLeft: 1, marginRight: 1, marginTop: 3 }}>
@@ -233,7 +223,7 @@ function ManageProfile() {
           <Grid item xs={12} md={6} order={{ xs: 2, md: 1 }}>
 
 
-            
+
             {no_adult.map(() => {
               return (
                 <Card
@@ -937,17 +927,17 @@ function ManageProfile() {
                               >
                                 <Box sx={{ borderStyle: 'solid', borderWidth: '0.14rem', borderColor: 'black' }}>
 
-                                {/*get signature  */}
-                                {/* <CanvasDraw
+                                  {/*get signature  */}
+                                  {/* <CanvasDraw
                                   brushColor="black"
                                   brushRadius={0}
                                   lazyRadius={0}
                                   canvasWidth={150}
                                   canvasHeight={120}
                                 ></CanvasDraw> */}
-                                <SignatureCanvas
-                                ref={(ref) => { sigPad = ref }} 
-                                  canvasProps={{ width: 230, height: 120, className: 'sigCanvas' }} />
+                                  <SignatureCanvas
+                                    ref={(ref) => { sigPad = ref }}
+                                    canvasProps={{ width: 230, height: 120, className: 'sigCanvas' }} />
 
                                 </Box>
 
