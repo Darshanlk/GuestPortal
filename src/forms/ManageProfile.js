@@ -115,7 +115,7 @@ function ManageProfile() {
     // console.log(manageProfileData[0]);
     if (userData.length > 0) {
       honorifics = [userData[0].name.split(" ")[0]]
-      name = userData[0].name.split(" ")[2];
+      name = userData[0].name.split(" ")[1];
       no_adult = [userData[0].adult];
       no_child = [userData[0].child];
       reservationno = userData[0].reservationno;
@@ -131,7 +131,7 @@ function ManageProfile() {
       phone = manageProfileData[0].mobile;
       email = manageProfileData[0].email;
       guest_country = manageProfileData[0].country;
-      guestIdentity = [manageProfile[0].guestidentity];
+      guestIdentity = [manageProfileData[0].guestidentity];
       guestIdentityNumber = manageProfileData[0].identity_no;
       exp_date = manageProfileData[0].exp_date;
       identity_city = manageProfileData[0].identity_city;
