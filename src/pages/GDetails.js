@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: "center",
+  textAlign: "center", 
   color: theme.palette.text.secondary,
 }));
 
@@ -37,6 +37,7 @@ function GDetails() {
 
   try {
     if (userData.length > 0) {
+      cosole.log()
       name = userData[0].name;
       no_adult = userData[0].adult;
       no_child = userData[0].child;
