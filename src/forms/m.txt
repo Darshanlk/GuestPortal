@@ -1,4 +1,73 @@
-import React from "react";
+ {/* <Card
+                  elevation={1}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginTop: 1,
+                  }}
+                >
+                  <Typography
+                    sx={{ color: blue[500], marginRight: 5, margin: 2 }}
+                  >
+                    Child(ren)
+                  </Typography>
+                  <Divider />
+                  <Box
+                    sx={{ display: "flex", flexDirection: "row", marginTop: 2 }}
+                  >
+                    <Box
+                      sx={{
+                        width: 190,
+                        display: "flex",
+                        alignItems: "start",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Typography
+                        variant="button"
+                        sx={{
+                          width: "70px",
+                          marginTop: 1.2,
+                          marginLeft: 2,
+                          marginRight: 5,
+                        }}
+                      >
+                        Child
+                      </Typography>
+                    </Box>
+                    <TextField
+                      id="filled-read-only-input"
+                      defaultValue={`${name}'s child`}
+                      onClick={handleClickOpen}
+                      sx={{ marginBottom: 1, marginRight: 1 }}
+                      fullWidth
+                      size="small"
+                      InputProps={{
+                        readOnly: true,
+                        endAdornment: (
+                          <InputAdornment position="start">
+                            <EditIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                      variant="filled"
+                    />
+                  </Box>
+                </Card>  */}
+                 {/* <AccordionDetails>
+                  <Typography>Details</Typography>
+                 </AccordionDetails> */}
+
+
+
+
+
+
+
+
+
+
+                 import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import CanvasDraw from "react-canvas-draw";
@@ -58,7 +127,13 @@ import PreviewImage from "../components/PreviewImage";
 import { YearPicker } from "@mui/x-date-pickers";
 import styled from "styled-components";
 // import { useDispatch, useSelector } from "react-redux";
-
+// const Item = styled(Paper)(({ theme }) => ({
+//   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+//   ...theme.typography.body2,
+//   padding: theme.spacing(1),
+//   textAlign: "center", 
+//   color: theme.palette.text.secondary,
+// }));
 function ManageProfile() {
   const { userData, loading, manageProfileData } = useSelector(
     (state) => state.userDetails
@@ -69,7 +144,7 @@ function ManageProfile() {
   // useEffect(() => { }, []);
   useEffect(() => {
     dispatch(getManageProfile());
-  },[]);
+  }, []);
   const honorificsArray = ["Dr.", "Jn.", "Mam.", "Mrs.", "Ms.", "Sir", "Sr."];
   const identity = ["Adhar Card", "Driving License", "Passport"];
 
@@ -91,43 +166,35 @@ function ManageProfile() {
 
   const [open, setOpen] = React.useState(false);
 
-  let name = [];
-  let identityImage = [];
+  let name = "";
+  let identityImage = "";
   let honorifics = [];
-  let gender = [];
-  let address = [];
-  let city = [];
-  let state = [];
-  let zip = [];
-  let guest_country = [];
-  let phone = [];
-  let email = [];
-  let guestIdentity = [];
-  let guestIdentityNumber = [];
-  let expiryDate = [];
-  let issuingCountry = [];
-  let identity_city = [];
-  let no_adult = [];
-  let no_child = [];
-  let reservationno = [];
-  let checkin = [];
-  let checkout = [];
-  let nights = [];
-  let rooms = [];
+  let gender = "";
+  let address = "";
+  let city = "";
+  let state = "";
+  let zip = "";
+  let guest_country = "";
+  let phone = "";
+  let email = "";
+  let guestIdentity = "";
+  let guestIdentityNumber = "";
+  let expiryDate = "";
+  let issuingCountry = "";
+  let identity_city = "";
+  let no_adult = "";
+  let no_child = "";
+  let reservationno = "";
+  let checkin = "";
+  let checkout = "";
+  let nights = "";
+  let rooms = "";
   let exp_date = null;
 
   try {
+    console.log(manageProfileData[0]);
     if (userData.length > 0) {
-
-      userData.map((user,count)=>{
-        // name[user[0]]
-        console.log(count)
-        console.log(user)
-      
-      })
-      console.log(manageProfileData.length+"lllllllllll")
-      console.log(manageProfileData+"lllllllllll")
-      // console.log("manage dtaaaaaaa"+manageProfileData[0].gender);
+      name = userData[0].name;
       no_adult = [userData[0].adult];
       no_child = [userData[0].child];
       reservationno = userData[0].reservationno;
@@ -229,14 +296,19 @@ function ManageProfile() {
     setSign(data)
     console.log(sign)
   }
+  // ===================
   return (
     <Fragment>
-      <Box sx={{ marginLeft: 2, marginRight: 2, marginTop: 3 }}>
+      <Box sx={{ marginLeft: 1, marginRight: 1, marginTop: 3 }}>
+        {/* <Typography variant="h5" sx={{ marginBottom: 3 }}>
+          Manage Profile
+        </Typography> */}
         <Grid container spacing={2}>
-          <Grid item xs={12} md={6} order={{ xs: 1, md: 1 }}>
-            {manageProfileData.map((item) => {
-              console.log(item.name)
-              console.log(item.contactunkid)
+          <Grid item xs={12} md={6} order={{ xs: 2, md: 1 }}>
+
+
+
+            {no_adult.map(() => {
               return (
                 <Card
                   elevation={1}
@@ -245,16 +317,21 @@ function ManageProfile() {
                     flexDirection: "column",
                     marginTop: 1,
                   }}
-
                 >
-        
+                  <Typography
+                    sx={{ color: blue[500], marginRight: 5, margin: 2 }}
+                  >
+                    Adult(s)
+                  </Typography>
+                  <Divider />
+
                   <Accordion>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >
-                      <Card
+ <Card
                         elevation={0}
                         sx={{ display: "flex", flexDirection: "row" }}
                       >
@@ -268,20 +345,20 @@ function ManageProfile() {
                         />
                         <Stack spacing={1} sx={{ marginRight: 5, margin: 2 }}>
                           <Box sx={{ display: "flex", flexDirection: "row" }}>
-                            <Typography
+                          <Typography
                               sx={{ marginRight: 5, fontWeight: 600 }}
                             >
-                              {item.salutation+"."+item.name+item.contactunkid}
+                              {name}
                             </Typography>
                             <Box sx={{ display: "flex", flexDirection: "row" }}>
                               <CheckCircleIcon
                                 color="primary"
                                 sx={{ fontSize: 17 }}
                               />
-                              <Typography variant="caption">
+                                <Typography variant="caption">
                                 Approved
                               </Typography>
-                            </Box>
+                              </Box>
                           </Box>
                           <Divider />
                           <Typography variant="body2">+91 {phone}</Typography>
@@ -291,7 +368,7 @@ function ManageProfile() {
                       </Card>
                     </AccordionSummary>
                     <AccordionDetails>
-                      <Divider />
+                    <Divider />
                       <Box
                         sx={{
                           display: "flex",
@@ -328,8 +405,40 @@ function ManageProfile() {
                         </Typography>
                       </Box>
                     </AccordionDetails>
-                  </Accordion>
-                
+                    </Accordion>
+                  {/* <Box
+                    sx={{ display: "flex", flexDirection: "row", marginTop: 2 }}
+                  >
+                    <Box
+                      sx={{
+                        width: 190,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "start",
+                      }}
+                    >
+                      <Typography variant="button" sx={{ marginTop: 1.2 }}>
+                        Main Guest
+                      </Typography>
+                    </Box>
+                    <TextField
+                      id="filled-read-only-input"
+                      onClick={handleClickOpen}
+                      size="small"
+                      defaultValue={`${name}`}
+                      sx={{ marginBottom: 1, marginRight: 1 }}
+                      fullWidth
+                      InputProps={{
+                        readOnly: true,
+                        endAdornment: (
+                          <InputAdornment position="start">
+                            <EditIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                      variant="filled"
+                    />
+                  </Box> */}
                   <Dialog
                     maxWidth="lg"
                     fullWidth={true}
@@ -340,10 +449,11 @@ function ManageProfile() {
                       bgcolor={blue[500]}
                       style={{ marginBottom: 5 }}
                     >
-                      Edit Profile
+                      Edit Profile(Main Guest)
                     </DialogTitle>
                     <DialogContent>
-                
+                      {/* <DialogContentText>
+                                </DialogContentText> */}
                       <Box component="form" onSubmit={formik.handleSubmit}>
                         <Grid container spacing={2}>
                           <Grid
@@ -1314,20 +1424,230 @@ function ManageProfile() {
               );
             })}
           </Grid>
-          <Grid item  xs={12} md={6} sm={11} order={{ xs: 2, md: 2 }} sx={{ marginTop: 5, marginBottom: 5 }}>
-            <Box  sx={{ display: "flex", flexDirection: "row" ,justifyContent:'center'}}  >
-              <Stack sx={{width:'80%'}} direction="column" spacing={2}>
-                <Button variant="outlined"
-                  onClick={handleClickOpen}
-                >Add Guest</Button>
-                <Button variant="outlined">Send Invite to Member</Button>
-              </Stack>
-            </Box>
+          <Grid item xs={12} md={6} order={{ xs: 1, md: 2 }}>
+            {/* <Card
+              elevation={1}
+              sx={{ display: "flex", flexDirection: "column" }}
+            >
+              <Card
+                elevation={0}
+                sx={{ display: "flex", flexDirection: "row" }}
+              >
+                <AccountCircleIcon
+                  sx={{
+                    color: blue[500],
+                    marginRight: 5,
+                    margin: 2,
+                    fontSize: 40,
+                  }}
+                />
+                <Typography
+                  variant="h6"
+                  sx={{ color: blue[500], marginRight: 0, marginTop: 2 }}
+                >
+                  {name}
+                </Typography>
+                <Typography variant="h6" sx={{ margin: 2 }}>
+                  Booking # : {reservationno}
+                </Typography>
+              </Card>
+              <Divider></Divider>
+              <Card
+                elevation={0}
+                sx={{ display: "flex", flexDirection: "row", marginTop: 1 }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{ marginRight: 2, marginLeft: 2 }}
+                >
+                  Check In : {checkin}
+                </Typography>
+                <Typography variant="body2">Check Out : {checkout} </Typography>
+              </Card>
+              <Card
+                elevation={0}
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  marginTop: 1,
+                  marginBottom: 1,
+                }}
+              >
+                <Typography variant="body2" sx={{ marginLeft: 2 }}>
+                  {nights} Night(s), {rooms}, {no_adult} Adult(s) / {no_child}{" "}
+                  Child(ren)
+                </Typography>
+              </Card>
+            </Card> */}
+             <Stack direction="column" spacing={2}>
+              <Button variant="outlined">Add Guest</Button>
+              <Button variant="outlined">Send Invite to Member</Button>
+            </Stack>
           </Grid>
+          <Grid item xs={12} md={6} order={{ xs: 3, md: 3 }}>
+            {no_child.map((item) => {
+              return (
+                <Card
+                  elevation={1}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginTop: 1,
+                  }}
+                >
+                  <Typography
+                    sx={{ color: blue[500], marginRight: 5, margin: 2 }}
+                  >
+                    Child(ren)
+                  </Typography>
+                  <Divider />
+
+
+                  {/* ======================================================================= */}
+                  {/* <Box
+                  sx={{ display: "flex", flexDirection: "row", marginTop: 2 }}
+                >
+                  <Box
+                    sx={{
+                      width: 190,
+                      display: "flex",
+                      alignItems: "start",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Typography
+                      variant="button"
+                      sx={{
+                        width: "70px",
+                        marginTop: 1.2,
+                        marginLeft: 2,
+                        marginRight: 5,
+                      }}
+                    >
+                      Child
+                    </Typography>
+                  </Box>
+                  <TextField
+                    id="filled-read-only-input"
+                    defaultValue={`${name}'s child`}
+                    onClick={handleClickOpen}
+                    sx={{ marginBottom: 1, marginRight: 1 }}
+                    fullWidth
+                    size="small"
+                    InputProps={{
+                      readOnly: true,
+                      endAdornment: (
+                        <InputAdornment position="start">
+                          <EditIcon />
+                        </InputAdornment>
+                      ),
+                    }}
+                    variant="filled"
+                  />
+                </Box> */}
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Card
+                        elevation={0}
+                        sx={{ display: "flex", flexDirection: "row" }}
+                      >
+                        <AccountCircleIcon
+                          sx={{
+                            color: blue[500],
+                            marginRight: 5,
+                            margin: 2,
+                            fontSize: 40,
+                          }}
+                        />
+                        <Stack spacing={1} sx={{ marginRight: 5, margin: 2 }}>
+                          <Box sx={{ display: "flex", flexDirection: "row" }}>
+                          <Typography
+                              sx={{ marginRight: 5, fontWeight: 600 }}
+                            >
+                              {name}
+                            </Typography>
+                            <Box sx={{ display: "flex", flexDirection: "row" }}>
+                              <CheckCircleIcon
+                                color="primary"
+                                sx={{ fontSize: 17 }}
+                              />
+                                <Typography variant="caption">
+                                Approved
+                              </Typography>
+                              </Box>
+                          </Box>
+                          <Divider />
+                          <Typography variant="body2">+91 {phone}</Typography>
+                          <Divider />
+                          <Typography variant="body2">{email}</Typography>
+                        </Stack>
+                      </Card>
+
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Divider />
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "",
+                          marginLeft: 4,
+                        }}
+                      >
+                        <Typography
+                          variant="overline"
+                          sx={{
+                            fontWeight: "bold",
+                            color: "dodgerBlue",
+                            paddingY: 2,
+                          }}
+                          onClick={handleClickOpen}
+                        >
+                          Edit Profile
+                        </Typography>
+                      </Box>
+                      <Divider />
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          marginLeft: 4,
+                        }}
+                      >
+                        <Typography
+                          variant="overline"
+                          sx={{ fontWeight: "bold", color: "red", paddingY: 2 }}
+                        >
+                          RemoveProfile
+                        </Typography>
+                      </Box>
+                      </AccordionDetails>
+                  </Accordion>
+
+                </Card>
+
+              );
+            })}
+          </Grid>
+          {/* <Grid item xs={12} md={6} order={{ xs: 4, md: 4 }} sx={{ marginTop: 5, marginBottom: 5, paddingRight: 4, paddingLeft: 4 }}>
+            <Stack direction="column" spacing={2}>
+              <Button variant="outlined">Add Guest</Button>
+              <Button variant="outlined">Send Invite to Member</Button>
+            </Stack>
+          </Grid> */}
         </Grid>
       </Box>
     </Fragment>
   );
 }
+// const StyledAccordion = styled(Accordion)(({ theme }) => ({
+//   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+//   color: theme.palette.text.secondary,
+// }));
+
 
 export default ManageProfile;

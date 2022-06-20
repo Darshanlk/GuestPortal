@@ -8,7 +8,7 @@ import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import AddIcCallIcon from "@mui/icons-material/AddIcCall";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import LogoutIcon from "@mui/icons-material/Logout";
+import LogoutIcon from "@mui/icons-material/Logout"; 
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
@@ -336,7 +336,7 @@ function App() {
           />
           <Route
             path="/guestdetails"
-            element={token ? <GDetails /> : <Navigate to="/login/:unkid " />}
+            element={token ? <ManageProfile /> : <Navigate to="/login/:unkid " />}
           />
           <Route path="/contact" element={token ? <Contact /> : <Navigate to="/login/:unkid " />} />
 
