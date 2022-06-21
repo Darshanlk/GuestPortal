@@ -49,7 +49,7 @@ import Transport from "./forms/Transport";
 import { useEffect } from "react";
 import ConfirmCheckin from "./forms/ConfirmCheckin";
 import AlertPage from "./pages/AlertPage";
-
+import ManageProfileForm from "./forms/ManageProfileForm"
 import ManageProfile from "./forms/ManageProfile";
 import axios from "axios";
 
@@ -93,10 +93,7 @@ function App() {
     } else if (path === "/confirmCheckin") {
       setValue(6);
       setNavTitle("ConfirmCheckIn");
-    } else if (path === "/manageprofile") {
-      setValue(7);
-      setNavTitle("MangeProfile");
-    } else {
+    }  else {
       setValue(-1);
     }
   });
@@ -357,10 +354,9 @@ function App() {
           <Route
             path="/manageprofile"
             element={
-              token ? <ManageProfile /> : <Navigate to="/login/:unkid " />
+              token ? <ManageProfileForm /> : <Navigate to="/login/:unkid " />
             }
           />
-     
 
           <Route
             path="/transport"
