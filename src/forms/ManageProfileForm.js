@@ -74,12 +74,13 @@ function ManageProfileForm() {
 
   const formik = useFormik({
     initialValues: {
+
       guestImage: location.state.guestimage,
       identityImage:location.state.identityImage,
       guesttranunkid:location.state.guesttranunkid,
 
-      // guestImage: "",
-      // identityImage: "",
+      Title:location.state.Title,
+  
       honorifics: location.state.honorifics,
       name: location.state.name,
       gender: location.state.gender,
@@ -160,7 +161,7 @@ function ManageProfileForm() {
         ) : null}
         <Box sx={{ padding: 2 }}>
           <Typography variant="h5" style={{ marginBottom: 5 }}>
-            Edit Profile
+            {formik.values.Title} Profile
           </Typography>
           <Box component="form" onSubmit={formik.handleSubmit}>
             <Grid container spacing={2}>
