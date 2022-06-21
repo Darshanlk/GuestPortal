@@ -31,13 +31,13 @@ console.log(result)
   }
 );
 
-export const postManageProfile = createAsyncThunk(
-  "postManageProfile",
+export const putManageProfile = createAsyncThunk(
+  "putManageProfile",
   async (body) => {
     const result = await fetchFunction(
       `guestportal/manageProfile/update`,
       body,
-      "post",
+      "put",
       localStorage.getItem("token")
     );
 
@@ -72,14 +72,14 @@ const userInfo = createSlice({
       state.error = "Check Your Internet Connection";
     },
 
-    [postManageProfile.fulfilled]: (state, action) => {
+    [putManageProfile.fulfilled]: (state, action) => {
       laoding = false;
       state.manageProfileData = action.payload.message;
     },
-    [postManageProfile.pending]: (state, action) => {
+    [putManageProfile.pending]: (state, action) => {
       state.loading = true;
     },
-    [postManageProfile.rejected]: (state, action) => {
+    [putManageProfile.rejected]: (state, action) => {
       state.error = "Check Your Internet Connection";
     },
   },

@@ -10,7 +10,6 @@ import {
   Alert,
   AlertTitle,
   Collapse,
-
 } from "@mui/material";
 import React, { useEffect } from "react";
 
@@ -30,7 +29,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
-import { postManageProfile } from "../reducers/userDataReducers";
+import { putManageProfile } from "../reducers/userDataReducers";
 import { FormikConsumer, useFormik } from "formik";
 import * as Yup from "yup";
 import PreviewImage from "../components/PreviewImage";
@@ -75,10 +74,12 @@ function ManageProfileForm() {
 
   const formik = useFormik({
     initialValues: {
-      // guestImage: location.state.guestimage,
-      // identityImage:location.state.identityImage,
-      guestImage: "",
-      identityImage: "",
+      guestImage: location.state.guestimage,
+      identityImage:location.state.identityImage,
+      guesttranunkid:location.state.guesttranunkid,
+
+      // guestImage: "",
+      // identityImage: "",
       honorifics: location.state.honorifics,
       name: location.state.name,
       gender: location.state.gender,
@@ -111,9 +112,9 @@ function ManageProfileForm() {
       ),
     }),
     onSubmit: (values) => {
-      console.log("formSubmitted", typeof values);
+      console.log("formSubmitted", typeof values, values);
 
-      dispatch(postManageProfile(values));
+      dispatch(putManageProfile(values));
 
       if (!values) {
         alert("fill all the field");
