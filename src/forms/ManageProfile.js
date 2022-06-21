@@ -102,7 +102,7 @@ function ManageProfile() {
   console.log(manageProfileData);
   try {
     if (userData.length > 0) {
-      // honorifics = [userData[0].name.split(" ")[0]];
+      // honorifics = [userData[0].name.split(" ")[0]];cle
       // name = userData[0].name.split(" ")[1];
 
 
