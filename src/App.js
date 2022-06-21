@@ -8,7 +8,9 @@ import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import AddIcCallIcon from "@mui/icons-material/AddIcCall";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import LogoutIcon from "@mui/icons-material/Logout"; 
+
+
+
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
@@ -32,6 +34,7 @@ import LocalPostOfficeRoundedIcon from "@mui/icons-material/LocalPostOfficeRound
 import BeenhereRoundedIcon from "@mui/icons-material/BeenhereRounded";
 import AssignmentTurnedInRoundedIcon from "@mui/icons-material/AssignmentTurnedInRounded";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import LogoutIcon from '@mui/icons-material/Logout';
 import Home from "./pages/Home";
 import { Routes, Route, Link } from "react-router-dom";
 import Booking from "./pages/Booking";
@@ -56,7 +59,7 @@ import { Navigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { addToken } from "./reducers/authReducers";
+import { addToken,logout } from "./reducers/authReducers";
 
 function App() {
   const [value, setValue] = React.useState();
@@ -123,6 +126,7 @@ function App() {
   console.log(token, "sdcwekjnduicheriuhcferiuh");
   useEffect(() => {
     dispatch(addToken());
+    
   }, []);
 
   // try{
@@ -252,6 +256,16 @@ function App() {
                 <ListItemText primary="Find Hotel On Map" />
               </ListItemButton>
             </ListItem>
+
+
+            <ListItem key="Find Hotel On Map" disablePadding>
+              <ListItemButton onClick={() => {dispatch(logout()); navigate("/login/:unkid")}} >
+                <ListItemIcon>
+                  <LogoutIcon sx={{color:"red"}} />
+                </ListItemIcon>
+                <ListItemText primary="Logout" sx={{color:"red"}} />
+              </ListItemButton>
+              </ListItem>
           </List>
           <Divider />
         </Box>

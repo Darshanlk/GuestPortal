@@ -35,7 +35,7 @@ export const postManageProfile = createAsyncThunk(
   "postManageProfile",
   async (body) => {
     const result = await fetchFunction(
-      `guestportal/manaageProfile/update`,
+      `guestportal/manageProfile/update`,
       body,
       "post",
       localStorage.getItem("token")

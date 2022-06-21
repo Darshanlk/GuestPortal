@@ -49,8 +49,7 @@ function Map(props) {
         },
 
         zoomControl: true,
-        clickableIcons: true
-    
+        clickableIcons:true
         
         })}
         bootstrapURLKeys={{ key: "AIzaSyA9f_ARjt6AgrQZATjg3VyUmtvlaxcfEBs" }}

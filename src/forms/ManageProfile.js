@@ -31,11 +31,11 @@ import {
   RegionDropdown,
   CountryRegionData,
 } from "react-country-region-selector";
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import SignatureCanvas from 'react-signature-canvas'
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import SignatureCanvas from "react-signature-canvas";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Container } from "@mui/system";
@@ -66,22 +66,11 @@ function ManageProfile() {
 
   const dispatch = useDispatch();
 
-  // useEffect(() => { }, []);
   useEffect(() => {
     dispatch(getManageProfile());
-  },[]);
+  }, []);
   const honorificsArray = ["Dr.", "Jn.", "Mam.", "Mrs.", "Ms.", "Sir", "Sr."];
   const identity = ["Adhar Card", "Driving License", "Passport"];
-
-  //     const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
-  //    const validateImageType = (value) => {
-  //       if(value) {
-  //         let type = value.match(/[^:]\w+\/[\w-+\d.]+(?=;|,)/)[0]
-  //         return SUPPORTED_FORMATS.includes(type)
-  //       }
-  //     }
-
-  //       Yup.mixed() .test('fileSize', "File is too large", value => value.size <= FILE_SIZE) .test('fileType', "Your Error Message", value => SUPPORTED_FORMATS.includes(value.type) )
 
   const guestImageRef = React.useRef(null);
   const [showGuestImage, setShowGuestImage] = React.useState("");
@@ -107,49 +96,42 @@ function ManageProfile() {
   let expiryDate = [];
   let issuingCountry = [];
   let identity_city = [];
-  let no_adult = [];
-  let no_child = [];
-  let reservationno = [];
-  let checkin = [];
-  let checkout = [];
-  let nights = [];
-  let rooms = [];
+
   let exp_date = null;
 
+  console.log(manageProfileData);
   try {
     if (userData.length > 0) {
+      // honorifics = [userData[0].name.split(" ")[0]];
+      // name = userData[0].name.split(" ")[1];
 
-      userData.map((user,count)=>{
-        // name[user[0]]
-        console.log(count)
-        console.log(user)
-      
-      })
-      console.log(manageProfileData.length+"lllllllllll")
-      console.log(manageProfileData+"lllllllllll")
-      // console.log("manage dtaaaaaaa"+manageProfileData[0].gender);
-      no_adult = [userData[0].adult];
-      no_child = [userData[0].child];
-      reservationno = userData[0].reservationno;
-      rooms = [userData[0].Roomno];
-      checkin = userData[0].arrival;
-      checkout = userData[0].departure;
-      nights = userData[0].noofdays;
-      gender = manageProfileData[0].gender;
-      address = manageProfileData[0].address;
-      city = manageProfileData[0].city;
-      state = manageProfileData[0].state;
-      zip = manageProfileData[0].zipcode;
-      phone = manageProfileData[0].mobile;
-      email = manageProfileData[0].email;
-      guest_country = manageProfileData[0].country;
-      guestIdentityNumber = manageProfileData[0].identity_no;
-      exp_date = manageProfileData[0].exp_date;
-      identity_city = manageProfileData[0].identity_city;
+
+      manageProfileData.map((user, index) => {
+        honorifics[index] = user.salutation
+        name[index] = user.name + user.contactunkid;
+
+        gender[index] = user.gender;
+        address[index] = user.address;
+        city[index] = user.city;
+        state[index] = user.state;
+        zip[index] = user.zipcode;
+        phone[index] =user.mobile;
+        email[index] =user.email;
+        guest_country[index] =user.country;
+
+        guestIdentity[index] = [user.guestidentity];
+
+        guestIdentityNumber[index] =user.identity_no;
+        // exp_date[index] =user.exp_date;
+        identity_city[index] =user.identity_city;
+      });
     }
   } catch (e) {
     console.log(e);
   }
+  // console.log(name,gender,address)
+  console.log(name,gender,address,city,state,zip,phone,email,guest_country,guestIdentity,guestIdentityNumber,exp_date,identity_city);
+
   const [country, setCountry] = React.useState(guest_country);
   //formil and Yup
 
@@ -218,25 +200,30 @@ function ManageProfile() {
     setStatus(event.target.value);
   };
 
+// var x =  
+//   console.log(typeof formik.values.name ,(formik.values.name)[0])
+
+
+
   // SignatureCanvas
-  var sigPad = {}
+  var sigPad = {};
   const ClearSign = () => {
-    sigPad.clear()
-  }
-  const [sign, setSign] = React.useState(null)
+    sigPad.clear();
+  };
+  const [sign, setSign] = React.useState(null);
   const GetSign = () => {
     const data = sigPad.toData();
-    setSign(data)
-    console.log(sign)
-  }
+    setSign(data);
+    console.log(sign);
+  };
   return (
     <Fragment>
       <Box sx={{ marginLeft: 2, marginRight: 2, marginTop: 3 }}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6} order={{ xs: 1, md: 1 }}>
-            {manageProfileData.map((item) => {
-              console.log(item.name)
-              console.log(item.contactunkid)
+            {manageProfileData.map((item,index) => {
+              {/* console.log(item.name);
+              console.log(item.contactunkid); */}
               return (
                 <Card
                   elevation={1}
@@ -245,9 +232,7 @@ function ManageProfile() {
                     flexDirection: "column",
                     marginTop: 1,
                   }}
-
                 >
-        
                   <Accordion>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
@@ -271,7 +256,10 @@ function ManageProfile() {
                             <Typography
                               sx={{ marginRight: 5, fontWeight: 600 }}
                             >
-                              {item.salutation+"."+item.name+item.contactunkid}
+                              {item.salutation +
+                                "." +
+                                item.name +
+                                item.contactunkid}
                             </Typography>
                             <Box sx={{ display: "flex", flexDirection: "row" }}>
                               <CheckCircleIcon
@@ -284,9 +272,9 @@ function ManageProfile() {
                             </Box>
                           </Box>
                           <Divider />
-                          <Typography variant="body2">+91 {phone}</Typography>
+                          <Typography variant="body2">+91 {phone[index]}</Typography>
                           <Divider />
-                          <Typography variant="body2">{email}</Typography>
+                          <Typography variant="body2">{email[index]}</Typography>
                         </Stack>
                       </Card>
                     </AccordionSummary>
@@ -329,7 +317,7 @@ function ManageProfile() {
                       </Box>
                     </AccordionDetails>
                   </Accordion>
-                
+
                   <Dialog
                     maxWidth="lg"
                     fullWidth={true}
@@ -343,7 +331,6 @@ function ManageProfile() {
                       Edit Profile
                     </DialogTitle>
                     <DialogContent>
-                
                       <Box component="form" onSubmit={formik.handleSubmit}>
                         <Grid container spacing={2}>
                           <Grid
@@ -391,7 +378,7 @@ function ManageProfile() {
                                   ref={guestImageRef}
                                   type="file"
                                   name="guestImage"
-                                  values={formik.values.guestImage}
+                                  values={(formik.values.guestImage)[index]}
                                   onChange={(event) => {
                                     const {
                                       target: { files },
@@ -480,7 +467,7 @@ function ManageProfile() {
                                     labelId="demo-simple-select-standard"
                                     id="demo-simple-select-standard"
                                     single
-                                    value={formik.values.honorifics}
+                                    value={(formik.values.honorifics)[index]}
                                     name="honorifics"
                                     onChange={(event) => {
                                       const {
@@ -508,7 +495,7 @@ function ManageProfile() {
                                 </FormControl>
                                 <TextField
                                   name="name"
-                                  value={formik.values.name}
+                                  value={(formik.values.name)[index]}
                                   onChange={formik.handleChange}
                                   error={
                                     formik.touched.name &&
@@ -626,7 +613,7 @@ function ManageProfile() {
                               >
                                 <TextField
                                   name="address"
-                                  value={formik.values.address}
+                                  value={(formik.values.address)[index]}
                                   onChange={formik.handleChange}
                                   error={
                                     formik.touched.address &&
@@ -659,7 +646,7 @@ function ManageProfile() {
                                 >
                                   <TextField
                                     name="city"
-                                    value={formik.values.city}
+                                    value={(formik.values.city)[index]}
                                     onChange={formik.handleChange}
                                     error={
                                       formik.touched.city &&
@@ -677,7 +664,7 @@ function ManageProfile() {
                                   />
                                   <TextField
                                     name="state"
-                                    value={formik.values.state}
+                                    value={(formik.values.state)[index]}
                                     onChange={formik.handleChange}
                                     error={
                                       formik.touched.state &&
@@ -696,7 +683,7 @@ function ManageProfile() {
                                   />
                                   <TextField
                                     name="zip"
-                                    value={formik.values.zip}
+                                    value={(formik.values.zip)[index]}
                                     onChange={formik.handleChange}
                                     error={
                                       formik.touched.zip &&
@@ -793,7 +780,7 @@ function ManageProfile() {
                                 <TextField
                                   fullWidth
                                   name="phone"
-                                  value={formik.values.phone}
+                                  value={(formik.values.phone)[index]}
                                   onChange={formik.handleChange}
                                   error={
                                     formik.touched.phone &&
@@ -847,7 +834,7 @@ function ManageProfile() {
                                 <TextField
                                   fullWidth
                                   type="emai"
-                                  value={formik.values.email}
+                                  value={(formik.values.email)[index]}
                                   size="small"
                                   sx={{ marginRight: 1 }}
                                   id="outlined-basic"
@@ -981,8 +968,13 @@ function ManageProfile() {
                                   flexDirection: "column",
                                 }}
                               >
-                                <Box sx={{ borderStyle: 'solid', borderWidth: '0.14rem', borderColor: 'black' }}>
-
+                                <Box
+                                  sx={{
+                                    borderStyle: "solid",
+                                    borderWidth: "0.14rem",
+                                    borderColor: "black",
+                                  }}
+                                >
                                   {/*get signature  */}
                                   {/* <CanvasDraw
                                   brushColor="black"
@@ -992,9 +984,15 @@ function ManageProfile() {
                                   canvasHeight={120}
                                 ></CanvasDraw> */}
                                   <SignatureCanvas
-                                    ref={(ref) => { sigPad = ref }}
-                                    canvasProps={{ width: 230, height: 120, className: 'sigCanvas' }} />
-
+                                    ref={(ref) => {
+                                      sigPad = ref;
+                                    }}
+                                    canvasProps={{
+                                      width: 230,
+                                      height: 120,
+                                      className: "sigCanvas",
+                                    }}
+                                  />
                                 </Box>
 
                                 <Box
@@ -1085,7 +1083,7 @@ function ManageProfile() {
                                     }}
                                     label="--select--"
                                     name="guestIdentity"
-                                    value={formik.values.guestIdentity}
+                                    value={(formik.values.guestIdentity)[index]}
                                     onChange={(event) => {
                                       const {
                                         target: { value },
@@ -1114,7 +1112,7 @@ function ManageProfile() {
                                 </FormControl>
                                 <TextField
                                   name="guestIdentityNumber"
-                                  value={formik.values.guestIdentityNumber}
+                                  value={(formik.values.guestIdentityNumber)[index]}
                                   onChange={formik.handleChange}
                                   error={
                                     formik.touched.guestIdentityNumber &&
@@ -1249,7 +1247,7 @@ function ManageProfile() {
                               </Box>
                               <TextField
                                 name="identity_city"
-                                value={formik.values.identity_city}
+                                value={(formik.values.identity_city)[index]}
                                 onChange={formik.handleChange}
                                 error={
                                   formik.touched.issuingCity &&
@@ -1314,12 +1312,25 @@ function ManageProfile() {
               );
             })}
           </Grid>
-          <Grid item  xs={12} md={6} sm={11} order={{ xs: 2, md: 2 }} sx={{ marginTop: 5, marginBottom: 5 }}>
-            <Box  sx={{ display: "flex", flexDirection: "row" ,justifyContent:'center'}}  >
-              <Stack sx={{width:'80%'}} direction="column" spacing={2}>
-                <Button variant="outlined"
-                  onClick={handleClickOpen}
-                >Add Guest</Button>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sm={11}
+            order={{ xs: 2, md: 2 }}
+            sx={{ marginTop: 5, marginBottom: 5 }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+              }}
+            >
+              <Stack sx={{ width: "80%" }} direction="column" spacing={2}>
+                <Button variant="outlined" onClick={handleClickOpen}>
+                  Add Guest
+                </Button>
                 <Button variant="outlined">Send Invite to Member</Button>
               </Stack>
             </Box>
