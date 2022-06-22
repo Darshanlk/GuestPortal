@@ -51,7 +51,7 @@ function ManageProfileForm() {
   const dispatch = useDispatch();
   const guestImageRef = React.useRef(null);
   const [showGuestImage, setShowGuestImage] = React.useState("");
-  const naviagate = useNavigate();
+  const navigate = useNavigate();
 
   const identityImageRef = React.useRef(null);
   const [showIdentityImage, setIdentityGuestImage] = React.useState("");
@@ -175,7 +175,7 @@ function ManageProfileForm() {
             </Alert>
           </Collapse>
         ) : null}
-        <Box sx={{ padding: 2 }}>
+        <Box sx={{ padding: 2,marginTop:5 }}>
           <Typography variant="h5" style={{ marginBottom: 5 }}>
             {formik.values.Title} Profile
           </Typography>

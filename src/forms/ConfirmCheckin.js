@@ -24,9 +24,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { PhoneBluetoothSpeakerTwoTone } from "@mui/icons-material";
 import { fetchFunction } from "../helpers/fetchFunction";
+import {addMessage} from "../reducers/userDataReducers"
 
 //By Darshan
 export default function ConfirmCheckin() {
@@ -41,6 +42,8 @@ export default function ConfirmCheckin() {
   let address = "";
   // let guestIdentity = "";
   // let guestIdentityNumber = "";
+
+  const dispatch = useDispatch()
 
   try {
     guestName = userData[0].name.split(".")[1];
@@ -137,22 +140,25 @@ export default function ConfirmCheckin() {
             ),
           }
     ),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       //send request function
 
-      console.log(values);
+    
 
-      const result = fetchFunction(
-        "/guestportal/confrimCheckIn",
-        values,
-        "post",
-        localStorage.getItem("token")
-      );
 
-      console.log(result);
       if (!values) {
         alert("fill all the field");
       } else {
+        console.log(values)
+        const result = await fetchFunction(
+          "/guestportal/confrimCheckIn",
+          values,
+          "post",
+          localStorage.getItem("token")
+        );
+        console.log(result)
+          dispatch(addMessage(result))
+        
         setAlert(true);
       }
     },

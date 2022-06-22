@@ -115,13 +115,17 @@ function App() {
 
   let token = useSelector((state) => state.user.token);
 
+  let {message} = useSelector((state) => state.userDetails)
+
+  console.log(message.length)
+
   //  if(token == undefined)
   //  {
   //    navigate('/login/:unkid')
   //  }
 
   const dispatch = useDispatch();
-  console.log(token, "sdcwekjnduicheriuhcferiuh");
+
   useEffect(() => {
     dispatch(addToken());
 
@@ -207,7 +211,7 @@ function App() {
               </ListItemButton>
             </ListItem>
             <ListItem key="Manage Profile" disablePadding>
-              <ListItemButton onClick={() => navigate("/manageprofile")}>
+              <ListItemButton onClick={() => navigate("/guestdetails")}>
                 <ListItemIcon>
                   <ManageAccountsIcon />
                 </ListItemIcon>
@@ -309,7 +313,7 @@ function App() {
                 sx={{ color: "GrayText" }}
                 onClick={() => navigate("/alertPage")}
               >
-                <Badge badgeContent={7} color="error">
+                <Badge badgeContent={message.length} color="error">
                   <NotificationsNoneIcon />
                 </Badge>
               </IconButton>
