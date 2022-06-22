@@ -266,6 +266,7 @@ function ManageProfile() {
           </Box>
         </Fragment>
       )}
+
     </>
   );
 }
