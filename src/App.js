@@ -15,7 +15,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { SwipeableDrawer } from "@mui/material";
+import { Popover, SwipeableDrawer } from "@mui/material";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
@@ -59,7 +59,8 @@ import { Navigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { addToken,logout } from "./reducers/authReducers";
+import { addToken, logout } from "./reducers/authReducers";
+import AccountPreviewCard from "./components/AccountPreviewCard";
 
 function App() {
   const [value, setValue] = React.useState();
@@ -93,7 +94,7 @@ function App() {
     } else if (path === "/confirmCheckin") {
       setValue(6);
       setNavTitle("ConfirmCheckIn");
-    }  else {
+    } else {
       setValue(-1);
     }
   });
@@ -123,7 +124,7 @@ function App() {
   console.log(token, "sdcwekjnduicheriuhcferiuh");
   useEffect(() => {
     dispatch(addToken());
-    
+
   }, []);
 
   // try{
@@ -136,6 +137,19 @@ function App() {
   //   console.log(e)
   // }
 
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
   return (
     <>
       <SwipeableDrawer
@@ -246,7 +260,7 @@ function App() {
             </ListItem> */}
 
             <ListItem key="Find Hotel On Map" disablePadding>
-              <ListItemButton onClick={() => { navigate('/contact')}}>
+              <ListItemButton onClick={() => { navigate('/contact') }}>
                 <ListItemIcon>
                   <AddLocationAltRoundedIcon />
                 </ListItemIcon>
@@ -256,13 +270,13 @@ function App() {
 
 
             <ListItem key="Find Hotel On Map" disablePadding>
-              <ListItemButton onClick={() => {dispatch(logout()); navigate("/login/:unkid")}} >
+              <ListItemButton onClick={() => { dispatch(logout()); navigate("/login/:unkid") }} >
                 <ListItemIcon>
-                  <LogoutIcon sx={{color:"red"}} />
+                  <LogoutIcon sx={{ color: "red" }} />
                 </ListItemIcon>
-                <ListItemText primary="Logout" sx={{color:"red"}} />
+                <ListItemText primary="Logout" sx={{ color: "red" }} />
               </ListItemButton>
-              </ListItem>
+            </ListItem>
           </List>
           <Divider />
         </Box>
@@ -299,9 +313,21 @@ function App() {
                   <NotificationsNoneIcon />
                 </Badge>
               </IconButton>
-              <IconButton size="large" sx={{ color: "GrayText" }}>
+              <IconButton aria-describedby={id} onClick={handleClick} size="large" sx={{ color: "GrayText" }}>
                 <AccountCircleIcon />
               </IconButton>
+              <Popover
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+              >
+                <AccountPreviewCard />
+              </Popover>
               <IconButton
                 size="large"
                 edge="start"
