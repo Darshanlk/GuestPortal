@@ -99,7 +99,7 @@ export default function RoomCard2({rooms,child,adult}) {
         </Grid>
         <Box sx={{paddingTop:2}}>
         <Divider />
-          <Box onClick={e => navigate("/manageprofile")}  sx={{
+          <Box onClick={e => navigate("/guestdetails")}  sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",

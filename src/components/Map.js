@@ -13,50 +13,51 @@ function Map(props) {
   return (
     <div style={{ height: "70vh", width: "100%" }}>
       <GoogleMapReact
-        options={ (maps,map) => ({
-          
-       
+        options={(maps, map) => ({
           draggable: true, // make map draggable
           zoomControlOptions: { position: 9 },
           keyboardShortcuts: false, // disable keyboard shortcuts
           scaleControl: true, // allow scale controle
           scrollwheel: true, // allow scroll wheel
-         streetViewControl: true,
-        scaleControl: true,
-        fullscreenControl: true,
-        styles: [{
-            featureType: "poi.business",
-            elementType: "labels",
-            stylers: [{
-                visibility: "on"
-            }]
-        }],
-        gestureHandling: "greedy",
-        disableDoubleClickZoom: true,
-        minZoom: 11,
-        maxZoom: 18,
+          streetViewControl: true,
+          scaleControl: true,
+          fullscreenControl: true,
+          styles: [
+            {
+              featureType: "poi.business",
+              elementType: "labels",
+              stylers: [
+                {
+                  visibility: "on",
+                },
+              ],
+            },
+          ],
+          gestureHandling: "greedy",
+          disableDoubleClickZoom: true,
+          minZoom: 11,
+          maxZoom: 18,
 
-        mapTypeControl: true,
-        mapTypeId: maps.MapTypeId.HYBRID,
-        mapTypeControlOptions: {
+          mapTypeControl: true,
+          mapTypeId: maps.MapTypeId.HYBRID,
+          mapTypeControlOptions: {
             style: maps.MapTypeControlStyle.HORIZONTAL_BAR,
             position: maps.ControlPosition.BOTTOM_CENTER,
             mapTypeIds: [
-                maps.MapTypeId.ROADMAP,
-                maps.MapTypeId.SATELLITE,
-                maps.MapTypeId.HYBRID
-            ]
-        },
+              maps.MapTypeId.ROADMAP,
+              maps.MapTypeId.SATELLITE,
+              maps.MapTypeId.HYBRID,
+            ],
+          },
 
-        zoomControl: true,
-        clickableIcons:true
-        
+          zoomControl: true,
+          clickableIcons: true,
         })}
         bootstrapURLKeys={{ key: "AIzaSyA9f_ARjt6AgrQZATjg3VyUmtvlaxcfEBs" }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
+        yesIWantToUseGoogleMapApiInternals
       >
-      
         <Marker lat={defaultProps.center.lat} lng={defaultProps.center.lng} />
       </GoogleMapReact>
     </div>
@@ -72,4 +73,3 @@ function Marker() {
   );
 }
 export default Map;
-
