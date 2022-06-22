@@ -68,8 +68,11 @@ const userInfo = createSlice({
 
     addMessage: (state,action)  => {
 
-      state.message.push(action.payload.message)
-    }
+      // state.message.push(action.payload.message)
+      state.message = [action.payload.message,...state.message]
+    },
+
+
 
 
 
@@ -101,7 +104,8 @@ const userInfo = createSlice({
     [putManageProfile.fulfilled]: (state, action) => {
       state.laoding = false;
       state.manageProfileData = action.payload.message;
-      state.message.push(action.payload.message)
+      // state.message.push(action.payload.message)
+      state.message = [action.payload.message,...state.message]
     },
     [putManageProfile.pending]: (state, action) => {
       state.loading = true;
@@ -115,7 +119,7 @@ const userInfo = createSlice({
       if (action.payload.error) {
         state.error = action.payload.error;
       } else {
-        state.message.push(action.payload.message);
+        state.message = [action.payload.message,...state.message]
       }
     },
     [postManageProfile.pending]: (state, action) => {

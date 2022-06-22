@@ -29,7 +29,10 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
-import { putManageProfile,postManageProfile } from "../reducers/userDataReducers";
+import {
+  putManageProfile,
+  postManageProfile,
+} from "../reducers/userDataReducers";
 import { FormikConsumer, useFormik } from "formik";
 import * as Yup from "yup";
 import PreviewImage from "../components/PreviewImage";
@@ -45,7 +48,7 @@ import {
 } from "react-country-region-selector";
 
 function ManageProfileForm() {
-  const [alert, setAlert] = React.useState(false);
+
   const honorificsArray = ["Dr.", "Jn.", "Mam.", "Mrs.", "Ms.", "Sir", "Sr."];
   const identity = ["Adhar Card", "Driving License", "Passport"];
   const dispatch = useDispatch();
@@ -58,7 +61,6 @@ function ManageProfileForm() {
   const [loadingx, setLoading] = React.useState(false);
 
   const location = useLocation();
-  const [open, setOpen] = React.useState(false);
 
   const [country, setCountry] = React.useState(location.state.country);
   var sigPad = {};
@@ -71,6 +73,14 @@ function ManageProfileForm() {
     setSign(data);
     console.log(sign);
   };
+
+
+
+  const [open, setOpen] = React.useState(true);
+  const [alert, setAlert] = React.useState(false);
+
+
+
 
   const formik = useFormik({
     initialValues: {
@@ -114,36 +124,32 @@ function ManageProfileForm() {
 
       console.log(values.Title);
 
-    
       if (!values) {
         alert("fill all the field");
       } else {
-        setOpen(false);
-        setAlert(true);
+  
 
         if (values.Title == "Edit") {
           dispatch(putManageProfile(values));
+          setOpen(true);
+          setAlert(true);
         } else {
           // dispatch()
           console.log(
-            
             "****************************************ADD**************************************"
           );
           dispatch(postManageProfile(values));
+          setOpen(true);
+          setAlert(true);
         }
-
-
-
-
-
-
-
       }
     },
   });
 
   return (
     <center>
+
+          
       <Box
         maxWidth="lg"
         fullWidth={true}
@@ -152,30 +158,31 @@ function ManageProfileForm() {
         key={""}
         sx={{ boxShadow: 3, marginTop: 5 }}
       >
-        {alert ? (
-          <Collapse in={open}>
-            <Alert
-              action={
-                <IconButton
-                  aria-label="close"
-                  color="inherit"
-                  size="small"
-                  onClick={() => {
-                    setOpen(false);
-                    setAlert(false);
-                    navigate("/");
-                  }}
-                >
-                  <CloseIcon fontSize="inherit" />
-                </IconButton>
-              }
-              sx={{ mb: 2 }}
-            >
-              Your Request is Submited
-            </Alert>
-          </Collapse>
-        ) : null}
-        <Box sx={{ padding: 2,marginTop:5 }}>
+   
+{alert ? (
+            <Collapse in={open}>
+              <Alert
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => {
+                      setOpen(false);
+                      setAlert(false);
+                      navigate("/guestdetails");
+                    }}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+                sx={{ mb: 2 }}
+              >
+                Your Request is Submited
+              </Alert>
+            </Collapse>
+          ) : null}
+        <Box sx={{ padding: 2, marginTop: 5 }}>
           <Typography variant="h5" style={{ marginBottom: 5 }}>
             {formik.values.Title} Profile
           </Typography>
