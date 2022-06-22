@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
+import { addMessage } from "../reducers/userDataReducers";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Grid,
   Accordion,
@@ -15,44 +17,59 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function AlertPage() {
-  //dummy message
-  const messages = [
-    {
-      messageTitle: "Message 1",
-      messageBody:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-    },
-    {
-      messageTitle: "Message  2",
-      messageBody:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-    },
-    {
-      messageTitle: "Message 3",
-      messageBody:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-    },
-    {
-      messageTitle: "Message 4",
-      messageBody:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-    },
-    {
-      messageTitle: "Message 5",
-      messageBody:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-    },
-    {
-      messageTitle: "Message 6",
-      messageBody:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-    },
-    {
-      messageTitle: "Message 7",
-      messageBody:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-    },
-  ];
+  const { message } = useSelector((state) => state.userDetails);
+
+  console.log(message);
+
+//   //dummy message
+//   let messages = [
+//     {
+//       messageTitle: "Message 1",
+//       messageBody:
+//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
+//     },
+//     {
+//       messageTitle: "Message  2",
+//       messageBody:
+//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
+//     },
+//     {
+//       messageTitle: "Message 3",
+//       messageBody:
+//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
+//     },
+//     {
+//       messageTitle: "Message 4",
+//       messageBody:
+//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
+//     },
+//     {
+//       messageTitle: "Message 5",
+//       messageBody:
+//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
+//     },
+//     {
+//       messageTitle: "Message 6",
+//       messageBody:
+//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
+//     },
+//     {
+//       messageTitle: "Message 7",
+//       messageBody:
+//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
+//     },
+//   ];
+
+
+
+
+// messages = [...messages,message]
+
+
+
+
+
+
 
   return (
     <Grid
@@ -65,7 +82,7 @@ function AlertPage() {
         </Typography>
         <Card sx={{ padding: 3, marginTop: 2 }}>
           <Stack spacing={2}>
-            {messages.map((message) => {
+            {message.map((message) => {
               return (
                 <Accordion>
                   <AccordionSummary
