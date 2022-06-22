@@ -101,7 +101,7 @@ function AccountPreviewCard() {
 
     const dispatch = useDispatch();
     return (
-        <Box sx={{ p: 2 }}>
+        <Box sx={{ paddingTop:2,paddingBottom:2,paddingLeft:1,paddingRight:1 }}>
             <Stack direction="column" spacing={2}>
                 <Stack direction="row"
                 paddingLeft={2}
@@ -121,7 +121,7 @@ function AccountPreviewCard() {
                     <Typography sx={{ fontWeight: 550, fontSize: 14 }} variant="button">{name}</Typography>
 
                 </Stack>
-                <Box paddingRight={1}>
+                <Box paddingRight={2}>
                     <Typography  sx={{ fontWeight: 550, fontSize: 14 ,color: "blue"}} variant="button" >
                         {`Booking Id: ${reservationno}`}
                     </Typography>
