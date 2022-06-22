@@ -36,7 +36,7 @@ function ManageProfile() {
   );
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
 
   useEffect(() => {
     dispatch(getManageProfile());
@@ -157,9 +157,10 @@ function ManageProfile() {
                               onClick={() => {
                                 navigate("/manageprofile", {
                                   state: {
-                                    guesttranunkid: item.guesttranunkid,
-                                    identityImage: item.identityImage,
-                                    guestimage: item.guestimage,
+                                    guesttranunkid:item.guesttranunkid,
+                                    Title:"Edit",
+                                    identityImage:item.identityImage,
+                                    guestimage:item.guestimage,
                                     honorifics: item.salutation,
                                     name: item.name,
                                     address: item.address,
@@ -221,7 +222,33 @@ function ManageProfile() {
                   }}
                 >
                   <Stack sx={{ width: "80%" }} direction="column" spacing={2}>
-                    <Button variant="outlined" onClick={handleClickOpen}>
+                    <Button variant="outlined" 
+                     onClick={() => {
+                      navigate("/manageprofile", {
+                        state: {
+                          Title:"Add",
+                          identityImage:null,
+                          guestimage:null,
+                          honorifics: null,
+                          name: null,
+                          address:null,
+                          gender:null ,
+                          city:null ,
+                          state:null ,
+                          zip:null,
+                          country:null ,
+                          mobile:null ,
+                          email: null,
+                          guestIdentity:null,
+                          guestIdentityNumber:null ,
+                          identity_city:null ,
+                          expiryDate:null
+                        },
+                      });
+                    }}
+                    
+                    
+                    >
                       Add Guest
                     </Button>
                     <Button variant="outlined">Send Invite to Member</Button>

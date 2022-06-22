@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchFunction } from "../helpers/fetchFunction";
 const initialState = {
   loading: true,
+  message:"",
   error: "",
   userData: [],
   manageProfileData: [],
@@ -45,6 +46,32 @@ export const putManageProfile = createAsyncThunk(
   }
 );
 
+export const postManageProfile  = createAsyncThunk(
+  "postManageProfile",
+  async (body) => {
+    const result = await fetchFunction(
+      `guestportal/manageProfile/newguest`,
+      body,
+      "post",
+      localStorage.getItem("token")
+    );
+
+    return result;
+  }
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
 const userInfo = createSlice({
   name: "userDetails",
   initialState,
@@ -73,7 +100,7 @@ const userInfo = createSlice({
     },
 
     [putManageProfile.fulfilled]: (state, action) => {
-      laoding = false;
+      state.laoding = false;
       state.manageProfileData = action.payload.message;
     },
     [putManageProfile.pending]: (state, action) => {
@@ -82,6 +109,38 @@ const userInfo = createSlice({
     [putManageProfile.rejected]: (state, action) => {
       state.error = "Check Your Internet Connection";
     },
+
+    [postManageProfile.fulfilled]:(state,action) => {
+      state.laoding = false;
+      if (action.payload.error) {
+        state.error = action.payload.error;
+      } else {
+        state.message = action.payload.message;
+      }
+
+    },
+    [postManageProfile.pending]:(state,action) => {
+      state.laoding = true;
+    },
+    [postManageProfile.rejected] :(state,action) => {
+      state.error = "Check Your Internet Connection";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   },
 });
 
