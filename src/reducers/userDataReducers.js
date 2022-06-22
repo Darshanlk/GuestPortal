@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchFunction } from "../helpers/fetchFunction";
 const initialState = {
   loading: true,
-  message:"",
+  message: [],
   error: "",
   userData: [],
   manageProfileData: [],
@@ -27,7 +27,7 @@ export const getManageProfile = createAsyncThunk(
       "get",
       localStorage.getItem("token")
     );
-console.log(result)
+    console.log(result);
     return result;
   }
 );
@@ -46,7 +46,7 @@ export const putManageProfile = createAsyncThunk(
   }
 );
 
-export const postManageProfile  = createAsyncThunk(
+export const postManageProfile = createAsyncThunk(
   "postManageProfile",
   async (body) => {
     const result = await fetchFunction(
@@ -58,19 +58,7 @@ export const postManageProfile  = createAsyncThunk(
 
     return result;
   }
-)
-
-
-
-
-
-
-
-
-
-
-
-
+);
 
 const userInfo = createSlice({
   name: "userDetails",
@@ -79,7 +67,7 @@ const userInfo = createSlice({
   extraReducers: {
     [getUserData.fulfilled]: (state, action) => {
       state.loading = false;
-      state.userData = action.payload.message;
+      state.userData = action.payload.data;
     },
     [getUserData.pending]: (state, action) => {
       state.loading = true;
@@ -110,37 +98,20 @@ const userInfo = createSlice({
       state.error = "Check Your Internet Connection";
     },
 
-    [postManageProfile.fulfilled]:(state,action) => {
+    [postManageProfile.fulfilled]: (state, action) => {
       state.laoding = false;
       if (action.payload.error) {
         state.error = action.payload.error;
       } else {
         state.message = action.payload.message;
       }
-
     },
-    [postManageProfile.pending]:(state,action) => {
+    [postManageProfile.pending]: (state, action) => {
       state.laoding = true;
     },
-    [postManageProfile.rejected] :(state,action) => {
+    [postManageProfile.rejected]: (state, action) => {
       state.error = "Check Your Internet Connection";
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    },
   },
 });
 
