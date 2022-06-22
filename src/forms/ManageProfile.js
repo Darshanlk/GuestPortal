@@ -112,11 +112,7 @@ function ManageProfile() {
                                 <Typography
                                   sx={{ marginRight: 5, fontWeight: 600 }}
                                 >
-                                  {item.salutation 
-                                    +
-                                    item.name 
-                                    
-                                    }
+                                  {item.salutation + item.name}
                                 </Typography>
                                 <Box
                                   sx={{ display: "flex", flexDirection: "row" }}
@@ -161,15 +157,12 @@ function ManageProfile() {
                               onClick={() => {
                                 navigate("/manageprofile", {
                                   state: {
-
                                     guesttranunkid:item.guesttranunkid,
-
                                     Title:"Edit",
                                     identityImage:item.identityImage,
                                     guestimage:item.guestimage,
-
                                     honorifics: item.salutation,
-                                    name: item.name ,
+                                    name: item.name,
                                     address: item.address,
                                     gender: item.gender,
                                     city: item.city,

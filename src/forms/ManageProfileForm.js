@@ -29,7 +29,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
-import { putManageProfile } from "../reducers/userDataReducers";
+import { putManageProfile,postManageProfile } from "../reducers/userDataReducers";
 import { FormikConsumer, useFormik } from "formik";
 import * as Yup from "yup";
 import PreviewImage from "../components/PreviewImage";
@@ -74,13 +74,10 @@ function ManageProfileForm() {
 
   const formik = useFormik({
     initialValues: {
-
       guestImage: location.state.guestimage,
-      identityImage:location.state.identityImage,
-      guesttranunkid:location.state.guesttranunkid,
-
-      Title:location.state.Title,
-  
+      identityImage: location.state.identityImage,
+      guesttranunkid: location.state.guesttranunkid,
+      Title: location.state.Title,
       honorifics: location.state.honorifics,
       name: location.state.name,
       gender: location.state.gender,
@@ -115,13 +112,32 @@ function ManageProfileForm() {
     onSubmit: (values) => {
       console.log("formSubmitted", typeof values, values);
 
-      dispatch(putManageProfile(values));
+      console.log(values.Title);
 
+    
       if (!values) {
         alert("fill all the field");
       } else {
         setOpen(false);
         setAlert(true);
+
+        if (values.Title == "Edit") {
+          dispatch(putManageProfile(values));
+        } else {
+          // dispatch()
+          console.log(
+            
+            "****************************************ADD**************************************"
+          );
+          dispatch(postManageProfile(values));
+        }
+
+
+
+
+
+
+
       }
     },
   });
