@@ -63,11 +63,22 @@ export const postManageProfile = createAsyncThunk(
 const userInfo = createSlice({
   name: "userDetails",
   initialState,
-  reducers: {},
+  reducers: {
+
+
+    addMessage: (state,action)  => {
+
+      state.message.push(action.payload.message)
+    }
+
+
+
+
+  },
   extraReducers: {
     [getUserData.fulfilled]: (state, action) => {
       state.loading = false;
-      state.userData = action.payload.data;
+      state.userData = action.payload.message;
     },
     [getUserData.pending]: (state, action) => {
       state.loading = true;
@@ -90,6 +101,7 @@ const userInfo = createSlice({
     [putManageProfile.fulfilled]: (state, action) => {
       state.laoding = false;
       state.manageProfileData = action.payload.message;
+      state.message.push(action.payload.message)
     },
     [putManageProfile.pending]: (state, action) => {
       state.loading = true;
@@ -103,7 +115,7 @@ const userInfo = createSlice({
       if (action.payload.error) {
         state.error = action.payload.error;
       } else {
-        state.message = action.payload.message;
+        state.message.push(action.payload.message);
       }
     },
     [postManageProfile.pending]: (state, action) => {
@@ -114,5 +126,5 @@ const userInfo = createSlice({
     },
   },
 });
-
+export const { addMessage } = userInfo.actions;
 export default userInfo.reducer;
