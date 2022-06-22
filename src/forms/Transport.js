@@ -32,6 +32,7 @@ import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { useLocation, useNavigate } from "react-router-dom";
 import {addMessage} from "../reducers/userDataReducers";
 import { fetchFunction } from "../helpers/fetchFunction";
+import { useSelector,useDispatch } from "react-redux";
 
 function Transport() {
   const [open, setOpen] = React.useState(true);
@@ -43,7 +44,14 @@ function Transport() {
 
   var reqType = location.state.reqType;
 
-  //dummy
+
+
+const dispatch = useDispatch()
+
+
+
+
+    //dummy
   const service = ["Other", "OLA", "UBER", "Hotel-service"];
 
   //validation  formik  and Yup
@@ -62,7 +70,7 @@ function Transport() {
         "Please enter required transport info."
       ),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
 
   
       // values.date1 = moment().format("MMM Do YYYY"); 
@@ -80,14 +88,15 @@ function Transport() {
       if (!values) {
         alert("fill all the field");
       } else {
-        const result = fetchFunction(
+        const result = await fetchFunction(
           "/guestportal/transport",
           values,
           "post",
           localStorage.getItem("token")
         );
-        setAlert(true);
         console.log(result);
+        dispatch(addMessage(result))
+        setAlert(true);
       }
     },
   });
@@ -107,7 +116,7 @@ function Transport() {
         "Please enter required transport info."
       ),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log("formSubmitted", values);
       
      
@@ -116,14 +125,15 @@ function Transport() {
       if (!values) {
         alert("fill all the field");
       } else {
-        const result = fetchFunction(
+        const result = await fetchFunction(
           "/guestportal/transport",
           values,
           "post",
           localStorage.getItem("token")
         );
-        setAlert(true);
         console.log(result);
+        dispatch(addMessage(result))
+        setAlert(true);
       }
     },
   });

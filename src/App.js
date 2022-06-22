@@ -125,7 +125,7 @@ function App() {
   //  }
 
   const dispatch = useDispatch();
-  console.log(token, "sdcwekjnduicheriuhcferiuh");
+
   useEffect(() => {
     dispatch(addToken());
 
@@ -211,7 +211,7 @@ function App() {
               </ListItemButton>
             </ListItem>
             <ListItem key="Manage Profile" disablePadding>
-              <ListItemButton onClick={() => navigate("/manageprofile")}>
+              <ListItemButton onClick={() => navigate("/guestdetails")}>
                 <ListItemIcon>
                   <ManageAccountsIcon />
                 </ListItemIcon>

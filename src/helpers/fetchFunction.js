@@ -10,6 +10,7 @@ export const fetchFunction = async (url, body, reqType, authToken) => {
   });
 
   const res = await result.json();
+  console.log(res)
 
   return res;
 };
