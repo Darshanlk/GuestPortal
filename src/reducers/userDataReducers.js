@@ -90,7 +90,7 @@ const userInfo = createSlice({
 
     [getManageProfile.fulfilled]: (state, action) => {
       state.loading = false;
-      state.manageProfileData = action.payload.message;
+      state.manageProfileData = action.payload.data;
     },
     [getManageProfile.pending]: (state, action) => {
       state.loading = true;
