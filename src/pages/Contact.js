@@ -25,80 +25,98 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function Contact() {
     const dispatch = useDispatch();
-  
-    const {mapData,loading,error} = useSelector((state) => state.mapData)
-    console.log("fetchdata",mapData)
-    // console.log("fetchdata",mapData[0][0])
-    
-      useEffect(() => {
+    useEffect(() => {
         dispatch(getMapData());
-      },[])
+    }, [])
+    const { mapData, loading } = useSelector((state) => state.mapData)
+    console.log("fetchdata", mapData)
+
+    let email = ""
+    let address = ""
+    let phone = "+9199985-99985"
+    let lat = 19.0745
+    let lng = 72.8853
+
+    try {
+        if (mapData.length > 0) {
+            email = mapData[0][0].email
+            address = `${mapData[0][0].address1}, ${mapData[0][0].address2}, ${mapData[0][0].city} ${mapData[0][0].zipcode}, ${mapData[0][0].state}, ${mapData[0][0].country_name}`
+            name = mapData[0][0].name
+            if (mapData[0][0].phone != null)
+                phone = mapData[0][0].phone
+            if (mapData[0][0].latitude != "")
+                lat = mapData[0][0].latitude
+            if (mapData[0][0].longitude != "")
+                lng = mapData[0][0].longitude
+        }
+    } catch (e) {
+        console.log(e);
+    }
     return (
         <div>
-        {loading ? (
-        <Box sx={{display: "flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginY:10 }}>
-          <CircularProgress />
-        </Box>
-      ) : (
-        <Box sx={{ flexGrow: 1, margin: 2 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={8}>
-                    <Paper elevation={1} >
-                        <Item ><Map lat={ 19.0745} lng={72.8853} /></Item>
-                        {/* <Map/> */}
-                    </Paper>
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <Card elevation={1} sx={{ minWidth: 275 }}>
-                        <CardContent>
+            {loading ? (
+                <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", marginY: 10 }}>
+                    <CircularProgress />
+                </Box>
+            ) : (
+                <Box sx={{ flexGrow: 1, margin: 2 }}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} md={8}>
+                            <Paper elevation={1} >
+                                <Item ><Map lat={lat} lng={lng} /></Item>
+                                {/* <Map/> */}
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12} md={4}>
+                            <Card elevation={1} sx={{ minWidth: 275 }}>
+                                <CardContent>
 
-                            <Typography align='center' sx={{ marginBottom: 3, fontWeight: 'bold' }} variant="h5" component="div">
-                                Avalanche Luxury Hotel
-                            </Typography>
+                                    <Typography align='center' sx={{ marginBottom: 3, fontWeight: 'bold' }} variant="h5" component="div">
+                                        {name}
+                                    </Typography>
 
-                            <Box sx={{ padding: 2 }}>
-                                <Divider />
-                                <Stack spacing={2} sx={{ marginTop: 2 }}>
-                                    <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                                        <LocationOnIcon sx={{ marginRight: 2 }} color='primary' />
-                                        <Typography>D-113, International Trade Center, Majura
-                                            Gate, Surat, Gujarat 395002</Typography>
-                                    </Box>
-                                    <Divider />
+                                    <Box sx={{ padding: 2 }}>
+                                        <Divider />
+                                        <Stack spacing={2} sx={{ marginTop: 2 }}>
+                                            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                                                <LocationOnIcon sx={{ marginRight: 2 }} color='primary' />
+                                                <Typography>{address}</Typography>
+                                            </Box>
+                                            <Divider />
 
-                                    <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                                        <AddIcCallIcon sx={{ marginRight: 2 }} color='primary' />
-                                        <Typography>+9199985-99985</Typography>
-                                    </Box>
-                                    <Divider />
+                                            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                                                <AddIcCallIcon sx={{ marginRight: 2 }} color='primary' />
+                                                <Typography>{phone}</Typography>
+                                            </Box>
+                                            <Divider />
 
-                                    <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                                        <EmailIcon sx={{ marginRight: 2 }} color='primary' />
-                                        <Typography>info@avalanchehotel.com</Typography>
-                                    </Box>
-                                    <Divider />
+                                            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                                                <EmailIcon sx={{ marginRight: 2 }} color='primary' />
+                                                <Typography>{email}</Typography>
+                                            </Box>
+                                            <Divider />
 
-                                    <Box>
-                                        <Stack direction="row" spacing={2}>
-                                            <Button variant="outlined" startIcon={<SendIcon />}>
-                                                Get Directions
-                                            </Button>
-                                            <Button variant="outlined" startIcon={<WhatsAppIcon />}>
-                                                WhatsApp
-                                            </Button>
+                                            <Box>
+                                                <Stack direction="row" spacing={2}>
+                                                    <Button variant="outlined" startIcon={<SendIcon />}>
+                                                        Get Directions
+                                                    </Button>
+                                                    <Button variant="outlined" startIcon={<WhatsAppIcon />}>
+                                                        WhatsApp
+                                                    </Button>
+                                                </Stack>
+                                            </Box>
+
                                         </Stack>
                                     </Box>
 
-                                </Stack>
-                            </Box>
 
+                                </CardContent>
 
-                        </CardContent>
-
-                    </Card>
-                </Grid>
-            </Grid>
-        </Box>)}
+                            </Card>
+                        </Grid>
+                    </Grid>
+                </Box>)}
         </div>
     );
 }

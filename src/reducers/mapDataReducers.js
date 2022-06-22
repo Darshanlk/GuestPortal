@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  mapData: [],
+  mapData: [], 
+  loading:false
 };
 
 export const getMapData = createAsyncThunk("mapInfo", async (body) => {
@@ -13,9 +14,7 @@ export const getMapData = createAsyncThunk("mapInfo", async (body) => {
       Authorization: localStorage.getItem("token")
     },
   });
-
   const res = await result.json();
-
   return res;
 });
 
@@ -25,7 +24,7 @@ const mapInfo = createSlice({
   reducers: {},
   extraReducers: {
     [getMapData.fulfilled]: (state, action) => {
-      state.mapData.push(action.payload.message);
+      state.mapData.push(action.payload.data);
     },
   },
 });
