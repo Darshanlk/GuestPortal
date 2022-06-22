@@ -114,6 +114,10 @@ function App() {
 
   let token = useSelector((state) => state.user.token);
 
+  let {message} = useSelector((state) => state.userDetails)
+
+  console.log(message.length)
+
   //  if(token == undefined)
   //  {
   //    navigate('/login/:unkid')
@@ -295,7 +299,7 @@ function App() {
                 sx={{ color: "GrayText" }}
                 onClick={() => navigate("/alertPage")}
               >
-                <Badge badgeContent={7} color="error">
+                <Badge badgeContent={message.length} color="error">
                   <NotificationsNoneIcon />
                 </Badge>
               </IconButton>
