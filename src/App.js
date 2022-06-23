@@ -75,7 +75,7 @@ function App() {
     let path = location.pathname;
     if (path === "/") {
       setValue(0);
-      setNavTitle("Avalanche Luxury Hotel");
+      setNavTitle("Hotel Darshan ");
     } else if (path === "/booking") {
       setValue(1);
       setNavTitle("Booking Details");
@@ -101,7 +101,7 @@ function App() {
 
   React.useEffect(() => {
     let path = location.pathname;
-    if (path === "/") setTitle("Avalanche Luxury Hotel");
+    if (path === "/") setTitle("Hotel Darshan");
     else if (path === "/booking") setTitle("Booking Details");
     else if (path === "/guestdetails") setTitle("Guest Details");
     else if (path === "/contact") setTitle("Contact");
