@@ -27,7 +27,6 @@ function Home() {
   const { userData, loading } = useSelector((state) => state.userDetails);
   let { message } = useSelector((state) => state.userDetails);
 
-  console.log(typeof userData, loading, userData);
   let no_adult = "";
   let no_child = "";
   let total_guest = "";
@@ -38,7 +37,7 @@ function Home() {
   let checkin = "";
   let checkout = "";
   let nights = "";
-  console.log(userData);
+
 
   try {
     if (userData.length > 0) {

@@ -71,7 +71,6 @@ function ManageProfileForm() {
   const GetSign = () => {
     const data = sigPad.toData();
     setSign(data);
-    console.log(sign);
   };
 
 
@@ -120,9 +119,6 @@ function ManageProfileForm() {
       ),
     }),
     onSubmit: (values) => {
-      console.log("formSubmitted", typeof values, values);
-
-      console.log(values.Title);
 
       if (!values) {
         alert("fill all the field");
@@ -135,9 +131,7 @@ function ManageProfileForm() {
           setAlert(true);
         } else {
           // dispatch()
-          console.log(
-            "****************************************ADD**************************************"
-          );
+         
           dispatch(postManageProfile(values));
           setOpen(true);
           setAlert(true);

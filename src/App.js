@@ -117,7 +117,6 @@ function App() {
 
   let {message} = useSelector((state) => state.userDetails)
 
-  console.log(message.length)
 
   //  if(token == undefined)
   //  {
@@ -420,7 +419,6 @@ function App() {
             showLabelsdeta
             value={value}
             onChange={(event, newValue) => {
-              console.log(newValue);
               setValue(newValue);
             }}
           >
