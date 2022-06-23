@@ -60,7 +60,7 @@ function AlertPage() {
                     <Typography>{message.messageTitle}</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>{message.messageBody}</Typography>
+                    <Typography>{message.messageBody}.</Typography>
                   </AccordionDetails>
                 </Accordion>
               );

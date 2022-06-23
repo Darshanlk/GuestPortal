@@ -25,7 +25,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { getManageProfile,deleteManageProfile } from "../reducers/userDataReducers";
+import {
+  getManageProfile,
+  deleteManageProfile,
+} from "../reducers/userDataReducers";
 
 import { useNavigate } from "react-router-dom";
 // import { useDispatch, useSelector } from "react-redux";
@@ -35,10 +38,10 @@ function ManageProfile() {
     (state) => state.userDetails
   );
 
-  const [remove,setRemove] = useState(false)
+  const [remove, setRemove] = useState(false);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getManageProfile());
@@ -46,7 +49,6 @@ function ManageProfile() {
 
   let phone = "";
   let email = "";
-
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -158,10 +160,10 @@ function ManageProfile() {
                               onClick={() => {
                                 navigate("/manageprofile", {
                                   state: {
-                                    guesttranunkid:item.guesttranunkid,
-                                    Title:"Edit",
-                                    identityImage:item.identityImage,
-                                    guestimage:item.guestimage,
+                                    guesttranunkid: item.guesttranunkid,
+                                    Title: "Edit",
+                                    identityImage: item.identityImage,
+                                    guestimage: item.guestimage,
                                     honorifics: item.salutation,
                                     name: item.name,
                                     address: item.address,
@@ -199,9 +201,14 @@ function ManageProfile() {
                               }}
                               onClick={() => {
                                 console.log(item.guesttranunkid);
-                                dispatch(deleteManageProfile({guesttranunkid:item.guesttranunkid}));
+                                dispatch(
+                                  deleteManageProfile({
+                                    guesttranunkid: item.guesttranunkid,
+                                    name: item.name,
+                                    honorifics: item.salutation,
+                                  })
+                                );
                                 setRemove(true);
-
                               }}
                             >
                               RemoveProfile
@@ -229,32 +236,31 @@ function ManageProfile() {
                   }}
                 >
                   <Stack sx={{ width: "80%" }} direction="column" spacing={2}>
-                    <Button variant="outlined" 
-                     onClick={() => {
-                      navigate("/manageprofile", {
-                        state: {
-                          Title:"Add",
-                          identityImage:null,
-                          guestimage:null,
-                          honorifics: null,
-                          name: null,
-                          address:null,
-                          gender:null ,
-                          city:null ,
-                          state:null ,
-                          zip:null,
-                          country:null ,
-                          mobile:null ,
-                          email: null,
-                          guestIdentity:null,
-                          guestIdentityNumber:null ,
-                          identity_city:null ,
-                          expiryDate:null
-                        },
-                      });
-                    }}
-                    
-                    
+                    <Button
+                      variant="outlined"
+                      onClick={() => {
+                        navigate("/manageprofile", {
+                          state: {
+                            Title: "Add",
+                            identityImage: null,
+                            guestimage: null,
+                            honorifics: null,
+                            name: null,
+                            address: null,
+                            gender: null,
+                            city: null,
+                            state: null,
+                            zip: null,
+                            country: null,
+                            mobile: null,
+                            email: null,
+                            guestIdentity: null,
+                            guestIdentityNumber: null,
+                            identity_city: null,
+                            expiryDate: null,
+                          },
+                        });
+                      }}
                     >
                       Add Guest
                     </Button>
@@ -266,7 +272,6 @@ function ManageProfile() {
           </Box>
         </Fragment>
       )}
-
     </>
   );
 }

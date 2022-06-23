@@ -110,7 +110,7 @@ const userInfo = createSlice({
 
     [putManageProfile.fulfilled]: (state, action) => {
       state.laoding = false;
-      state.manageProfileData = action.payload.message;
+      // state.manageProfileData = action.payload.message;
       // state.message.push(action.payload.message)
       state.message = [action.payload.message, ...state.message];
     },
