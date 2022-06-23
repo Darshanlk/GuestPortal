@@ -45,7 +45,6 @@ function ManageProfile() {
   let phone = "";
   let email = "";
 
-  console.log(manageProfileData);
 
   const handleClickOpen = () => {
     setOpen(true);

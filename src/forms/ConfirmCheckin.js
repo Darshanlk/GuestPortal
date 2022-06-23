@@ -70,7 +70,6 @@ export default function ConfirmCheckin() {
   const handleChange = (event) => {
     setChecked({ checked: event.target.checked, width: "120vh" });
 
-    console.log("value", checked);
   };
   //for validation
   const formik = useFormik({
@@ -149,14 +148,12 @@ export default function ConfirmCheckin() {
       if (!values) {
         alert("fill all the field");
       } else {
-        console.log(values)
         const result = await fetchFunction(
           "/guestportal/confrimCheckIn",
           values,
           "post",
           localStorage.getItem("token")
         );
-        console.log(result)
           dispatch(addMessage(result))
         
         setAlert(true);
