@@ -84,7 +84,6 @@ const dispatch = useDispatch()
 
 
 
-      console.log("formSubmitted", values);
       if (!values) {
         alert("fill all the field");
       } else {
@@ -94,7 +93,6 @@ const dispatch = useDispatch()
           "post",
           localStorage.getItem("token")
         );
-        console.log(result);
         dispatch(addMessage(result))
         setAlert(true);
       }
@@ -117,7 +115,6 @@ const dispatch = useDispatch()
       ),
     }),
     onSubmit: async (values) => {
-      console.log("formSubmitted", values);
       
      
 
@@ -131,7 +128,6 @@ const dispatch = useDispatch()
           "post",
           localStorage.getItem("token")
         );
-        console.log(result);
         dispatch(addMessage(result))
         setAlert(true);
       }

@@ -29,16 +29,17 @@ function Contact() {
         dispatch(getMapData());
     }, [])
     const { mapData, loading } = useSelector((state) => state.mapData)
-    console.log("fetchdata", mapData)
 
     let email = ""
     let address = ""
     let phone = "+9199985-99985"
     let lat = 19.0745
     let lng = 72.8853
+    let hotel_name=""
 
     try {
         if (mapData.length > 0) {
+           
             email = mapData[0][0].email
             address = `${mapData[0][0].address1}, ${mapData[0][0].address2}, ${mapData[0][0].city} ${mapData[0][0].zipcode}, ${mapData[0][0].state}, ${mapData[0][0].country_name}`
             name = mapData[0][0].name
@@ -52,6 +53,8 @@ function Contact() {
     } catch (e) {
         console.log(e);
     }
+
+    console.log(email,address)
     return (
         <div>
             {loading ? (
@@ -71,9 +74,11 @@ function Contact() {
                             <Card elevation={1} sx={{ minWidth: 275 }}>
                                 <CardContent>
 
+                                 
                                     <Typography align='center' sx={{ marginBottom: 3, fontWeight: 'bold' }} variant="h5" component="div">
                                         {name}
                                     </Typography>
+
 
                                     <Box sx={{ padding: 2 }}>
                                         <Divider />
@@ -92,6 +97,7 @@ function Contact() {
 
                                             <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                                                 <EmailIcon sx={{ marginRight: 2 }} color='primary' />
+            
                                                 <Typography>{email}</Typography>
                                             </Box>
                                             <Divider />

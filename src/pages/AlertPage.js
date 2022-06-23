@@ -20,8 +20,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 function AlertPage() {
   let { message } = useSelector((state) => state.userDetails);
 
+
   const dispatch = useDispatch()
   console.log(message);
+
 
  
   
