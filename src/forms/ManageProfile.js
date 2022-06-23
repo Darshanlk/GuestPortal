@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import {
@@ -25,7 +25,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { getManageProfile } from "../reducers/userDataReducers";
+import { getManageProfile,deleteManageProfile } from "../reducers/userDataReducers";
 
 import { useNavigate } from "react-router-dom";
 // import { useDispatch, useSelector } from "react-redux";
@@ -35,12 +35,14 @@ function ManageProfile() {
     (state) => state.userDetails
   );
 
+  const [remove,setRemove] = useState(false)
+
   const navigate = useNavigate();
   const dispatch = useDispatch(); 
 
   useEffect(() => {
     dispatch(getManageProfile());
-  }, []);
+  }, [remove]);
 
   let phone = "";
   let email = "";
@@ -75,7 +77,7 @@ function ManageProfile() {
                   }
                   return (
                     <Card
-                      key={item.key}
+                      key={item.contactunkid}
                       elevation={1}
                       sx={{
                         display: "flex",
@@ -194,6 +196,12 @@ function ManageProfile() {
                                 fontWeight: "bold",
                                 color: "red",
                                 paddingY: 2,
+                              }}
+                              onClick={() => {
+                                console.log(item.guesttranunkid);
+                                dispatch(deleteManageProfile({guesttranunkid:item.guesttranunkid}));
+                                setRemove(true);
+
                               }}
                             >
                               RemoveProfile

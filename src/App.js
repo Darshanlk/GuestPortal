@@ -67,6 +67,7 @@ function App() {
   const [title, setTitle] = React.useState();
   const [drawer, setDrawer] = React.useState(false);
   const [navTitle, setNavTitle] = React.useState("0");
+  const [remove,setRemove] = React.useState(false)
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ function App() {
     let path = location.pathname;
     if (path === "/") {
       setValue(0);
-      setNavTitle("Avalanche Luxury Hotel");
+      setNavTitle("Hotel Darshan ");
     } else if (path === "/booking") {
       setValue(1);
       setNavTitle("Booking Details");
@@ -101,7 +102,7 @@ function App() {
 
   React.useEffect(() => {
     let path = location.pathname;
-    if (path === "/") setTitle("Avalanche Luxury Hotel");
+    if (path === "/") setTitle("Hotel Darshan");
     else if (path === "/booking") setTitle("Booking Details");
     else if (path === "/guestdetails") setTitle("Guest Details");
     else if (path === "/contact") setTitle("Contact");
@@ -128,7 +129,7 @@ function App() {
   useEffect(() => {
     dispatch(addToken());
 
-  }, []);
+  }, [remove]);
 
   // try{
 
@@ -273,10 +274,9 @@ function App() {
 
 
             <ListItem key="Find Hotel On Map" disablePadding>
-              <ListItemButton onClick={() => {
-                 dispatch(logout());
-                //  navigate("/login/:unkid") 
-                 }} >
+
+              <ListItemButton onClick={() => { dispatch(logout());setRemove(true) }} >
+
                 <ListItemIcon>
                   <LogoutIcon sx={{ color: "red" }} />
                 </ListItemIcon>

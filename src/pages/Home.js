@@ -27,6 +27,7 @@ function Home() {
   const { userData, loading } = useSelector((state) => state.userDetails);
   let { message } = useSelector((state) => state.userDetails);
 
+
   let no_adult = "";
   let no_child = "";
   let total_guest = "";
@@ -37,6 +38,7 @@ function Home() {
   let checkin = "";
   let checkout = "";
   let nights = "";
+
 
 
   try {
