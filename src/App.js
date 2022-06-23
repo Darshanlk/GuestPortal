@@ -273,7 +273,10 @@ function App() {
 
 
             <ListItem key="Find Hotel On Map" disablePadding>
-              <ListItemButton onClick={() => { dispatch(logout()); navigate("/login/:unkid") }} >
+              <ListItemButton onClick={() => {
+                 dispatch(logout());
+                //  navigate("/login/:unkid") 
+                 }} >
                 <ListItemIcon>
                   <LogoutIcon sx={{ color: "red" }} />
                 </ListItemIcon>
