@@ -28,8 +28,6 @@ function Home() {
   let { message } = useSelector((state) => state.userDetails);
 
 
-  console.log(typeof userData, loading, userData);
-
   let no_adult = "";
   let no_child = "";
   let total_guest = "";
@@ -41,7 +39,6 @@ function Home() {
   let checkout = "";
   let nights = "";
 
-  console.log(userData);
 
 
   try {
