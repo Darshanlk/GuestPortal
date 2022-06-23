@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { useNavigate } from "react-router-dom";
 import { fetchFunction } from "../helpers/fetchFunction";
 const initialState = {
   token: "",
@@ -38,7 +37,7 @@ const authReducer = createSlice({
         if(state.token != undefined){
         localStorage.setItem("token", action.payload.token);
         }
-        if(localStorage.getItem("UnkId") ){
+        if(localStorage.getItem("UnkId") == null ){
           localStorage.setItem("UnkId",action.payload.unklink)
         }
       }
