@@ -30,18 +30,18 @@ function Contact() {
     }, [])
     const { mapData, loading } = useSelector((state) => state.mapData)
 
-    let email = ""
-    let address = ""
+    let email = "darshan.mistry@ezeetechnosys.com"
+    let address = "near majura gate surat"
     let phone = "+9199985-99985"
-    let lat = 19.0745
-    let lng = 72.8853
-    let hotel_name=""
+    let lat = 23.2346855
+    let lng = 72.6296842
+    let hotel_name="Hotel Darshan"
 
     try {
         if (mapData.length > 0) {
             email = mapData[0][0].email
             address = `${mapData[0][0].address1}, ${mapData[0][0].address2}, ${mapData[0][0].city} ${mapData[0][0].zipcode}, ${mapData[0][0].state}, ${mapData[0][0].country_name}`
-            name = mapData[0][0].name
+            hotel_name = mapData[0][0].name
             if (mapData[0][0].phone != null)
                 phone = mapData[0][0].phone
             if (mapData[0][0].latitude != "")
@@ -52,7 +52,7 @@ function Contact() {
     } catch (e) {
         console.log(e);
     }
-    return (
+return (
         <div>
             {loading ? (
                 <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", marginY: 10 }}>
@@ -73,7 +73,7 @@ function Contact() {
 
                                  
                                     <Typography align='center' sx={{ marginBottom: 3, fontWeight: 'bold' }} variant="h5" component="div">
-                                        {name}
+                                        {hotel_name}
                                     </Typography>
 
 

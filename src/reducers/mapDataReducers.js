@@ -25,7 +25,7 @@ const mapInfo = createSlice({
   extraReducers: {
     [getMapData.fulfilled]: (state, action) => {
       state.mapData.push(action.payload.data);
-    },
+    }
   },
 });
 

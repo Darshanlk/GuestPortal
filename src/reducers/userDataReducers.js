@@ -59,18 +59,29 @@ export const postManageProfile = createAsyncThunk(
   }
 );
 
+export const deleteManageProfile = createAsyncThunk(
+  "deleteManageProfile",
+  async (body) => {
+    const result = await fetchFunction(
+      `guestportal/manageProfile/delete`,
+      body,
+      "delete",
+      localStorage.getItem("token")
+    );
+
+    return result;
+  }
+);
+
 const userInfo = createSlice({
   name: "userDetails",
   initialState,
   reducers: {
     addMessage: (state, action) => {
-
       state.message = [action.payload.message, ...state.message];
     },
 
     storeMessage: (state, action) => {
-
-  
       localStorage.setItem("messages", state.message);
     },
   },
@@ -123,6 +134,16 @@ const userInfo = createSlice({
     },
     [postManageProfile.rejected]: (state, action) => {
       state.error = "Check Your Internet Connection";
+    },
+    [deleteManageProfile.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.message = [action.payload.message, ...state.message];
+    },
+    [deleteManageProfile.pending]: (state, action) => {
+      state.laoding = true;
+    },
+    [deleteManageProfile.rejected]: (state, action) => {
+      state.loading = true;
     },
   },
 });
