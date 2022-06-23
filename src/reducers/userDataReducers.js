@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchFunction } from "../helpers/fetchFunction";
 const initialState = {
   loading: true,
-  message: [],
+  message: [{ messageTitle: "Welcome", messageBody: "Welcome to our hotel" }],
   error: "",
   userData: [],
   manageProfileData: [],
@@ -63,19 +63,16 @@ const userInfo = createSlice({
   name: "userDetails",
   initialState,
   reducers: {
+    addMessage: (state, action) => {
 
-
-    addMessage: (state,action)  => {
-
-      // state.message.push(action.payload.message)
-      state.message = [action.payload.message,...state.message]
+      state.message = [action.payload.message, ...state.message];
     },
 
+    storeMessage: (state, action) => {
 
-
-
-
-
+  
+      localStorage.setItem("messages", state.message);
+    },
   },
   extraReducers: {
     [getUserData.fulfilled]: (state, action) => {
@@ -104,7 +101,7 @@ const userInfo = createSlice({
       state.laoding = false;
       state.manageProfileData = action.payload.message;
       // state.message.push(action.payload.message)
-      state.message = [action.payload.message,...state.message]
+      state.message = [action.payload.message, ...state.message];
     },
     [putManageProfile.pending]: (state, action) => {
       state.loading = true;
@@ -118,7 +115,7 @@ const userInfo = createSlice({
       if (action.payload.error) {
         state.error = action.payload.error;
       } else {
-        state.message = [action.payload.message,...state.message]
+        state.message = [action.payload.message, ...state.message];
       }
     },
     [postManageProfile.pending]: (state, action) => {
@@ -129,5 +126,5 @@ const userInfo = createSlice({
     },
   },
 });
-export const { addMessage } = userInfo.actions;
+export const { addMessage, storeMessage } = userInfo.actions;
 export default userInfo.reducer;

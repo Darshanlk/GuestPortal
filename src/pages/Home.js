@@ -17,7 +17,7 @@ import CheckInCard from "../components/CheckInCard";
 import ServiceStack from "../components/ServiceStack";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserData } from "../reducers/userDataReducers";
+import { addMessage, getUserData, storeMessage } from "../reducers/userDataReducers";
 
 // By Darshan
 function Home() {
@@ -25,6 +25,7 @@ function Home() {
   const dispatch = useDispatch();
 
   const { userData, loading } = useSelector((state) => state.userDetails);
+  let { message } = useSelector((state) => state.userDetails);
 
   let no_adult = "";
   let no_child = "";
@@ -36,6 +37,7 @@ function Home() {
   let checkin = "";
   let checkout = "";
   let nights = "";
+
 
   try {
     if (userData.length > 0) {
@@ -53,15 +55,32 @@ function Home() {
   } catch (e) {
     console.log(e);
   }
+
+  try {
+    let oldMessage = localStorage.getItem("messages");
+    message = [message, ...oldMessage];
+  } catch (e) {
+    console.log(e);
+  }
+
   useEffect(() => {
     dispatch(getUserData());
+
   }, []);
 
   return (
     <div>
       {loading ? (
-        <Box sx={{ display: "flex",flexDirection:"row",justifyContent:"center",alignItems:"center",marginY:10 }}>
-         <CircularProgress />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            marginY: 10,
+          }}
+        >
+          <CircularProgress />
         </Box>
       ) : (
         <Container>

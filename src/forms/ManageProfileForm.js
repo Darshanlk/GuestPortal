@@ -49,7 +49,7 @@ import {
 
 function ManageProfileForm() {
 
-  const honorificsArray = ["Dr.", "Jn.", "Mam.", "Mrs.", "Ms.", "Sir", "Sr."];
+  const honorificsArray = ["Dr.","Mr.", "Jn.", "Mam.", "Mrs.", "Ms.", "Sir", "Sr."];
   const identity = ["Adhar Card", "Driving License", "Passport"];
   const dispatch = useDispatch();
   const guestImageRef = React.useRef(null);

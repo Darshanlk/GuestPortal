@@ -1,4 +1,4 @@
-import * as React from "react";
+import  React,{useEffect} from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
@@ -14,55 +14,23 @@ import {
   Typography,
   Card,
 } from "@mui/material";
+
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function AlertPage() {
-  const { message } = useSelector((state) => state.userDetails);
+  let { message } = useSelector((state) => state.userDetails);
 
 
-//   //dummy message
-//   let messages = [
-//     {
-//       messageTitle: "Message 1",
-//       messageBody:
-//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-//     },
-//     {
-//       messageTitle: "Message  2",
-//       messageBody:
-//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-//     },
-//     {
-//       messageTitle: "Message 3",
-//       messageBody:
-//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-//     },
-//     {
-//       messageTitle: "Message 4",
-//       messageBody:
-//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-//     },
-//     {
-//       messageTitle: "Message 5",
-//       messageBody:
-//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-//     },
-//     {
-//       messageTitle: "Message 6",
-//       messageBody:
-//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-//     },
-//     {
-//       messageTitle: "Message 7",
-//       messageBody:
-//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex, sit amet blandit leo lobortiseget.",
-//     },
-//   ];
+  const dispatch = useDispatch()
+  console.log(message);
+
+
+ 
+  
 
 
 
-
-// messages = [...messages,message]
+//  message = [message,...oldMessage]
 
 
 
