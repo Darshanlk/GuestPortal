@@ -161,7 +161,7 @@ function AccountPreviewCard() {
                  
                 
                 >
-                <Button variant="outlined" color="error" onClick={() => { dispatch(logout()); navigate(`/login/${localStorage.getItem("UnkId")}`) }}>Logout</Button>
+                <Button variant="outlined" color="error" onClick={() => { dispatch(logout()); navigate(`/`) }}>Logout</Button>
 
                 </Box>
 

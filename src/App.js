@@ -74,6 +74,7 @@ function App() {
 
   React.useEffect(() => {
     let path = location.pathname;
+    setRemove(false)
     if (path === "/") {
       setValue(0);
       setNavTitle("Hotel Darshan ");
@@ -125,6 +126,9 @@ function App() {
   //  }
 
   const dispatch = useDispatch();
+  // setRemove(true)
+
+  console.log(remove)
 
   useEffect(() => {
     dispatch(addToken());
@@ -270,7 +274,7 @@ function App() {
                 </ListItemIcon>
                 <ListItemText primary="Find Hotel On Map" />
               </ListItemButton>
-            </ListItem>
+            </ListItem> 
 
 
             <ListItem key="Find Hotel On Map" disablePadding>
