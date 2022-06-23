@@ -274,7 +274,9 @@ function App() {
 
 
             <ListItem key="Find Hotel On Map" disablePadding>
+
               <ListItemButton onClick={() => { dispatch(logout());setRemove(true) }} >
+
                 <ListItemIcon>
                   <LogoutIcon sx={{ color: "red" }} />
                 </ListItemIcon>

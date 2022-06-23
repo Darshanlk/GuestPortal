@@ -158,10 +158,10 @@ function AccountPreviewCard() {
                     flexDirection: "row",
                     justifyContent: "space-evenly",
                 }}
-                
+                 
                 
                 >
-                <Button variant="outlined" color="error" onClick={() => { dispatch(logout()); navigate("/login/:unkid") }}>Logout</Button>
+                <Button variant="outlined" color="error" onClick={() => { dispatch(logout()); navigate(`/login/${localStorage.getItem("UnkId")}`) }}>Logout</Button>
 
                 </Box>
 
