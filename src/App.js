@@ -371,42 +371,42 @@ function App() {
 
           <Route
             path="/"
-            element={token ? <Home /> : <Navigate to="/login/:unkid" />}
+            element={token ? <Home /> : <Navigate to={`/login/${localStorage.getItem("UnkId")}`} />}
           />
           <Route
             path="/booking"
-            element={token ? <Booking /> : <Navigate to="/login/:unkid " />}
+            element={token ? <Booking /> : <Navigate to={`/login/${localStorage.getItem("UnkId")}`} />}
           />
           <Route
             path="/guestdetails"
-            element={token ? <ManageProfile /> : <Navigate to="/login/:unkid " />}
+            element={token ? <ManageProfile /> : <Navigate to={`/login/${localStorage.getItem("UnkId")}`} />}
           />
-          <Route path="/contact" element={token ? <Contact /> : <Navigate to="/login/:unkid " />} />
+          <Route path="/contact" element={token ? <Contact /> : <Navigate to={`/login/${localStorage.getItem("UnkId")}`} />} />
 
           <Route
             path="/manageprofile"
             element={
-              token ? <ManageProfileForm /> : <Navigate to="/login/:unkid " />
+              token ? <ManageProfileForm /> : <Navigate to={`/login/${localStorage.getItem("UnkId")}`} />
             }
           />
 
           <Route
             path="/transport"
-            element={token ? <Transport /> : <Navigate to="/login/:unkid " />}
+            element={token ? <Transport /> : <Navigate to={`/login/${localStorage.getItem("UnkId")}`} />}
           />
           <Route
             path="/confirmCheckin"
             element={
-              token ? <ConfirmCheckin /> : <Navigate to="/login/:unkid " />
+              token ? <ConfirmCheckin /> : <Navigate to={`/login/${localStorage.getItem("UnkId")}`} />
             }
           />
           <Route
             path="/alertPage"
-            element={token ? <AlertPage /> : <Navigate to="/login/:unkid " />}
+            element={token ? <AlertPage /> : <Navigate to={`/login/${localStorage.getItem("UnkId")}`} />}
           />
           <Route
             path="*"
-            element={token ? <NotFound /> : <Navigate to="/login/:unkid " />}
+            element={token ? <NotFound /> : <Navigate to={`/login/${localStorage.getItem("UnkId")}`} />}
           />
           <Route
             path="/login/:unkid"
